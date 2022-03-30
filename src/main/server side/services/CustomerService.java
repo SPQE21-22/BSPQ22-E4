@@ -16,11 +16,7 @@ import javax.ws.rs.core.Response.Status;
 @Path("/customers")
 public class CustomerService {
 
-    private static List<Customer> customerList = new ArrayList<Customer>() {
-        {
-            add(new Customer());
-        }
-    };
+    private static List<Customer> customerList = CustomerDAO.getCustomers();
  
     @GET
     @Produces(MediaType.APPLICATION_JSON)

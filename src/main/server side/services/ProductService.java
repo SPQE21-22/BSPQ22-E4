@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.LocalDate;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -15,14 +16,8 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("/products")
 public class ProductService {
-    
-    private static List<Product> productList = new ArrayList<Product>() {
-        {
-            add(new Product("Breakfast", "Cereales rellenos del Mercadona", "Hacendado", 200, new LocalDate(2022, 10, 04), 0.00, 2.40));
-            add(new Product("Breakfast", "Chocokrispies", "Nestle", 200, new LocalDate(2022, 8, 19), 0.00, 2.60));
-            add(new Product("Breakfast", "Frosties ", "Nestle", 200, new LocalDate(2022, 11, 12), 0.00, 2.35));
-        }
-    };
+
+    private static List<Product> productList = ProductDAO.getProducts();
  
     @GET
     @Produces(MediaType.APPLICATION_JSON)

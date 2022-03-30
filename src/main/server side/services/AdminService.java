@@ -16,11 +16,7 @@ import javax.ws.rs.core.Response.Status;
 @Path("/admins")
 public class AdminService {
     
-    private static List<Admin> adminList = new ArrayList<Admin>() {
-        {
-            add(new Admin());
-        }
-    };
+    private static List<Admin> adminList = AdminDAO.getAdmins();
  
     @GET
     @Produces(MediaType.APPLICATION_JSON)
