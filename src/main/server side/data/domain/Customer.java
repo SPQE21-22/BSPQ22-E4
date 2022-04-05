@@ -3,6 +3,7 @@ public class Customer extends User{
     private String address;
     private String creditCard;
     private String phoneNumber;
+    private List<Order> orderList;
 
     public Customer(String email, String username, String password, String address, String creditCard,
             String phoneNumber) {
