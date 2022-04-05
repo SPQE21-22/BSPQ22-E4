@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("/admins")
+@Path("/adminService")
 public class AdminService {
     
     private static List<Admin> adminList = AdminDAO.getAdmins();
@@ -23,7 +23,7 @@ public class AdminService {
     public Response getAdmins() {
         return Response.ok(adminList).build();
     }
- 
+    
     @GET
     @Path("/{name}")
     @Consumes(MediaType.APPLICATION_JSON)

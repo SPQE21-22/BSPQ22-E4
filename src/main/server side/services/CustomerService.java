@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("/customers")
+@Path("/customerService")
 public class CustomerService {
 
     private static List<Customer> customerList = CustomerDAO.getCustomers();

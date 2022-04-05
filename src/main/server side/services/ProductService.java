@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("/products")
+@Path("/productService")
 public class ProductService {
 
     private static List<Product> productList = ProductDAO.getProducts();
