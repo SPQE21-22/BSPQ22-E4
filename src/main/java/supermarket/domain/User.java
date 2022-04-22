@@ -9,18 +9,18 @@ public class User {
     private String password;
     private String name;
     private String lastName;
-    private String adress;
+    private String address;
     private String cardNumber;
     private String phoneNumber;
     private List<Order> orderList;
 
-    public User(String email, String username, String password, String name, String lastName, String adress, String cardNumber, String phoneNumber, List<Order> orderList) {
+    public User(String email, String username, String password, String name, String lastName, String address, String cardNumber, String phoneNumber, List<Order> orderList) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.name = name;
         this.lastName = lastName;
-        this.adress = adress;
+        this.address = address;
         this.cardNumber = cardNumber;
         this.phoneNumber = phoneNumber;
         this.orderList = orderList;
@@ -78,12 +78,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAdress() {
-        return this.adress;
+    public String getAddress() {
+        return this.address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCardNumber() {
@@ -120,7 +120,7 @@ public class User {
             ", password='" + getPassword() + "'" +
             ", name='" + getName() + "'" +
             ", lastName='" + getLastName() + "'" +
-            ", adress='" + getAdress() + "'" +
+            ", address='" + getAddress() + "'" +
             ", cardNumber='" + getCardNumber() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", orderList='" + getOrderList() + "'" +
