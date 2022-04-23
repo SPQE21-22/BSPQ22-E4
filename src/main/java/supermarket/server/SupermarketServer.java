@@ -17,9 +17,10 @@ public class SupermarketServer {
     protected User user1 = new User("sergio", "1234", "1234", "1234", "1234", "1234" ,"1234", "1234", new ArrayList<Order>());
     protected User user2 = new User("pablo", "1234", "1234", "1234", "1234","1234" ,"1234", "1234", new ArrayList<Order>());
 
-    //here is proccessed info on methods
-    //sql pending
     public boolean login(String username, String password) {
+        //sql part
+
+
         return true;
     }
 
