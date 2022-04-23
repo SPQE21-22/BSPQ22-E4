@@ -5,12 +5,11 @@ import java.sql.*;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 
 import supermarket.domain.User;
 
-public class db {
+public class Db {
     Connection conn = null;
     private static boolean LOGGING = true;
 

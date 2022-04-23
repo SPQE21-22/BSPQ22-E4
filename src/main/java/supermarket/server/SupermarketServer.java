@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import supermarket.db.db;
+import supermarket.db.Db;
 import supermarket.domain.Order;
 import supermarket.domain.User;
 
@@ -19,9 +19,30 @@ public class SupermarketServer {
 
     public boolean login(String username, String password) {
         //sql part
+        List<User> users = new ArrayList<User>();
+        Db db= new Db();
+        db.connect();
+        users = db.getAllUsers();
+        //List < Producto > productos = db.getTodosProductos();
+        int numeroUsuarios = users.size();
+        int usuariosComprobados = 0;
 
 
-        return true;
+        for (User user: users) {
+            if (user.getUsername().equals(username) &&
+                    user.getPassword().equals(password)) {
+                return true;
+                //esta bien logeado
+            } else {
+                usuariosComprobados = usuariosComprobados + 1;
+            }
+        }
+
+        if (usuariosComprobados == numeroUsuarios) { // si se han comprobado todos ---> avisamos
+            JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario");
+        }
+        db.disconnect();
+        return false;
     }
 
     public User getUserInfo() {
