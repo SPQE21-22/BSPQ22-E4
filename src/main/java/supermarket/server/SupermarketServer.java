@@ -39,7 +39,7 @@ public class SupermarketServer {
         }
 
         if (usuariosComprobados == numeroUsuarios) { // si se han comprobado todos ---> avisamos
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario");
+            JOptionPane.showMessageDialog(null, "No se ha encontradoo el usuario");
         }
         db.disconnect();
         return false;
