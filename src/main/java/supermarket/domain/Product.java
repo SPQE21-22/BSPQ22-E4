@@ -1,19 +1,20 @@
 package supermarket.domain;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Product {
     
-    private int id;
+    private String id;
     private String category;
     private String name;
     private String brand;
     private int stock;
-    private LocalDate expirationDate;
+    private Date expirationDate;
     private double discountPercentage;
     private double price;
 
-    public Product(String category, String name, String brand, int stock, LocalDate expirationDate,
+    public Product(String category, String name, String brand, int stock, Date expirationDate,
             double discountPercentage, double price) {
         this.category = category;
         this.name = name;
@@ -27,11 +28,11 @@ public class Product {
     public Product() {
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -67,11 +68,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public LocalDate getExpirationDate() {
+    public Date getExpirationDate() {
         return this.expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
