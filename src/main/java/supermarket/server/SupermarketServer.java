@@ -18,6 +18,7 @@ public class SupermarketServer {
     protected User user2 = new User("pablo", "1234", "1234", "1234", "1234","1234" ,"1234", "1234", new ArrayList<Order>());
 
     public boolean login(String username, String password) {
+        System.out.println("ENTRA LOGIN METHO DE SERVER(SQL)");
         //sql part
         List<User> users = new ArrayList<User>();
         Db db= new Db();
@@ -27,8 +28,9 @@ public class SupermarketServer {
         int numeroUsuarios = users.size();
         int usuariosComprobados = 0;
 
-
+        System.out.println("antes del for de leer users");
         for (User user: users) {
+            System.out.println("Usuario de bd: " + user.toString());
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password)) {
                 return true;
@@ -39,7 +41,7 @@ public class SupermarketServer {
         }
 
         if (usuariosComprobados == numeroUsuarios) { // si se han comprobado todos ---> avisamos
-            JOptionPane.showMessageDialog(null, "No se ha encontradoo el usuario");
+            JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario");
         }
         db.disconnect();
         return false;

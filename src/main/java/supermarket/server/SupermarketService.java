@@ -24,6 +24,7 @@ public class SupermarketService {
 	@POST
 	@Path("/supermarket")
 	public Response login(User user){
+
 		boolean checkLogin=false;
 		//se lanza login en Server
 		checkLogin = supermarketServer.login(user.getUsername(),user.getPassword());

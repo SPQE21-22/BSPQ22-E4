@@ -423,7 +423,7 @@ public class Home extends JFrame implements ActionListener{
 
 
 //typ
-        pl1=new JLabel("Price - Rs.423 ");
+        pl1=new JLabel("Price - 40 $ ");
         pl2=new JLabel("Price - Rs 43 ");
         pl3=new JLabel("Price - Rs 4 ");
         pl4=new JLabel("Price - Rs 4322 ");

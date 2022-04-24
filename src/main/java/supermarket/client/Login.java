@@ -174,14 +174,12 @@ public class Login implements Runnable {
 		while(running.get()) {
 			try { 
 				Thread.sleep(2000);
-				System.out.println("Obtaining data from server...");
-				try {
+				/*try {
 					//revisar
 					User user = getUserInfo();
-					System.out.println("Metodo runs print: " + user.getUsername());
 				} catch (SupermarketException e) {
 					System.out.println(e.getMessage());
-				}
+				}*/
             } catch (InterruptedException e){ 
                 Thread.currentThread().interrupt();
                 System.out.println("Thread was interrupted, Failed to complete operation");
