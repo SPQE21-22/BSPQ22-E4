@@ -1,5 +1,8 @@
 package supermarket.server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,22 +25,28 @@ public class SupermarketService {
 	}
 
 	@POST
-	@Path("/supermarket")
-	public Response login(User user){
-
-		boolean checkLogin=false;
+	@Path("/user")
+	public Response login(User user) {
+		boolean checkLogin = false;
 		//se lanza login en Server
-		checkLogin = supermarketServer.login(user.getUsername(),user.getPassword());
-		System.out.println("Received login: " + user.getUsername() +" booleano de login " +checkLogin);
+		checkLogin = supermarketServer.login(user.getUsername(), user.getPassword());
+		System.out.println("Received login: " + user.getUsername() + " booleano de login " + checkLogin);
 		return Response.ok(checkLogin).build();
 	}
+	
+	@POST
+    @Path("/user")
+    public Response register(User user){
+        boolean checkRegister=false;
+		checkRegister = supermarketServer.register(user);
+        return Response.ok(checkRegister).build();
+    }
 
 	@GET
-	@Path("/supermarket")
-	public Response getUserInfo() {
-		User user = supermarketServer.getUserInfo();
-		System.out.println("Prueba donor server login " +user.getUsername() +" password "+ user.getPassword());
-		return Response.ok(user).build();
-
+	@Path("/user")
+	public List<User> getUserList() {
+		List<User> userList = new ArrayList<User>();
+		userList = supermarketServer.getUserList();
+		return userList;
 	}
 }

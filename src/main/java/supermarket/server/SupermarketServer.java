@@ -12,7 +12,7 @@ import javax.swing.*;
 
 
 public class SupermarketServer {
-
+    private  Db db= new Db();
     protected List<User> listUser = new ArrayList<>();
     protected User user1 = new User("sergio", "1234", "1234", "1234", "1234", "1234" ,"1234", "1234", new ArrayList<Order>());
     protected User user2 = new User("pablo", "1234", "1234", "1234", "1234","1234" ,"1234", "1234", new ArrayList<Order>());
@@ -21,7 +21,6 @@ public class SupermarketServer {
         System.out.println("ENTRA LOGIN METHO DE SERVER(SQL)");
         //sql part
         List<User> users = new ArrayList<User>();
-        Db db= new Db();
         db.connect();
         users = db.getAllUsers();
         //List < Producto > productos = db.getTodosProductos();
@@ -47,9 +46,32 @@ public class SupermarketServer {
         return false;
     }
 
-    public User getUserInfo() {
-        User user = new User();
-        user.setUsername("sergio");
-        return user;
+    public boolean register(User user) {
+        db.connect();
+        boolean checkRegister = db.addUser(user);
+        if (checkRegister) {
+            return true;
+        }
+        return false;
+    }
+
+    public List<User> getUserList() {
+        List<User> userList = new ArrayList<User>();
+        userList = db.getAllUsers();
+        return userList;
+    }
+
+    public User getUser(String username) {
+        User user = db.getUser(username);
+        if (user != null) {
+            return user;
+        }
+        System.out.println("The user is null");
+        return null;
+    }
+    
+    public boolean addOrder(String username, Order order) {
+        
+        return false;
     }
 }
