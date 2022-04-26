@@ -105,6 +105,7 @@ public class Login implements Runnable {
 						System.out.println("1. entra en el if login y mira si lanza home");
 						if (login(username, password)){
 							Home home = new Home();
+
 							System.out.println("------------------------------------------");
 							System.out.println("3. lanza home");
 						}
@@ -151,7 +152,6 @@ public class Login implements Runnable {
 		} else {
 			System.out.println("1.2 Login desde login ventana");
 			bool = response.readEntity(Boolean.class);
-			System.out.println("1.3 Booleano-->  " + bool);
 
 		}
 		return bool;

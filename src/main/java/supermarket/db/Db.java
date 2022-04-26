@@ -46,22 +46,23 @@ public class Db {
         String SQL = "";
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(
-                    "SELECT ID_USER, FIRST_NAME, LAST_NAME, PASSWORD,ADDRESS, CARD_NUMBER, PHONE_NUMBER, USER_NAME FROM USER");
+                    "SELECT USER_ID, EMAIL, USERNAME, PASSWORD, NAME ,LASTNAME, ADDRESS, CARDNUMBER, PHONENUMBER FROM USER");
             while (rs.next()) {
                 User user = new User();
-                user.setId("ID_USER");
-                user.setName("FIRST_NAME");
-                user.setLastName("LAST_NAME");
-                user.setPassword("PASSWORD");
-                user.setAddress("ADDRESS");
-                user.setCardNumber("CARD_NUMBER");
-                user.setPhoneNumber("PHONE_NUMBER");
-                user.setUsername("USER_NAME");
+                user.setId(rs.getString("USER_ID"));
+                user.setEmail(rs.getString("EMAIL"));
+                user.setUsername(rs.getString("USERNAME"));
+                user.setPassword(rs.getString("PASSWORD"));
+                user.setName(rs.getString("NAME"));
+                user.setLastName(rs.getString("LASTNAME"));
+                user.setAddress(rs.getString("ADDRESS"));
+                user.setCardNumber(rs.getString("CARDNUMBER"));
+                user.setPhoneNumber(rs.getString("PHONENUMBER"));
                 users.add(user);
             }
             return users;
         } catch (SQLException | DateTimeParseException e) {
-            System.out.println("ERROR Obteniendo los users en DB");
+            System.out.println("ERROR Obteniendo los users en DB" + e.toString());
 
         }
         return users;
