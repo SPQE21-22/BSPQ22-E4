@@ -10,12 +10,8 @@ import supermarket.domain.User;
 
 import javax.swing.*;
 
-
 public class SupermarketServer {
     private  Db db= new Db();
-    protected List<User> listUser = new ArrayList<>();
-    protected User user1 = new User("sergio", "1234", "1234", "1234", "1234", "1234" ,"1234", "1234", new ArrayList<Order>());
-    protected User user2 = new User("pablo", "1234", "1234", "1234", "1234","1234" ,"1234", "1234", new ArrayList<Order>());
 
     public boolean login(String username, String password) {
         System.out.println("ENTRA LOGIN METHO DE SERVER(SQL)");
@@ -70,8 +66,12 @@ public class SupermarketServer {
         return null;
     }
     
-    public boolean addOrder(String username, Order order) {
-        
+    public boolean addOrder(String userId, Order order) {
+        db.connect();
+        bloolean checkOrder = db.addOrder(userId, order);
+        if (checkOrder){
+            return true;
+        }
         return false;
     }
 }

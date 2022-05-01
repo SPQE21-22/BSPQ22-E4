@@ -168,7 +168,45 @@ public class Db {
         return user;
     }
 
-    public boolean addOrder(Order order, String username) {
+    public boolean addOrder(String userId, Order order) {
+        List<Product> products = new ArrayList<>();
+        products = order.getProductList();
+
+        String sql = "INSERT INTO order (user_id, date, price) VALUES (?,?,?)";
+        try (Statement stmt = conn.createStatement()) {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, Integer.valueOf(userId));
+            pst.setDate(2, order.getDate());
+            pst.setFloat(3, order.getPrice());
+            pst.executeUpdate();
+            pst.close();
+            return true;
+        } catch (SQLException | DateTimeParseException e) {
+            System.out.println("ERROR Obteniendo los users en DB");
+        }
+
+        //order added
+        for (Product product : products) {
+            String sql2 = "INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)";
+            try (Statement stmt2 = conn.createStatement()) {
+                PreparedStatement pst2 = conn.prepareStatement(sql2);
+                pst.setString(1, product.getCategory());
+                pst.setString(2, product.getName());
+                pst.setString(3, product.getBrand());
+                pst.setInteger(4, product.getStock());
+                pst.setDate(5, product.getExpirationDate());
+                pst.setFloat(6, product.getDiscountPercentage();
+                pst.setFloat(3, product.getPrice());
+                pst.executeUpdate();
+                pst.close();
+                return true;
+            } catch (SQLException | DateTimeParseException e) {
+                System.out.println("ERROR Obteniendo los users en DB");
+            }
+            // MEDIO HACER
+        }
+
+
         return false;
     }
 }

@@ -44,9 +44,19 @@ public class SupermarketService {
 
 	@GET
 	@Path("/user")
-	public List<User> getUserList() {
-		List<User> userList = new ArrayList<User>();
-		userList = supermarketServer.getUserList();
-		return userList;
+	public User getUser(String username) {
+		User user = new User();
+		user = supermarketServer.getUser();
+		return user;
 	}
+
+	@POST
+	@Path("/order")
+	public Response addOrder(String username, Order order) {
+		User user = this.getUser(username);
+		boolean checkOrder = false;
+		checkOrder = supermarketServer.checkOrder(user.getId(), order);
+		return Response.ok(checkOrder).build();
+	}
+
 }
