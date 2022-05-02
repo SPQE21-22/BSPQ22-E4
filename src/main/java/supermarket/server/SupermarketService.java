@@ -59,4 +59,11 @@ public class SupermarketService {
 		return Response.ok(checkOrder).build();
 	}
 
+	@GET
+	@Path("/product")
+	public List<Product> getProductList() {
+		List<Product> productList = new ArrayList<Product>();
+		productList = supermarketServer.getProductList();
+		return productList;
+	}
 }

@@ -54,7 +54,10 @@ public class SupermarketServer {
     public List<User> getUserList() {
         List<User> userList = new ArrayList<User>();
         userList = db.getAllUsers();
-        return userList;
+        if(productList != null) {
+            return userList;    
+        }
+        return null;
     }
 
     public User getUser(String username) {
@@ -63,6 +66,15 @@ public class SupermarketServer {
             return user;
         }
         System.out.println("The user is null");
+        return null;
+    }
+
+    public List<Product> getProductList() {
+        List<Product> productList = new ArrayList<>();
+        productList = db.getProductList();
+        if (productList != null){
+            return productList;
+        }
         return null;
     }
     
