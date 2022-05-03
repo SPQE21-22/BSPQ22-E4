@@ -74,19 +74,19 @@ public class Home extends JFrame implements ActionListener{
 
 
 
-        Rb1= new JRadioButton("Core i3 2.10Ghz(2310M)");
-        Rb2= new JRadioButton("Core i5 2.30Ghz(2410M)");
-        Rb3= new JRadioButton("Core i5 2.40Ghz(2430M))");
-        Rb4= new JRadioButton("Core i7 2.0Ghz(QM2630)");
-        Rb5= new JRadioButton("Core-i7 2.2Ghz(QM2670)");
+        Rb1= new JRadioButton("Apple");
+        Rb2= new JRadioButton("Pears");
+        Rb3= new JRadioButton("Grapes");
+        Rb4= new JRadioButton("Watermelon");
+        Rb5= new JRadioButton("Banana");
 
-        pl1=new JLabel("Price - Rs.123 ");
-        pl2=new JLabel("Price - Rs 2 ");
-        pl3=new JLabel("Price - Rs 3 ");
-        pl4=new JLabel("Price - Rs 4 ");
-        pl5=new JLabel("Price - Rs 5 ");
+        pl1=new JLabel("Price - 2€/kg ");
+        pl2=new JLabel("Price - 1€/kg ");
+        pl3=new JLabel("Price - 3€/kg ");
+        pl4=new JLabel("Price - 1€/kg ");
+        pl5=new JLabel("Price - 4€/kg ");
 
-        ImageIcon p1 = new ImageIcon("images\\p1.jpg");
+        ImageIcon p1 = new ImageIcon("images\\key.png");
         JLabel Lp1 = new JLabel(" ", p1, JLabel.CENTER);
 
         BG1.add(Rb1);
@@ -145,7 +145,7 @@ public class Home extends JFrame implements ActionListener{
         b1.setVisible(false);
         b1.setBounds(125, 0, 275, 450);
         b1.setBorder(BorderFactory.createTitledBorder(" "));
-        btnP=new JButton(" Processors ");
+        btnP=new JButton(" Fruit ");
         btnP.setMaximumSize(new Dimension(120, 25));
 
 
@@ -162,19 +162,19 @@ public class Home extends JFrame implements ActionListener{
             }});
 //Ram
 
-        Rb10= new JRadioButton("1GB DDR3");
-        Rb9= new JRadioButton("2GB DDR3");
-        Rb6= new JRadioButton("4GB DDR3");
-        Rb7= new JRadioButton("6GB DDR3");
-        Rb8= new JRadioButton("8GB DDR3");
+        Rb10= new JRadioButton("Chicken pieces");
+        Rb9= new JRadioButton("Steak premium");
+        Rb6= new JRadioButton("Pork Ribs");
+        Rb7= new JRadioButton("Mixed meat");
+        Rb8= new JRadioButton("Chicken wings");
 
-        pl1=new JLabel("Price - Rs.223 ");
-        pl2=new JLabel("Price - Rs 2 ");
-        pl3=new JLabel("Price - Rs 3 ");
-        pl4=new JLabel("Price - Rs 222 ");
-        pl5=new JLabel("Price - Rs 22222 ");
+        pl1=new JLabel("Price - 9€/kg");
+        pl2=new JLabel("Price - 24€/kg");
+        pl3=new JLabel("Price - 12€/kg");
+        pl4=new JLabel("Price - 21€/kg");
+        pl5=new JLabel("Price - 22€/kg");
 
-        ImageIcon r1 = new ImageIcon("images\\R1.jpg");
+        ImageIcon r1 = new ImageIcon("images\\cc.png");
         JLabel R1 = new JLabel(" ", r1, JLabel.CENTER);
 
         BG2.add(Rb10);
@@ -231,7 +231,7 @@ public class Home extends JFrame implements ActionListener{
         b2.setVisible(false);
         b2.setBounds(125, 0, 275, 450);
         b2.setBorder(BorderFactory.createTitledBorder(" "));
-        btnR=new JButton("RAM");
+        btnR=new JButton("Meat");
         btnR.setMaximumSize(new Dimension(120, 25));
         con.add(b2);
 
@@ -249,17 +249,17 @@ public class Home extends JFrame implements ActionListener{
             }});
 //Hard
 
-        Rb11= new JRadioButton("250GB");
-        Rb12= new JRadioButton("320GB");
-        Rb13= new JRadioButton("500GB");
-        Rb14= new JRadioButton("640GB");
-        Rb15= new JRadioButton("750GB");
+        Rb11= new JRadioButton("Chocolate Cookies ");
+        Rb12= new JRadioButton("Bread");
+        Rb13= new JRadioButton("Butter");
+        Rb14= new JRadioButton("Apricot jam");
+        Rb15= new JRadioButton("Muffins");
 
-        pl1=new JLabel("Price - Rs.323 ");
-        pl2=new JLabel("Price - Rs 33 ");
-        pl3=new JLabel("Price - Rs 3 ");
-        pl4=new JLabel("Price - Rs 3322 ");
-        pl5=new JLabel("Price - Rs 32222 ");
+        pl1=new JLabel("Price - 2€");
+        pl2=new JLabel("Price - 5€");
+        pl3=new JLabel("Price - 2€");
+        pl4=new JLabel("Price - 3€");
+        pl5=new JLabel("Price - 4€");
 
         ImageIcon h1 = new ImageIcon("images\\Lh1.jpg");
         JLabel hd1 = new JLabel(" ", h1, JLabel.CENTER);
@@ -317,7 +317,7 @@ public class Home extends JFrame implements ActionListener{
         b3.setVisible(false);
         b3.setBounds(125, 0, 275, 450);
         b3.setBorder(BorderFactory.createTitledBorder(" "));
-        btnH=new JButton("HDD");
+        btnH=new JButton("Breakfast");
         btnH.setMaximumSize(new Dimension(120, 25));
         con.add(b3);
 
@@ -335,18 +335,18 @@ public class Home extends JFrame implements ActionListener{
             }});
 //Disply
 
-        Rb20= new JRadioButton("14\" WXGA");
-        Rb19= new JRadioButton("14.1\" wxga");
-        Rb16= new JRadioButton("15\" XGA ");
-        Rb17= new JRadioButton("15.4\"WXGA");
-        Rb18= new JRadioButton("17\"WUXGA");
+        Rb20= new JRadioButton("Ketchup");
+        Rb19= new JRadioButton("BBQ sauce");
+        Rb16= new JRadioButton("Garlic sauce ");
+        Rb17= new JRadioButton("Mustard");
+        Rb18= new JRadioButton("Mayonnese");
 
 
-        pl1=new JLabel("Price - Rs.423 ");
-        pl2=new JLabel("Price - Rs 43 ");
-        pl3=new JLabel("Price - Rs 4 ");
-        pl4=new JLabel("Price - Rs 4322 ");
-        pl5=new JLabel("Price - Rs 42222 ");
+        pl1=new JLabel("Price - 1€ ");
+        pl2=new JLabel("Price - 2€ ");
+        pl3=new JLabel("Price - 1€");
+        pl4=new JLabel("Price - 3€ ");
+        pl5=new JLabel("Price - 2€ ");
 
 
         Rb19.addActionListener( new ActionListener() {
@@ -404,7 +404,7 @@ public class Home extends JFrame implements ActionListener{
         b4.setVisible(false);
         b4.setBounds(125, 0, 275, 450);
         b4.setBorder(BorderFactory.createTitledBorder(" "));
-        btnV=new JButton("SCREEN");
+        btnV=new JButton("Sauces");
         btnV.setMaximumSize(new Dimension(120, 25));
         con.add(b4);
 
@@ -423,11 +423,11 @@ public class Home extends JFrame implements ActionListener{
 
 
 //typ
-        pl1=new JLabel("Price - 40 $ ");
-        pl2=new JLabel("Price - Rs 43 ");
-        pl3=new JLabel("Price - Rs 4 ");
-        pl4=new JLabel("Price - Rs 4322 ");
-        pl5=new JLabel("Price - Rs 42222 ");
+        pl1=new JLabel("Price - 500€ ");
+        pl2=new JLabel("Price - 1200€");
+        pl3=new JLabel("Price - 1000€");
+        pl4=new JLabel("Price - 800€");
+        pl5=new JLabel("Price - 1300€");
 
         final Box hb1= Box.createHorizontalBox();
         final Box hb2= Box.createHorizontalBox();
@@ -525,7 +525,7 @@ public class Home extends JFrame implements ActionListener{
         b5.setVisible(false);
         b5.setBounds(125, 0, 275, 450);
         b5.setBorder(BorderFactory.createTitledBorder(" "));
-        btnD=new JButton("MODEL");
+        btnD=new JButton("Computers");
         btnD.setMaximumSize(new Dimension(120, 25));
         con.add(b5);
 

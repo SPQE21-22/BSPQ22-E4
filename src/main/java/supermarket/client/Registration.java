@@ -1,8 +1,24 @@
 package supermarket.client;
 
+import supermarket.domain.User;
+import supermarket.util.SupermarketException;
+import javax.ws.rs.client.WebTarget;
+
 import javax.swing.*;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.awt.*;
 import java.awt.event.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 
 public class Registration extends JFrame implements ActionListener
@@ -11,6 +27,8 @@ public class Registration extends JFrame implements ActionListener
     JTextField tf1, tf2, tf5, tf6, tf7,tf8;
     JButton btn1, btn2;
     JPasswordField p1, p2;
+    private WebTarget webTarget;
+
     Registration()
     {
         setVisible(true);
@@ -100,6 +118,7 @@ public class Registration extends JFrame implements ActionListener
                 try
                 {
                     //lanzar register
+                    User user = new User();
                 }
                 catch (Exception ex)
                 {
@@ -119,6 +138,25 @@ public class Registration extends JFrame implements ActionListener
             Login login = new Login(hostname, port);
             setVisible(false);
         }
+    }
+
+    public boolean register() throws SupermarketException {
+        WebTarget supermarketWebTarget = webTarget.path("server/register");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+        Boolean bool=false;
+        User user = new User();
+
+        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+        System.out.println("estado de response status " + response.getStatusInfo());
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            System.out.println("falla el register");
+            throw new SupermarketException("" + response.getStatus());
+        } else {
+            System.out.println("1.2 Login desde login ventana");
+            bool = response.readEntity(Boolean.class);
+
+        }
+        return bool;
     }
 
 }

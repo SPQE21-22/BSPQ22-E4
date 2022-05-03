@@ -6,6 +6,7 @@ import java.util.List;
 
 import supermarket.db.Db;
 import supermarket.domain.Order;
+import supermarket.domain.Product;
 import supermarket.domain.User;
 
 import javax.swing.*;
@@ -54,7 +55,7 @@ public class SupermarketServer {
     public List<User> getUserList() {
         List<User> userList = new ArrayList<User>();
         userList = db.getAllUsers();
-        if(productList != null) {
+        if(userList != null) {
             return userList;    
         }
         return null;
@@ -80,7 +81,7 @@ public class SupermarketServer {
     
     public boolean addOrder(String userId, Order order) {
         db.connect();
-        bloolean checkOrder = db.addOrder(userId, order);
+        boolean checkOrder = db.addOrder(userId, order);
         if (checkOrder){
             return true;
         }

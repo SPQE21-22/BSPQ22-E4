@@ -136,7 +136,7 @@ public class Login implements Runnable {
 	}
 	
 	public boolean login(String username, String password) throws SupermarketException {
-		WebTarget supermarketWebTarget = webTarget.path("server/supermarket");
+		WebTarget supermarketWebTarget = webTarget.path("server/user");
 		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
 		Boolean bool=false;
 		User user = new User();
@@ -146,7 +146,7 @@ public class Login implements Runnable {
 		System.out.println("estado de response status " + response.getStatusInfo());
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			System.out.println("falla el login");
-			throw new SupermarketException("" + response.getStatus());
+			throw new SupermarketException("Exception" + response.getStatus());
 
 
 		} else {
@@ -174,12 +174,6 @@ public class Login implements Runnable {
 		while(running.get()) {
 			try { 
 				Thread.sleep(2000);
-				/*try {
-					//revisar
-					User user = getUserInfo();
-				} catch (SupermarketException e) {
-					System.out.println(e.getMessage());
-				}*/
             } catch (InterruptedException e){ 
                 Thread.currentThread().interrupt();
                 System.out.println("Thread was interrupted, Failed to complete operation");
