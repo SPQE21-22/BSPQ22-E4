@@ -1,4 +1,6 @@
 package supermarket.client;
+import supermarket.domain.User;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +12,7 @@ import javax.swing.*;
 
 public class Home extends JFrame implements ActionListener{
 
-    public JButton btnP,btnR,Sub,btnD,btnH,btnV,rem;
+    public JButton btnP,btnR,Sub,btnD,btnH,btnV,rem,bprueba;
     public JRadioButton Rb1,Rb2,Rb3,Rb4,ans,Rb10;
     public JRadioButton Rb5,Rb6,Rb7,Rb8,Rb9;
     public JRadioButton Rb11,Rb12,Rb13,Rb14,Rb15;
@@ -22,7 +24,7 @@ public class Home extends JFrame implements ActionListener{
     public Container con;
     public String[] Sary;
 
-    public Home() {
+    public Home(User user) {
 
         Sary= new String[5];
         for(int x=0;x<Sary.length;x++)
@@ -86,8 +88,9 @@ public class Home extends JFrame implements ActionListener{
         pl4=new JLabel("Price - 1€/kg ");
         pl5=new JLabel("Price - 4€/kg ");
 
-        ImageIcon p1 = new ImageIcon("images\\key.png");
+        ImageIcon p1 = new ImageIcon("images/user.png");
         JLabel Lp1 = new JLabel(" ", p1, JLabel.CENTER);
+        JLabel Lp2 = new JLabel(p1, JLabel.CENTER);
 
         BG1.add(Rb1);
         BG1.add(Rb2);
@@ -147,6 +150,9 @@ public class Home extends JFrame implements ActionListener{
         b1.setBorder(BorderFactory.createTitledBorder(" "));
         btnP=new JButton(" Fruit ");
         btnP.setMaximumSize(new Dimension(120, 25));
+
+        bprueba=new JButton(" PRUEBA ");
+        bprueba.setMaximumSize(new Dimension(120, 25));
 
 
         con.add(b1);
@@ -454,11 +460,11 @@ public class Home extends JFrame implements ActionListener{
         JLabel LM5 = new JLabel(" ", i5, JLabel.CENTER);
 
 
-        Rb21= new JRadioButton("HP Probook 4530s");
-        Rb22= new JRadioButton("HP Pavilion DV6");
-        Rb23= new JRadioButton("Dell Vostro");
-        Rb24= new JRadioButton("Dell Inspiron N5110");
-        Rb25= new JRadioButton("Acer Aspire 5750");
+        Rb21= new JRadioButton("Diet fanta");
+        Rb22= new JRadioButton("Coke light");
+        Rb23= new JRadioButton("Orange juice");
+        Rb24= new JRadioButton("Water");
+        Rb25= new JRadioButton("Cold beer");
 
         BG5.add(Rb21);
         BG5.add(Rb22);
@@ -525,7 +531,7 @@ public class Home extends JFrame implements ActionListener{
         b5.setVisible(false);
         b5.setBounds(125, 0, 275, 450);
         b5.setBorder(BorderFactory.createTitledBorder(" "));
-        btnD=new JButton("Computers");
+        btnD=new JButton("Drinks");
         btnD.setMaximumSize(new Dimension(120, 25));
         con.add(b5);
 
@@ -571,11 +577,9 @@ public class Home extends JFrame implements ActionListener{
                 l3.setText(" ");
                 l4.setText(" ");
                 l5.setText(" ");
+                VentanaPerfil perfil= new VentanaPerfil(null,user);
 
             }});
-
-
-
 
 
 
@@ -589,6 +593,8 @@ public class Home extends JFrame implements ActionListener{
         choz.add(btnH);
         choz.add( Box.createRigidArea(new Dimension(0,5)));
         choz.add(btnV);
+        choz.add( Box.createRigidArea(new Dimension(0,5)));
+        choz.add(bprueba);
 
         buy.add( Box.createRigidArea(new Dimension(0,50)));
         ImageIcon image = new ImageIcon("images\\1.jpg");

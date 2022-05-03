@@ -23,7 +23,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import supermarket.client.*;
 import supermarket.domain.User;
 import supermarket.util.SupermarketException;
 
@@ -92,6 +91,8 @@ public class Login implements Runnable {
 
 		JButton loginButton = new JButton("login");
 		loginButton.setBounds(10, 80, 80, 25);
+
+		//Login action listener
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,13 +102,10 @@ public class Login implements Runnable {
 					String password=String.valueOf(passwordText.getPassword());
 					message.setText("Trying to login");
 					try {
-						System.out.println("------------------------------------------");
-						System.out.println("1. entra en el if login y mira si lanza home");
 						if (login(username, password)){
-							Home home = new Home();
-
-							System.out.println("------------------------------------------");
-							System.out.println("3. lanza home");
+							User user = new User();
+							Home home = new Home(user);
+							frame.dispose();
 						}
 					} catch (SupermarketException ex) {
 						ex.printStackTrace();
@@ -143,14 +141,11 @@ public class Login implements Runnable {
 		user.setUsername(username);
 		user.setPassword(password);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-		System.out.println("estado de response status " + response.getStatusInfo());
 		if (response.getStatus() != Status.OK.getStatusCode()) {
-			System.out.println("falla el login");
 			throw new SupermarketException("Exception" + response.getStatus());
 
 
 		} else {
-			System.out.println("1.2 Login desde login ventana");
 			bool = response.readEntity(Boolean.class);
 
 		}
