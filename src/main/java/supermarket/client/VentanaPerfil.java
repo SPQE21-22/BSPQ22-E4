@@ -19,22 +19,22 @@ import supermarket.domain.User;
 public class VentanaPerfil extends JFrame {
 
 	JPanel pnlCentral;
-	JLabel fPerfil;
-	JTextField apellido;
-	JPasswordField contrasena;
+	JLabel fProfile;
+	JTextField lastName;
+	JPasswordField password;
 	JTextField email;
-	JLabel lapellido;
-	JLabel lcontrasena;
+	JLabel llastName;
+	JLabel lpassword;
 	JLabel lid;
 	JLabel e;
 	JLabel editar;
 	JTextField id;
-	JTextField tel;
-	JTextField nombre;
+	JTextField phone;
+	JTextField name;
 	JButton guardar;
 	JButton cerrar;
 	JButton borrar;
-	JButton volver;
+	JButton backbutton;
 
 	public VentanaPerfil(JFrame ventanaAnterior, User user) {
 		setTitle("Profile");
@@ -53,20 +53,20 @@ public class VentanaPerfil extends JFrame {
 
 		// Labels
 
-		lapellido = new JLabel();
-		lapellido.setText("Apellido");
-		lapellido.setBounds(460, 100, 120, 120);
-		lapellido.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(lapellido);
+		llastName = new JLabel();
+		llastName.setText("Last Name");
+		llastName.setBounds(460, 100, 120, 120);
+		llastName.setFont(new Font("Arial", Font.PLAIN, 15));
+		pnlCentral.add(llastName);
 
-		lcontrasena = new JLabel();
-		lcontrasena.setText("Contrasena");
-		lcontrasena.setBounds(460, 150, 120, 120);
-		lcontrasena.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(lcontrasena);
+		lpassword = new JLabel();
+		lpassword.setText("Password");
+		lpassword.setBounds(460, 150, 120, 120);
+		lpassword.setFont(new Font("Arial", Font.PLAIN, 15));
+		pnlCentral.add(lpassword);
 
 		lid = new JLabel();
-		lid.setText("Id usuario");
+		lid.setText("User id");
 		lid.setBounds(460, 200, 120, 120);
 		lid.setFont(new Font("Arial", Font.PLAIN, 15));
 		pnlCentral.add(lid);
@@ -77,21 +77,21 @@ public class VentanaPerfil extends JFrame {
 		e.setFont(new Font("Arial", Font.PLAIN, 15));
 		pnlCentral.add(e);
 
-		fPerfil = new JLabel();
-		fPerfil.setIcon(new ImageIcon("src/main/java/supermarket/client/images/userFoto.png"));
-		fPerfil.setBounds(400, 0, 120, 120);
-		pnlCentral.add(fPerfil);
+		fProfile = new JLabel();
+		fProfile.setIcon(new ImageIcon("src/main/java/supermarket/client/images/userFoto.png"));
+		fProfile.setBounds(400, 0, 120, 120);
+		pnlCentral.add(fProfile);
 
 		// Combobox
-		apellido = new JTextField(user.getLastName());
-		apellido.setEditable(false);
-		apellido.setBounds(580, 150, 102, 30);
-		pnlCentral.add(apellido);
+		lastName = new JTextField(user.getLastName());
+		lastName.setEditable(false);
+		lastName.setBounds(580, 150, 102, 30);
+		pnlCentral.add(lastName);
 
-		contrasena = new JPasswordField(user.getPassword());
-		contrasena.setEditable(false);
-		contrasena.setBounds(580, 200, 102, 30);
-		pnlCentral.add(contrasena);
+		password = new JPasswordField(user.getPassword());
+		password.setEditable(false);
+		password.setBounds(580, 200, 102, 30);
+		pnlCentral.add(password);
 
 		email = new JTextField(user.getEmail());
 		email.setEditable(false);
@@ -105,36 +105,32 @@ public class VentanaPerfil extends JFrame {
 		id.setBounds(580, 250, 102, 30);
 		pnlCentral.add(id);
 
-		tel = new JTextField();
-		tel.setText("@" + user.getUsername());
-		tel.setEditable(false);
-		tel.setBounds(580, 80, 180, 30);
-		pnlCentral.add(tel);
+		phone = new JTextField();
+		phone.setText("@" + user.getUsername());
+		phone.setEditable(false);
+		phone.setBounds(580, 80, 180, 30);
+		pnlCentral.add(phone);
 
-		nombre = new JTextField();
+		name = new JTextField();
 		Font fuente = new Font("Dialog", Font.BOLD, 26);
-		nombre.setFont(fuente);
-		nombre.setText(user.getName());
-		nombre.setEditable(false);
-		nombre.setBounds(580, 20, 240, 50);
-		pnlCentral.add(nombre);
+		name.setFont(fuente);
+		name.setText(user.getName());
+		name.setEditable(false);
+		name.setBounds(580, 20, 240, 50);
+		pnlCentral.add(name);
 
 		// Botones
 
-		volver = new JButton();
-		volver.setText("Go back");
-		volver.setBackground(Color.white);
-		volver.setFont(new Font("Arial", Font.PLAIN, 12));
-		volver.setBounds(40, 410, 140, 30);
-		pnlCentral.add(volver);
+		backbutton = new JButton();
+		backbutton.setText("Go back");
+		backbutton.setBounds(40, 410, 140, 30);
+		pnlCentral.add(backbutton);
 
-		volver.addActionListener(new ActionListener() {
-
+		backbutton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventanaAnterior.setVisible(true);
 				dispose();
-
+				setVisible(false);
 			}
 		});
 

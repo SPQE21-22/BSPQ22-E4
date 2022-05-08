@@ -23,11 +23,7 @@ public class Db {
 
             System.out.println("Connection to SQLite has been established.");
 
-           /* ScriptRunner sr = new ScriptRunner(conn);
-            //Creating a reader object
-            Reader reader = new BufferedReader(new FileReader("script2.sql"));
-            //Running the script
-            sr.runScript(reader);*/
+
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -47,7 +43,9 @@ public class Db {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         String sql = "SELECT * FROM USER;";
-        try (Statement stmt = conn.createStatement()) {
+        try {
+            System.out.println("HASTA AQUI HE LLEGADO 2");
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 User user = new User();
@@ -65,6 +63,7 @@ public class Db {
         } catch (SQLException | DateTimeParseException e) {
             System.out.println("ERROR Obteniendo los users en DB" + e.toString());
         }
+        System.out.println("HASTA AQUI HE LLEGADO 3");
         return users;
     }
 
@@ -92,6 +91,7 @@ public class Db {
     }
     
     public User getUser(String username) {
+        System.out.println("Hasta aqui he llegado 1");
         User user = new User();
 
         String sql = "SELECT * FROM USER WHERE username = '" + username + "';";

@@ -4,15 +4,13 @@ import supermarket.domain.User;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.swing.*;
 
 
 public class Home extends JFrame implements ActionListener{
 
-    public JButton btnP,btnR,Sub,btnD,btnH,btnV,rem,bprueba;
+    public JButton btnP,btnR,Sub,btnD,btnH,btnV,rem, bprofile;
     public JRadioButton Rb1,Rb2,Rb3,Rb4,ans,Rb10;
     public JRadioButton Rb5,Rb6,Rb7,Rb8,Rb9;
     public JRadioButton Rb11,Rb12,Rb13,Rb14,Rb15;
@@ -151,8 +149,8 @@ public class Home extends JFrame implements ActionListener{
         btnP=new JButton(" Fruit ");
         btnP.setMaximumSize(new Dimension(120, 25));
 
-        bprueba=new JButton(" PRUEBA ");
-        bprueba.setMaximumSize(new Dimension(120, 25));
+        bprofile =new JButton(" PROFILE ");
+        bprofile.setMaximumSize(new Dimension(120, 25));
 
 
         con.add(b1);
@@ -444,7 +442,7 @@ public class Home extends JFrame implements ActionListener{
         final Box hb12= Box.createHorizontalBox();
         ;
 
-        ImageIcon i1 = new ImageIcon("images\\LM1.jpg");
+        ImageIcon i1 = new ImageIcon("src/main/java/supermarket/client/images/tresBarras.png");
         JLabel LM1 = new JLabel(" ", i1, JLabel.CENTER);
 
         ImageIcon i2 = new ImageIcon("images\\LM2.jpg");
@@ -577,6 +575,11 @@ public class Home extends JFrame implements ActionListener{
                 l3.setText(" ");
                 l4.setText(" ");
                 l5.setText(" ");
+
+            }});
+        //listener de profile
+        bprofile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 VentanaPerfil perfil= new VentanaPerfil(null,user);
 
             }});
@@ -594,11 +597,11 @@ public class Home extends JFrame implements ActionListener{
         choz.add( Box.createRigidArea(new Dimension(0,5)));
         choz.add(btnV);
         choz.add( Box.createRigidArea(new Dimension(0,5)));
-        choz.add(bprueba);
+        choz.add(bprofile);
 
         buy.add( Box.createRigidArea(new Dimension(0,50)));
         ImageIcon image = new ImageIcon("images\\1.jpg");
-        JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
+        JLabel label1 = new JLabel("Cart ", image, JLabel.CENTER);
         buy.add(label1);
         buy.add(Sub);
         buy.add(rem);

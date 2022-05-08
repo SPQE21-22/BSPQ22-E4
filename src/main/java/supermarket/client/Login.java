@@ -34,6 +34,7 @@ public class Login implements Runnable {
 	private JTextField passwordField;
 	private JLabel message;
 	private JTextField userText;
+	private User user;
 
 	private Client client;
 	private WebTarget webTarget;
@@ -98,14 +99,17 @@ public class Login implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Login !");
 				try {
+
 					String username=userText.getText();
 					String password=String.valueOf(passwordText.getPassword());
+					User user1;
 					message.setText("Trying to login");
 					try {
 						if (login(username, password)){
-							User user = new User();
-							Home home = new Home(user);
-							frame.dispose();
+							System.out.println("Antes del getuser");
+							user1 = getUser(username);
+							System.out.println("Despues del getuser");
+							Home home = new Home(user1);
 						}
 					} catch (SupermarketException ex) {
 						ex.printStackTrace();
@@ -151,6 +155,18 @@ public class Login implements Runnable {
 		}
 		return bool;
 	}
+	public User getUser(String username) throws SupermarketException {
+		User user = new User();
+		WebTarget supermarketWebTarget = webTarget.path("server/getUser");
+		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.get();
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new SupermarketException("Exception" + response.getStatus());
+		} else {
+			user = response.readEntity(User.class);
+		}
+		return user;
+	}
 
 	public User getUserInfo() throws SupermarketException {
 		WebTarget supermarketWebTarget = webTarget.path("server/supermarket");
@@ -171,7 +187,6 @@ public class Login implements Runnable {
 				Thread.sleep(2000);
             } catch (InterruptedException e){ 
                 Thread.currentThread().interrupt();
-                System.out.println("Thread was interrupted, Failed to complete operation");
             }
 		}
 	}

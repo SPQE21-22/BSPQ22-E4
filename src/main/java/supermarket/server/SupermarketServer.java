@@ -15,7 +15,6 @@ public class SupermarketServer {
     private  Db db= new Db();
 
     public boolean login(String username, String password) {
-        System.out.println("ENTRA LOGIN METHO DE SERVER(SQL)");
         //sql part
         List<User> users = new ArrayList<User>();
         db.connect();
@@ -23,10 +22,8 @@ public class SupermarketServer {
         //List < Producto > productos = db.getTodosProductos();
         int numeroUsuarios = users.size();
         int usuariosComprobados = 0;
-
-        System.out.println("antes del for de leer users");
+        //change for 1 user
         for (User user: users) {
-            System.out.println("Usuario de bd: " + user.toString());
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password)) {
                 return true;
@@ -37,7 +34,7 @@ public class SupermarketServer {
         }
 
         if (usuariosComprobados == numeroUsuarios) { // si se han comprobado todos ---> avisamos
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario");
+            JOptionPane.showMessageDialog(null, "User is not registered");
         }
         db.disconnect();
         return false;
@@ -66,7 +63,6 @@ public class SupermarketServer {
         if (user != null) {
             return user;
         }
-        System.out.println("The user is null");
         return null;
     }
 

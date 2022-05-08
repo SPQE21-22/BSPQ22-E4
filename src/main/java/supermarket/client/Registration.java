@@ -36,7 +36,7 @@ public class Registration extends JFrame implements ActionListener
         setSize(600, 500);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Registratiosn Form in Java");
+        setTitle("Registratiosn Form ");
         l1 = new JLabel("REGISTER");
         l1.setForeground(Color.black);
         l2 = new JLabel("Name:");
@@ -119,6 +119,7 @@ public class Registration extends JFrame implements ActionListener
                 {
                     //lanzar register
                     User user = new User();
+                    //fix non working methods to launch register
                 }
                 catch (Exception ex)
                 {
@@ -149,10 +150,8 @@ public class Registration extends JFrame implements ActionListener
         Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
         System.out.println("estado de response status " + response.getStatusInfo());
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
-            System.out.println("falla el register");
             throw new SupermarketException("" + response.getStatus());
         } else {
-            System.out.println("1.2 Login desde login ventana");
             bool = response.readEntity(Boolean.class);
 
         }
