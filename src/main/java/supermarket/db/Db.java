@@ -70,8 +70,8 @@ public class Db {
 
     public boolean addUser(User user) {
         String sql = "INSERT INTO user (user_id, email, username, password, name, lastName, address, cardNumber, phoneNumber) VALUES (?,?,?,?,?,?,?,?,?);";
-        try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            Statement stmt = conn.createStatement();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, Integer.valueOf(user.getId()));
             pst.setString(2, user.getEmail());
             pst.setString(3, user.getUsername());
@@ -95,7 +95,8 @@ public class Db {
         User user = new User();
 
         String sql = "SELECT * FROM USER WHERE username = '" + username + "';";
-        try (Statement stmt = conn.createStatement()) {
+        try {
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {    
                 user.setId(rs.getString("USER_ID"));
@@ -113,8 +114,9 @@ public class Db {
         }
     
         List<Order> orderList = new ArrayList<Order>();
-        try (Statement stmt2 = conn.createStatement()) {
-            String sql2 = "SELECT * FROM cashOrder WHERE user_id = '" + user.getId() + "'";
+        String sql2 = "SELECT * FROM cashOrder WHERE user_id = '" + user.getId() + "'";
+        try {
+            Statement stmt2 = conn.createStatement();
             ResultSet rs2 = stmt2.executeQuery(sql2);
             while (rs2.next()) {
                 Order order = new Order();
@@ -130,9 +132,10 @@ public class Db {
         for (Order order : orderList) {
             List<String> productIdList = new ArrayList<String>();
             List<Product> productList = new ArrayList<Product>();
+            String sql3 = "SELECT * FROM relationship WHERE cashOrder_id = '" + order.getId() + "'";
             
-            try (Statement stmt3 = conn.createStatement()) {
-                String sql3 = "SELECT * FROM relationship WHERE cashOrder_id = '" + order.getId() + "'";
+            try {
+                Statement stmt3 = conn.createStatement();
                 ResultSet rs3 = stmt3.executeQuery(sql3);
                 while (rs3.next()) {
                     productIdList.add(rs3.getString("product_id"));
@@ -142,8 +145,9 @@ public class Db {
             }
             
             for (String productId : productIdList) {
-                try (Statement stmt4 = conn.createStatement()) {
-                    String sql4 = "SELECT * FROM product WHERE product_id = '" + String.valueOf(productId) + "'";
+                String sql4 = "SELECT * FROM product WHERE product_id = '" + String.valueOf(productId) + "'";
+                try {
+                    Statement stmt4 = conn.createStatement();
                     ResultSet rs4 = stmt4.executeQuery(sql4);
                     while (rs4.next()) {
                         Product product = new Product();
@@ -171,7 +175,8 @@ public class Db {
     public List<Product> getProductList() {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product";
-        try (Statement stmt = conn.createStatement()){
+        try {
+            Statement stmt = conn.createStatement();
             ResultSet rs4 = stmt.executeQuery(sql);
             while (rs4.next()) {
                 Product product = new Product();
@@ -197,13 +202,13 @@ public class Db {
         int id =0;
 
         String sql = "INSERT INTO order (user_id, date, price) VALUES (?,?,?)";
-        try (Statement stmt = conn.createStatement()) {
-            /*PreparedStatement pst = stmt.prepareStatement(sql);
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, Integer.valueOf(userId));
             pst.setDate(2, (Date) order.getDate());
             pst.setFloat(3, order.getPrice());
             pst.executeUpdate();
-            pst.close();*/
+            pst.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,39 +217,39 @@ public class Db {
         //order added
         for (Product product : products) {
             String sql2 = "INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)";
-            try (Statement stmt2 = conn.createStatement()) {
-                /*PreparedStatement pst2 = stmt2.prepareStatement(sql2);
+            try {
+                PreparedStatement pst2 = conn.prepareStatement(sql2);
                 pst2.setString(1, product.getCategory());
                 pst2.setString(2, product.getName());
                 pst2.setString(3, product.getBrand());
                 pst2.setInt(4, product.getStock());
                 pst2.setDate(5, (Date) product.getExpirationDate());
-                pst2.setFloat(6, product.getDiscountPercentage();
+                pst2.setFloat(6, (float) product.getDiscountPercentage());
                 pst2.setFloat(7, (float) product.getPrice());
                 pst2.executeUpdate();
-                pst2.close();*/
+                pst2.close();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("ERROR Obteniendo los users en DB");
             }
 
             String sql3 = "SELECT product_id FROM product WHERE name = '" + product.getName() + "'";
-            try (Statement stmt3 = conn.createStatement()) {
+            try {
+                Statement stmt3 = conn.createStatement();
                 ResultSet rs = stmt3.executeQuery(sql3);
                 while (rs.next()) {
                     id = rs.getInt("product_id");
                 }
-                
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("ERROR Obteniendo los users en DB");
             }
 
-            try (Statement stmt4 = conn.createStatement()) {
+            try {
                 String sql4 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
-                /*PreparedStatement pst4 = stmt4.prepareStatement(sql4);
+                PreparedStatement pst4 = conn.prepareStatement(sql4);
                 pst4.setInt(1, Integer.valueOf(order.getId()));
-                pst4.setInt(2, Integer.valueOf(id));*/
+                pst4.setInt(2, Integer.valueOf(id));
             } catch (Exception e) {
                 e.printStackTrace();
             }
