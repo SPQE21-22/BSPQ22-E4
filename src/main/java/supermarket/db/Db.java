@@ -68,18 +68,17 @@ public class Db {
     }
 
     public boolean addUser(User user) {
-        String sql = "INSERT INTO user (user_id, email, username, password, name, lastName, address, cardNumber, phoneNumber) VALUES (?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO user (email, username, password, name, lastName, address, cardNumber, phoneNumber) VALUES (?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1, Integer.valueOf(user.getId()));
-            pst.setString(2, user.getEmail());
-            pst.setString(3, user.getUsername());
-            pst.setString(4, user.getPassword());
-            pst.setString(5, user.getName());
-            pst.setString(6, user.getLastName());
-            pst.setString(7, user.getAddress());
-            pst.setString(8, user.getCardNumber());
-            pst.setString(9, user.getPhoneNumber());
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getUsername());
+            pst.setString(3, user.getPassword());
+            pst.setString(4, user.getName());
+            pst.setString(5, user.getLastName());
+            pst.setString(6, user.getAddress());
+            pst.setString(7, user.getCardNumber());
+            pst.setString(8, user.getPhoneNumber());
             pst.executeUpdate();
             pst.close();
 

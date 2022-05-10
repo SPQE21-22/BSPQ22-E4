@@ -2,35 +2,36 @@ package supermarket.client;
 
 import supermarket.domain.User;
 import supermarket.util.SupermarketException;
+
 import javax.ws.rs.client.WebTarget;
 
-import javax.swing.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 
-public class Registration extends JFrame implements ActionListener
-{
-    JLabel l1, l2, l3, l4, l5, l6, l7, l8,l9;
-    JTextField tf1, tf2, tf5, tf6, tf7,tf8;
-    JButton btn1, btn2;
-    JPasswordField p1, p2;
+public class Registration extends JFrame {
+    private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9;
+    private JTextField tf1, tf2, tf5, tf6, tf7, tf8;
+    private JButton btn1, btn2;
+    private JPasswordField p1, p2;
     private WebTarget webTarget;
+    private Client client;
 
-    Registration()
-    {
+
+    public Registration() {
+        client = ClientBuilder.newClient();
+		webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1", "8080"));
+
         setVisible(true);
         setResizable(false);
         setSize(600, 500);
@@ -57,8 +58,6 @@ public class Registration extends JFrame implements ActionListener
         tf8 = new JTextField();
         btn1 = new JButton("Submit");
         btn2 = new JButton("Clear");
-        btn1.addActionListener(this);
-        btn2.addActionListener(this);
         l1.setBounds(100, 30, 400, 30);
         l2.setBounds(80, 70, 200, 30);
         l3.setBounds(80, 110, 200, 30);
@@ -97,60 +96,46 @@ public class Registration extends JFrame implements ActionListener
         add(tf8);
         add(btn1);
         add(btn2);
-    }
-    public void actionPerformed(ActionEvent e)
-    {
-        if (e.getSource() == btn1)
-        {
-            int x = 0;
-            String s1 = tf1.getText();
-            String s2 = tf2.getText();
-            char[] s3 = p1.getPassword();
-            char[] s4 = p2.getPassword();
-            String s8 = new String(s3);
-            String s9 = new String(s4);
-            String s5 = tf5.getText();
-            String s6 = tf6.getText();
-            String s7 = tf7.getText();
-            String s10 = tf8.getText();
-            if (s8.equals(s9))
-            {
-                try
-                {
+
+        btn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int x = 0;
+                String s1 = tf1.getText();
+                String s2 = tf2.getText();
+                char[] s3 = p1.getPassword();
+                char[] s4 = p2.getPassword();
+                String s8 = new String(s3);
+                String s9 = new String(s4);
+                String s5 = tf5.getText();
+                String s6 = tf6.getText();
+                String s7 = tf7.getText();
+                String s10 = tf8.getText();
+                System.out.println("BOTTON SUBMIT");
+                try {
                     //lanzar register
                     User user = new User();
+                    System.out.println("Booleano del register --> ");
+                    register(user);
                     //fix non working methods to launch register
+                } catch (Exception ex) {
+                    System.out.println("exception-->" + ex);
                 }
-                catch (Exception ex)
-                {
-                    System.out.println(ex);
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(btn1, "Password Does Not Match");
-            }
-        }
-        else{
 
-
-            String hostname = "127.0.0.1";
-            String port ="8080";
-            Login login = new Login(hostname, port);
-            setVisible(false);
-        }
+            }
+        });
     }
 
-    public boolean register() throws SupermarketException {
+    public boolean register(User user) throws SupermarketException {
+
         WebTarget supermarketWebTarget = webTarget.path("server/register");
         Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-        Boolean bool=false;
-        User user = new User();
-
+        Boolean bool = false;
         Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
         System.out.println("estado de response status " + response.getStatusInfo());
+
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
-            throw new SupermarketException("" + response.getStatus());
+            System.out.println("LOGGER");
         } else {
             bool = response.readEntity(Boolean.class);
 
