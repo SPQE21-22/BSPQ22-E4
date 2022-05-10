@@ -84,7 +84,7 @@ public class Db {
 
             return true;
         } catch (SQLException | DateTimeParseException e) {
-            System.out.println("ERROR Obteniendo los users en DB");
+            System.out.println("ERROR register DB" + e.toString());
         }
         return false;
     }

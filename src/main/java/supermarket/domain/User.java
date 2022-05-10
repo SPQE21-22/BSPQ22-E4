@@ -27,6 +27,15 @@ public class User {
     }
 
     public User() {
+        this.email = "email";
+        this.username = "username";
+        this.password = "password";
+        this.name = "name";
+        this.lastName = "lastName";
+        this.address = "address";
+        this.cardNumber = "cardNumber";
+        this.phoneNumber = "phoneNumber";
+        this.orderList = null;
         
     }
     public User(String username, String password) {
