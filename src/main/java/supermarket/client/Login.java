@@ -102,12 +102,12 @@ public class Login implements Runnable {
 
 					String username=userText.getText();
 					String password=String.valueOf(passwordText.getPassword());
-					User user1;
+					User user1 = new User();
 					message.setText("Trying to login");
 					try {
 						if (login(username, password)){
 							System.out.println("Antes del getuser");
-							user1 = getUser(username);
+							//user1 = getUser(username);
 							System.out.println("Despues del getuser");
 							Home home = new Home(user1);
 						}
@@ -138,17 +138,20 @@ public class Login implements Runnable {
 	}
 	
 	public boolean login(String username, String password) throws SupermarketException {
+		//connection
 		WebTarget supermarketWebTarget = webTarget.path("server/user");
 		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+
 		Boolean bool=false;
+
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
+
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new SupermarketException("Exception" + response.getStatus());
-
-
 		} else {
 			bool = response.readEntity(Boolean.class);
 

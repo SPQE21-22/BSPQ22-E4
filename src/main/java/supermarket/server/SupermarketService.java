@@ -33,6 +33,7 @@ public class SupermarketService {
 		//se lanza login en Server
 		checkLogin = supermarketServer.login(user.getUsername(), user.getPassword());
 		return Response.ok(checkLogin).build();
+
 	}
 
 

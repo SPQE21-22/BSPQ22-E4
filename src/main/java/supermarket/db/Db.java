@@ -44,7 +44,6 @@ public class Db {
         List<User> users = new ArrayList<User>();
         String sql = "SELECT * FROM USER;";
         try {
-            System.out.println("HASTA AQUI HE LLEGADO 2");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -63,7 +62,6 @@ public class Db {
         } catch (SQLException | DateTimeParseException e) {
             System.out.println("ERROR Obteniendo los users en DB" + e.toString());
         }
-        System.out.println("HASTA AQUI HE LLEGADO 3");
         return users;
     }
 
@@ -184,13 +182,15 @@ public class Db {
                 product.setName(rs4.getString("name"));
                 product.setBrand(rs4.getString("brand"));
                 product.setStock(rs4.getInt("stock"));
+                //error con dates
+
                 product.setExpirationDate(rs4.getDate("expirationDate"));
                 product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                 product.setPrice(rs4.getFloat("price"));
                 productList.add(product);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("ERROR getproducts DB" + e.toString());
         }
         return productList;
     }

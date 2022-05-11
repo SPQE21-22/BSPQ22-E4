@@ -48,6 +48,7 @@ public class Registration extends JFrame {
         l7 = new JLabel("Card No.:");
         l8 = new JLabel("Phone:");
         l9 = new JLabel("Username");
+
         tf1 = new JTextField();
         tf2 = new JTextField();
         p1 = new JPasswordField();
@@ -100,23 +101,34 @@ public class Registration extends JFrame {
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int x = 0;
+                //s1 name
                 String s1 = tf1.getText();
+                //s2 last name
                 String s2 = tf2.getText();
+                //password s8 s9
                 char[] s3 = p1.getPassword();
                 char[] s4 = p2.getPassword();
                 String s8 = new String(s3);
                 String s9 = new String(s4);
+                //s5 adress
                 String s5 = tf5.getText();
+                //s6 card no
                 String s6 = tf6.getText();
+                //s7 phone
                 String s7 = tf7.getText();
+                //s10 username
                 String s10 = tf8.getText();
-                System.out.println("BOTTON SUBMIT");
                 try {
                     //lanzar register
                     User user = new User();
-                    System.out.println("Booleano del register --> ");
+                    user.setName(s1);
+                    user.setPassword(s8);
+                    user.setAddress(s5);
+                    user.setCardNumber(s6);
+                    user.setPhoneNumber(s7);
+                    user.setUsername(s10);
+
                     register(user);
-                    //fix non working methods to launch register
                 } catch (Exception ex) {
                     System.out.println("exception-->" + ex);
                 }

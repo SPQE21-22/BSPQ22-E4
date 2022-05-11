@@ -4,8 +4,20 @@ import supermarket.domain.User;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import javax.swing.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+
+import supermarket.domain.Product;
+import supermarket.util.SupermarketException;
 
 
 public class Home extends JFrame implements ActionListener{
@@ -21,9 +33,27 @@ public class Home extends JFrame implements ActionListener{
     public JLabel l1,l2,l3,l4,l5;
     public Container con;
     public String[] Sary;
+    public List<Product> productList = new ArrayList<Product>();
+    private WebTarget webTarget;
+    private Client client;
+
 
     public Home(User user) {
+        client = ClientBuilder.newClient();
+        webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1", "8080"));
 
+
+        //LOAD ALL OBJECTS FROM DB
+        try {
+            productList=getProductList();
+
+            for(Product product:productList){
+                System.out.println("PRODUCTO-- > " + product.toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("FAILED TO LOAD PRODUCTS-->"+ e.toString());
+        }
         Sary= new String[5];
         for(int x=0;x<Sary.length;x++)
             Sary[x]=" ";
@@ -553,8 +583,6 @@ public class Home extends JFrame implements ActionListener{
 
                 for(int x=0;x<Sary.length;x++)
                     System.out.println(Sary[x]);
-
-
             }});
 
         buy.add(l1);
@@ -610,6 +638,22 @@ public class Home extends JFrame implements ActionListener{
         con.add(choz);
 
 
+    }
+
+    public List<Product> getProductList() throws SupermarketException {
+        WebTarget supermarketWebTarget = webTarget.path("server/product");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.get();
+        Boolean bool=false;
+        List<Product> productList = new ArrayList<Product>();
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new SupermarketException("Exception" + response.getStatus());
+
+        } else {
+            productList = response.readEntity(List.class);
+
+        }
+        return productList;
     }
 
 

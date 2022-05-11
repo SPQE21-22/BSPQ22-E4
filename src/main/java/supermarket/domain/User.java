@@ -27,7 +27,7 @@ public class User {
     }
 
     public User() {
-        this.email = "email";
+        /*this.email = "email";
         this.username = "username";
         this.password = "password";
         this.name = "name";
@@ -35,7 +35,7 @@ public class User {
         this.address = "address";
         this.cardNumber = "cardNumber";
         this.phoneNumber = "phoneNumber";
-        this.orderList = null;
+        this.orderList = null;*/
         
     }
     public User(String username, String password) {

@@ -14,6 +14,7 @@ import javax.swing.*;
 public class SupermarketServer {
     private  Db db= new Db();
 
+
     public boolean login(String username, String password) {
         //sql part
         List<User> users = new ArrayList<User>();
@@ -67,12 +68,17 @@ public class SupermarketServer {
     }
 
     public List<Product> getProductList() {
+        db.connect();
+        System.out.println("Ok EN SERVER");
         List<Product> productList = new ArrayList<>();
         productList = db.getProductList();
         if (productList != null){
+            db.disconnect();
             return productList;
         }
+        db.disconnect();
         return null;
+
     }
     
     public boolean addOrder(String userId, Order order) {
