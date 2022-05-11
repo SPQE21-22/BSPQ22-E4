@@ -118,7 +118,7 @@ public class Db {
             while (rs2.next()) {
                 Order order = new Order();
                 order.setId(rs2.getString("cashOrder_id"));
-                order.setDate(Date.valueOf(rs2.getString("date")));
+                order.setDate(rs2.getString("date"));
                 order.setPrice(rs2.getFloat("price"));
                 orderList.add(order);
             }
@@ -153,7 +153,7 @@ public class Db {
                         product.setName(rs4.getString("name"));
                         product.setBrand(rs4.getString("brand"));
                         product.setStock(rs4.getInt("stock"));
-                        product.setExpirationDate(rs4.getDate("expirationDate"));
+                        product.setExpirationDate(rs4.getString("expirationDate"));
                         product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                         product.setPrice(rs4.getFloat("price"));
                         productList.add(product);
@@ -184,7 +184,7 @@ public class Db {
                 product.setStock(rs4.getInt("stock"));
                 //error con dates
 
-                product.setExpirationDate(rs4.getDate("expirationDate"));
+                product.setExpirationDate(rs4.getString("expirationDate"));
                 product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                 product.setPrice(rs4.getFloat("price"));
                 productList.add(product);
@@ -204,7 +204,7 @@ public class Db {
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, Integer.valueOf(userId));
-            pst.setDate(2, (Date) order.getDate());
+            pst.setString(2, order.getDate());
             pst.setFloat(3, order.getPrice());
             pst.executeUpdate();
             pst.close();
@@ -222,7 +222,7 @@ public class Db {
                 pst2.setString(2, product.getName());
                 pst2.setString(3, product.getBrand());
                 pst2.setInt(4, product.getStock());
-                pst2.setDate(5, (Date) product.getExpirationDate());
+                pst2.setString(5, product.getExpirationDate());
                 pst2.setFloat(6, (float) product.getDiscountPercentage());
                 pst2.setFloat(7, (float) product.getPrice());
                 pst2.executeUpdate();
