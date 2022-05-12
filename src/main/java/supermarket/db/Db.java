@@ -86,9 +86,8 @@ public class Db {
         }
         return false;
     }
-    
+    //METHOD GETUSER
     public User getUser(String username) {
-        System.out.println("Hasta aqui he llegado 1");
         User user = new User();
 
         String sql = "SELECT * FROM USER WHERE username = '" + username + "';";
@@ -107,7 +106,7 @@ public class Db {
                 user.setPhoneNumber(rs.getString("PHONENUMBER"));
             }
         } catch (SQLException | DateTimeParseException e) {
-            e.printStackTrace();
+            System.out.println("BD PARTE 1 USER -- >" + e.toString());
         }
     
         List<Order> orderList = new ArrayList<Order>();
@@ -123,7 +122,7 @@ public class Db {
                 orderList.add(order);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("BD PARTE 2 USER -- >" + e.toString());
         }
         
         for (Order order : orderList) {
@@ -138,7 +137,7 @@ public class Db {
                     productIdList.add(rs3.getString("product_id"));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("BD PARTE 3 USER -- >" + e.toString());
             }
             
             for (String productId : productIdList) {
@@ -159,7 +158,7 @@ public class Db {
                         productList.add(product);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("BD PARTE 4 USER -- >" + e.toString());
                 }
             }
             order.setProductList(productList);
@@ -190,7 +189,7 @@ public class Db {
                 productList.add(product);
             }
         } catch (SQLException e) {
-            System.out.println("ERROR getproducts DB" + e.toString());
+            System.out.println("ERROR get products DB" + e.toString());
         }
         return productList;
     }

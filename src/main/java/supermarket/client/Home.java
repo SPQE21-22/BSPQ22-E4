@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.client.Entity;
+
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +17,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
 import supermarket.domain.Product;
+import supermarket.domain.User;
+import supermarket.domain.Order;
+
 import supermarket.util.SupermarketException;
 
 
@@ -46,10 +49,7 @@ public class Home extends JFrame implements ActionListener{
         //LOAD ALL OBJECTS FROM DB
         try {
             productList=getProductList();
-
-            for(Product product:productList){
-                System.out.println("PRODUCTO-- > " + product.toString());
-            }
+            System.out.println(productList.toString());
 
         } catch (Exception e) {
             System.out.println("FAILED TO LOAD PRODUCTS-->"+ e.toString());
@@ -116,7 +116,7 @@ public class Home extends JFrame implements ActionListener{
         pl4=new JLabel("Price - 1€/kg ");
         pl5=new JLabel("Price - 4€/kg ");
 
-        ImageIcon p1 = new ImageIcon("images/user.png");
+        ImageIcon p1 = new ImageIcon("images");
         JLabel Lp1 = new JLabel(" ", p1, JLabel.CENTER);
         JLabel Lp2 = new JLabel(p1, JLabel.CENTER);
 
@@ -638,11 +638,13 @@ public class Home extends JFrame implements ActionListener{
         con.add(choz);
 
 
+
     }
 
     public List<Product> getProductList() throws SupermarketException {
         WebTarget supermarketWebTarget = webTarget.path("server/product");
         Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+
         Response response = invocationBuilder.get();
         Boolean bool=false;
         List<Product> productList = new ArrayList<Product>();
@@ -650,7 +652,13 @@ public class Home extends JFrame implements ActionListener{
             throw new SupermarketException("Exception" + response.getStatus());
 
         } else {
-            productList = response.readEntity(List.class);
+            try {
+                productList = response.readEntity(List.class);
+            }catch (Exception e){
+                System.out.println("EXCEPTIOn" + e.toString());
+
+            }
+
 
         }
         return productList;

@@ -45,31 +45,39 @@ public class SupermarketServer {
         db.connect();
         boolean checkRegister = db.addUser(user);
         if (checkRegister) {
+            db.disconnect();
             return true;
         }
+        db.disconnect();
         return false;
     }
 
     public List<User> getUserList() {
+        db.connect();
         List<User> userList = new ArrayList<User>();
         userList = db.getAllUsers();
         if(userList != null) {
+            db.disconnect();
             return userList;    
         }
+        db.disconnect();
         return null;
     }
 
     public User getUser(String username) {
+        db.connect();
         User user = db.getUser(username);
         if (user != null) {
+            db.disconnect();
             return user;
         }
+        db.disconnect();
         return null;
     }
 
     public List<Product> getProductList() {
         db.connect();
-        System.out.println("Ok EN SERVER");
+
         List<Product> productList = new ArrayList<>();
         productList = db.getProductList();
         if (productList != null){

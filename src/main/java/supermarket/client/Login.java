@@ -102,14 +102,12 @@ public class Login implements Runnable {
 
 					String username=userText.getText();
 					String password=String.valueOf(passwordText.getPassword());
-					User user1 = new User();
+					user = new User();
 					message.setText("Trying to login");
 					try {
 						if (login(username, password)){
-							System.out.println("Antes del getuser");
-							//user1 = getUser(username);
-							System.out.println("Despues del getuser");
-							Home home = new Home(user1);
+							user = getUser(username);
+							Home home = new Home(user);
 						}
 					} catch (SupermarketException ex) {
 						ex.printStackTrace();
@@ -159,10 +157,11 @@ public class Login implements Runnable {
 		return bool;
 	}
 	public User getUser(String username) throws SupermarketException {
-		User user = new User();
+		//connection
+		User user;
 		WebTarget supermarketWebTarget = webTarget.path("server/getUser");
 		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-		Response response = invocationBuilder.get();
+		Response response = invocationBuilder.post(Entity.entity(username, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new SupermarketException("Exception" + response.getStatus());
 		} else {
