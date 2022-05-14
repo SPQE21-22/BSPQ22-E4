@@ -89,9 +89,11 @@ public class SupermarketServer {
 
     }
     
-    public boolean addOrder(String userId, Order order) {
+    public boolean addOrder(User user) {
         db.connect();
-        boolean checkOrder = db.addOrder(userId, order);
+        List<Order> orderList = new ArrayList<>();
+        orderList = user.getOrderList();
+        boolean checkOrder = db.addOrder(user.getId(), orderList.get(orderList.size() - 1));
         if (checkOrder){
             return true;
         }

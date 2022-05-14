@@ -55,16 +55,15 @@ public class SupermarketService {
 		System.out.println("USER EN SERVICE--> " + user.toString());
 		return user;
 	}
-	/*
+	
 	@POST
 	@Path("/order")
-	public Response addOrder(String username, Order order) {
-		User user = this.getUser(username);
+	public Response addOrder(User user) {
 		boolean checkOrder = false;
-		checkOrder = supermarketServer.addOrder(user.getId(), order);
+		checkOrder = supermarketServer.addOrder(user);
 		return Response.ok(checkOrder).build();
 	}
-	*/
+	
 	@GET
 	@Path("/product")
 	public List<Product> getProductList() {
