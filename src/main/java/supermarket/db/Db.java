@@ -126,6 +126,7 @@ public class Db {
         }
         
         for (Order order : orderList) {
+            System.out.println("ENTRA FOR");
             List<String> productIdList = new ArrayList<String>();
             List<Product> productList = new ArrayList<Product>();
             String sql3 = "SELECT * FROM relationship WHERE cashOrder_id = '" + order.getId() + "'";
@@ -199,18 +200,17 @@ public class Db {
         products = order.getProductList();
         int id =0;
 
-        String sql = "INSERT INTO order (user_id, date, price) VALUES (?,?,?)";
+        String sql = "INSERT INTO cashorder (user_id, date, price) VALUES (?,?,?)";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1, Integer.valueOf(userId));
+            pst.setInt(1, Integer.parseInt(userId));
             pst.setString(2, order.getDate());
             pst.setFloat(3, order.getPrice());
             pst.executeUpdate();
             pst.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("ERROR Obteniendo los users en DB");
+        } catch (SQLException e) {
+            System.out.println("ERROR ADDING ORDER 1 --> "+ e.toString());
         }
         //order added
         for (Product product : products) {
@@ -226,9 +226,9 @@ public class Db {
                 pst2.setFloat(7, (float) product.getPrice());
                 pst2.executeUpdate();
                 pst2.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("ERROR Obteniendo los users en DB");
+            } catch (SQLException e) {
+                System.out.println("ERROR ADDING ORDER 2 --> "+ e.toString());
+
             }
 
             String sql3 = "SELECT product_id FROM product WHERE name = '" + product.getName() + "'";
@@ -238,18 +238,22 @@ public class Db {
                 while (rs.next()) {
                     id = rs.getInt("product_id");
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("ERROR Obteniendo los users en DB");
+            } catch (SQLException e) {
+                System.out.println("ERROR ADDING ORDER 3 --> "+ e.toString());
+
             }
 
             try {
                 String sql4 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
                 PreparedStatement pst4 = conn.prepareStatement(sql4);
-                pst4.setInt(1, Integer.valueOf(order.getId()));
-                pst4.setInt(2, Integer.valueOf(id));
-            } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("ID 1"+ Integer.parseInt(order.getId()));
+                pst4.setInt(1, Integer.parseInt(order.getId()));
+                System.out.println("ID 2" + id);
+                pst4.setInt(2, id);
+            } catch (SQLException e) {
+                System.out.println("ERROR ADDING ORDER 4 --> "+ e.toString());
+            }catch (Exception e){
+                System.out.println("EXCEPTIon" + e.toString());
             }
         }
         return true;

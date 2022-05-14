@@ -49,13 +49,12 @@ public class SupermarketService {
 	@Path("/getUser")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(String username) {
-		System.out.println("HA llegado al service del user");
 		User user = new User();
 		user = supermarketServer.getUser(username);
-		System.out.println("USER EN SERVICE--> " + user.toString());
 		return user;
 	}
-	
+
+
 	@POST
 	@Path("/order")
 	public Response addOrder(User user) {
@@ -63,7 +62,7 @@ public class SupermarketService {
 		checkOrder = supermarketServer.addOrder(user);
 		return Response.ok(checkOrder).build();
 	}
-	
+
 	@GET
 	@Path("/product")
 	public List<Product> getProductList() {

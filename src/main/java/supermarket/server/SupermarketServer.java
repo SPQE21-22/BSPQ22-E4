@@ -88,7 +88,7 @@ public class SupermarketServer {
         return null;
 
     }
-    
+
     public boolean addOrder(User user) {
         db.connect();
         List<Order> orderList = new ArrayList<>();

@@ -26,6 +26,14 @@ public class Product {
     }
     
     public Product() {
+        this.id="5";
+        this.category = "category";
+        this.name = "name";
+        this.brand = "brand";
+        this.stock = 10;
+        this.expirationDate = "expirationDate";
+        this.discountPercentage = 20;
+        this.price = 20;
     }
 
     public String getId() {

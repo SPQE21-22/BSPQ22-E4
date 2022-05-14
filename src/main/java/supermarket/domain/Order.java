@@ -11,6 +11,9 @@ public class Order {
     private float price;
 
     public Order() {
+        this.id="22";
+        this.date = "";
+        this.price = 0;
     }
 
     public Order(String date, List<Product> productList, float price) {
