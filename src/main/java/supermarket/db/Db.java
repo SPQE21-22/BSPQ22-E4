@@ -219,7 +219,7 @@ public class Db {
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs = stmt2.executeQuery(sql2);
                 while (rs.next()) {
-                    id = rs.getInt("cashorder_id");
+                    cashorderId = rs.getInt("cashorder_id");
                 }
             } catch (SQLException e) {
                 System.out.println("ERROR ADDING ORDER 3 --> " + e.toString());
