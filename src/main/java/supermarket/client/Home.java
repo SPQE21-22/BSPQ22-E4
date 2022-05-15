@@ -758,8 +758,10 @@ public class Home extends JFrame implements ActionListener {
 
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new SupermarketException("Exception" + response.getStatus());
+        }else{
+            return true;
         }
-        return true;
+
     }
 
     public List<Product> getProductList() throws SupermarketException {

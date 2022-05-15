@@ -119,12 +119,13 @@ public class Db {
                 order.setId(rs2.getString("cashOrder_id"));
                 order.setDate(rs2.getString("date"));
                 order.setPrice(rs2.getFloat("price"));
+                System.out.println("ORDER EN DB"+ order.toString());
                 orderList.add(order);
             }
         } catch (Exception e) {
             System.out.println("BD PARTE 2 USER -- >" + e.toString());
         }
-        
+        System.out.println("ANTES DEL FOR 127");
         for (Order order : orderList) {
             System.out.println("ENTRA FOR");
             List<String> productIdList = new ArrayList<String>();
@@ -200,7 +201,6 @@ public class Db {
         products = order.getProductList();
         int productId = 0;
         int cashorderId = 0;
-
         String sql = "INSERT INTO cashorder (user_id, date, price) VALUES (?,?,?);";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -220,6 +220,7 @@ public class Db {
                 ResultSet rs = stmt2.executeQuery(sql2);
                 while (rs.next()) {
                     cashorderId = rs.getInt("cashorder_id");
+
                 }
             } catch (SQLException e) {
                 System.out.println("ERROR ADDING ORDER 3 --> " + e.toString());
@@ -250,24 +251,26 @@ public class Db {
                 Statement stmt4 = conn.createStatement();
                 ResultSet rs = stmt4.executeQuery(sql4);
                 while (rs.next()) {
-                    cashorderId = rs.getInt("product_id");
+                    productId = rs.getInt("product_id");
                 }
             } catch (SQLException e) {
                 System.out.println("ERROR ADDING ORDER 4 --> " + e.toString());
 
             }
-
+            //CRASH AQUI
             try {
+
                 String sql5 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
                 PreparedStatement pst5 = conn.prepareStatement(sql5);
-                System.out.println("ID 1"+ cashorderId);
+
                 pst5.setInt(1, cashorderId);
-                System.out.println("ID 2" + productId);
                 pst5.setInt(2, productId);
+                pst5.executeUpdate();
+                pst5.close();
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 5 --> "+ e.toString());
+                System.out.println("ERROR ADDING ORDER  --> "+ e.toString());
             }catch (Exception e){
-                System.out.println("EXCEPTIon" + e.toString());
+                System.out.println("EXCEPTION" + e.toString());
             }
         }
         return true;
