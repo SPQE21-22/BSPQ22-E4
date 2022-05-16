@@ -1,134 +1,127 @@
 package supermarket.client;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import supermarket.domain.User;
 
 public class VentanaPerfil extends JFrame {
 
-	JPanel pnlCentral;
-	JLabel fPerfil;
-	JTextField apellido;
-	JPasswordField contrasena;
-	JTextField email;
-	JLabel lapellido;
-	JLabel lcontrasena;
-	JLabel lid;
-	JLabel e;
-	JLabel editar;
-	JTextField id;
-	JTextField tel;
-	JTextField nombre;
-	JButton guardar;
-	JButton cerrar;
-	JButton borrar;
-	JButton volver;
+
+	private JTable jTable;
+	private String[][] tableData = {{"01", "Adam", "1986"},
+			{"02", "John", "1990"},
+			{"03", "Sam", "1989"},
+			{"04", "Derek", "1991"},
+			{"05", "Ben", "1981"},
+			{"06", "Alice", "1981"},
+			{"07", "Harry", "1981"},
+			{"08", "Bob", "1981"}};
+	private String[] tableColumn = {"Order ID", "Date", "Amount spended"};
+	//private JScrollPane jScrollPane;
+
+
+	private JPanel contentPane, jpCenter, jpCenterLeft, jpCenterRight, jpSouth, jpButton;
+	private JTable jtOrderRecord;
+	private JLabel jlPhoto, jlName, jlSurName, jlID, jlEmail, jlNick, jlUserName, jlUserSurName, jlUserID, jlUserEmail, jlTable;
+	private JButton jbReturn;
+
 
 	public VentanaPerfil(JFrame ventanaAnterior, User user) {
+		//Characteristics of the main window
 		setTitle("Profile");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setResizable(false);
-		setSize(1150, 505);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 700, 900);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 
-		setLocationRelativeTo(null);
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		//Panels
 
-		pnlCentral = new JPanel();
-		getContentPane().add(pnlCentral, BorderLayout.CENTER);
-		pnlCentral.setLayout(null);
+		jpCenter = new JPanel();
+		contentPane.add(jpCenter, BorderLayout.CENTER);
+		jpCenter.setLayout(new GridLayout(1, 2, 0, 0));
 
-		pnlCentral.setBackground(Color.WHITE);
+		jpCenterLeft = new JPanel();
+		jpCenter.add(jpCenterLeft);
+		jpCenterLeft.setLayout(new GridLayout(5, 1, 0, 0));
 
-		// Labels
+		jpSouth = new JPanel();
+		contentPane.add(jpSouth, BorderLayout.SOUTH);
+		jpSouth.setLayout(new GridLayout(3, 0, 0, 0));
 
-		lapellido = new JLabel();
-		lapellido.setText("Apellido");
-		lapellido.setBounds(460, 100, 120, 120);
-		lapellido.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(lapellido);
 
-		lcontrasena = new JLabel();
-		lcontrasena.setText("Contrasena");
-		lcontrasena.setBounds(460, 150, 120, 120);
-		lcontrasena.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(lcontrasena);
 
-		lid = new JLabel();
-		lid.setText("Id usuario");
-		lid.setBounds(460, 200, 120, 120);
-		lid.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(lid);
+		jpCenterRight = new JPanel();
+		jpCenter.add(jpCenterRight);
+		jpCenterRight.setLayout(new GridLayout(5, 0, 0, 0));
 
-		e = new JLabel();
-		e.setText("Email");
-		e.setBounds(460, 250, 120, 120);
-		e.setFont(new Font("Arial", Font.PLAIN, 15));
-		pnlCentral.add(e);
+		//Labels
 
-		fPerfil = new JLabel();
-		fPerfil.setIcon(new ImageIcon("src/main/java/supermarket/client/images/userFoto.png"));
-		fPerfil.setBounds(400, 0, 120, 120);
-		pnlCentral.add(fPerfil);
+		jlPhoto = new JLabel();
+		jlPhoto.setIcon(new ImageIcon("src/main/java/supermarket/client/images/userFoto.png"));
+		jlPhoto.setHorizontalAlignment(SwingConstants.CENTER);
+		jpCenterLeft.add(jlPhoto);
 
-		// Combobox
-		apellido = new JTextField(user.getLastName());
-		apellido.setEditable(false);
-		apellido.setBounds(580, 150, 102, 30);
-		pnlCentral.add(apellido);
+		jlName = new JLabel("Name");
+		jlName.setHorizontalAlignment(SwingConstants.RIGHT);
+		jpCenterLeft.add(jlName);
 
-		contrasena = new JPasswordField(user.getPassword());
-		contrasena.setEditable(false);
-		contrasena.setBounds(580, 200, 102, 30);
-		pnlCentral.add(contrasena);
+		jlSurName = new JLabel("Surname");
+		jlSurName.setHorizontalAlignment(SwingConstants.RIGHT);
+		jpCenterLeft.add(jlSurName);
 
-		email = new JTextField(user.getEmail());
-		email.setEditable(false);
-		email.setBounds(580, 300, 180, 30);
-		pnlCentral.add(email);
+		jlID = new JLabel("ID");
+		jlID.setHorizontalAlignment(SwingConstants.RIGHT);
+		jpCenterLeft.add(jlID);
 
-		// Textfields
-		id = new JTextField();
-		id.setEditable(false);
-		id.setText(String.valueOf(user.getId()));
-		id.setBounds(580, 250, 102, 30);
-		pnlCentral.add(id);
+		jlEmail = new JLabel("E-mail");
+		jlEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		jpCenterLeft.add(jlEmail);
 
-		tel = new JTextField();
-		tel.setText("@" + user.getUsername());
-		tel.setEditable(false);
-		tel.setBounds(580, 80, 180, 30);
-		pnlCentral.add(tel);
+		jlNick = new JLabel("@" + user.getUsername());
+		jpCenterRight.add(jlNick);
 
-		nombre = new JTextField();
-		Font fuente = new Font("Dialog", Font.BOLD, 26);
-		nombre.setFont(fuente);
-		nombre.setText(user.getName());
-		nombre.setEditable(false);
-		nombre.setBounds(580, 20, 240, 50);
-		pnlCentral.add(nombre);
+		jlUserName = new JLabel("   " + user.getName());
+		jpCenterRight.add(jlUserName);
 
-		// Botones
+		jlUserSurName = new JLabel("   " + user.getLastName());
+		jpCenterRight.add(jlUserSurName);
 
-		volver = new JButton();
-		volver.setText("Go back");
-		volver.setBackground(Color.white);
-		volver.setFont(new Font("Arial", Font.PLAIN, 12));
-		volver.setBounds(40, 410, 140, 30);
-		pnlCentral.add(volver);
+		jlUserID = new JLabel(String.valueOf("   " +user.getId()));
+		jpCenterRight.add(jlUserID);
 
-		volver.addActionListener(new ActionListener() {
+		jlUserEmail = new JLabel("   " +user.getEmail());
+		jpCenterRight.add(jlUserEmail);
+
+		jlTable = new JLabel("Client order records");
+		jlTable.setHorizontalAlignment(SwingConstants.CENTER);
+		jpSouth.add(jlTable);
+
+		//Table
+
+		jtOrderRecord = new JTable(tableData, tableColumn);
+		//jScrollPane= new JScrollPane(jtOrderRecord);
+		jpSouth.add(jtOrderRecord);
+
+		//Buttons
+
+		jpButton = new JPanel();
+		jpSouth.add(jpButton);
+
+		jbReturn = new JButton("Go back");
+		jpButton.add(jbReturn);
+
+
+
+		//ActionListeners
+
+		jbReturn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
