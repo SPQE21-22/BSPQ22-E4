@@ -119,12 +119,13 @@ public class Db {
                 order.setId(rs2.getString("cashOrder_id"));
                 order.setDate(rs2.getString("date"));
                 order.setPrice(rs2.getFloat("price"));
+                System.out.println("ORDER EN DB"+ order.toString());
                 orderList.add(order);
             }
         } catch (Exception e) {
             System.out.println("BD PARTE 2 USER -- >" + e.toString());
         }
-        
+        System.out.println("ANTES DEL FOR 127");
         for (Order order : orderList) {
             System.out.println("ENTRA FOR");
             List<String> productIdList = new ArrayList<String>();
@@ -198,9 +199,9 @@ public class Db {
     public boolean addOrder(String userId, Order order) {
         List<Product> products = new ArrayList<>();
         products = order.getProductList();
-        int id =0;
-
-        String sql = "INSERT INTO cashorder (user_id, date, price) VALUES (?,?,?)";
+        int productId = 0;
+        int cashorderId = 0;
+        String sql = "INSERT INTO cashorder (user_id, date, price) VALUES (?,?,?);";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, Integer.parseInt(userId));
@@ -210,50 +211,66 @@ public class Db {
             pst.close();
 
         } catch (SQLException e) {
-            System.out.println("ERROR ADDING ORDER 1 --> "+ e.toString());
+            System.out.println("ERROR ADDING ORDER 1 --> " + e.toString());
         }
+        
+        String sql2 = "SELECT cashorder_id FROM cashorder ORDER BY cashorder_id DESC LIMIT 1;";
+            try {
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs = stmt2.executeQuery(sql2);
+                while (rs.next()) {
+                    cashorderId = rs.getInt("cashorder_id");
+
+                }
+            } catch (SQLException e) {
+                System.out.println("ERROR ADDING ORDER 3 --> " + e.toString());
+
+            }
+
         //order added
         for (Product product : products) {
-            String sql2 = "INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)";
+            String sql3 = "INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)";
             try {
-                PreparedStatement pst2 = conn.prepareStatement(sql2);
-                pst2.setString(1, product.getCategory());
-                pst2.setString(2, product.getName());
-                pst2.setString(3, product.getBrand());
-                pst2.setInt(4, product.getStock());
-                pst2.setString(5, product.getExpirationDate());
-                pst2.setFloat(6, (float) product.getDiscountPercentage());
-                pst2.setFloat(7, (float) product.getPrice());
-                pst2.executeUpdate();
-                pst2.close();
+                PreparedStatement pst3 = conn.prepareStatement(sql3);
+                pst3.setString(1, product.getCategory());
+                pst3.setString(3, product.getName());
+                pst3.setString(3, product.getBrand());
+                pst3.setInt(4, product.getStock());
+                pst3.setString(5, product.getExpirationDate());
+                pst3.setFloat(6, (float) product.getDiscountPercentage());
+                pst3.setFloat(7, (float) product.getPrice());
+                pst3.executeUpdate();
+                pst3.close();
             } catch (SQLException e) {
                 System.out.println("ERROR ADDING ORDER 2 --> "+ e.toString());
 
             }
 
-            String sql3 = "SELECT product_id FROM product WHERE name = '" + product.getName() + "'";
+            String sql4 = "SELECT product_id FROM product WHERE name = '" + product.getName() + "'";
             try {
-                Statement stmt3 = conn.createStatement();
-                ResultSet rs = stmt3.executeQuery(sql3);
+                Statement stmt4 = conn.createStatement();
+                ResultSet rs = stmt4.executeQuery(sql4);
                 while (rs.next()) {
-                    id = rs.getInt("product_id");
+                    productId = rs.getInt("product_id");
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 3 --> "+ e.toString());
+                System.out.println("ERROR ADDING ORDER 4 --> " + e.toString());
 
             }
-
+            //CRASH AQUI
             try {
-                String sql4 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
-                PreparedStatement pst4 = conn.prepareStatement(sql4);
-                System.out.println("ID 1"+ Integer.parseInt(order.getId()));
-                pst4.setInt(1, Integer.parseInt(order.getId()));
-                System.out.println("ID 2" + id);
-                pst4.setInt(2, id);
+
+                String sql5 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
+                PreparedStatement pst5 = conn.prepareStatement(sql5);
+
+                pst5.setInt(1, cashorderId);
+                pst5.setInt(2, productId);
+                pst5.executeUpdate();
+                pst5.close();
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 4 --> "+ e.toString());
+                System.out.println("ERROR ADDING ORDER  --> "+ e.toString());
             }catch (Exception e){
-                System.out.println("EXCEPTIon" + e.toString());
+                System.out.println("EXCEPTION" + e.toString());
             }
         }
         return true;
