@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import supermarket.domain.User;
 
 <<<<<<< HEAD
-public class VentanaPerfil extends JFrame {
+public class VentanaPerfil extends JFrame{
 
 
 	private JTable jTable;
