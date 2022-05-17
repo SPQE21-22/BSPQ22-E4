@@ -6,14 +6,17 @@ import java.util.List;
 public class Order {
     
     private String id;
-    private Date date;
+    private String date;
     private List<Product> productList;
     private float price;
 
     public Order() {
+        this.id="22";
+        this.date = "";
+        this.price = 0;
     }
 
-    public Order(Date date, List<Product> productList, float price) {
+    public Order(String date, List<Product> productList, float price) {
         this.date = date;
         this.productList = productList;
         this.price = price;
@@ -27,11 +30,11 @@ public class Order {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-import supermarket.domain.Order;
 import supermarket.domain.Product;
 import supermarket.domain.User;
 
@@ -33,11 +32,11 @@ public class SupermarketService {
 		boolean checkLogin = false;
 		//se lanza login en Server
 		checkLogin = supermarketServer.login(user.getUsername(), user.getPassword());
-		System.out.println("Received login: " + user.getUsername() + " booleano de login " + checkLogin);
 		return Response.ok(checkLogin).build();
+
 	}
 
-	/*
+
 	@POST
     @Path("/register")
     public Response register(User user){
@@ -46,20 +45,21 @@ public class SupermarketService {
         return Response.ok(checkRegister).build();
     }
 
-	@GET
-	@Path("/user")
+	@POST
+	@Path("/getUser")
+	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(String username) {
 		User user = new User();
 		user = supermarketServer.getUser(username);
 		return user;
 	}
 
+
 	@POST
 	@Path("/order")
-	public Response addOrder(String username, Order order) {
-		User user = this.getUser(username);
+	public Response addOrder(User user) {
 		boolean checkOrder = false;
-		checkOrder = supermarketServer.addOrder(user.getId(), order);
+		checkOrder = supermarketServer.addOrder(user);
 		return Response.ok(checkOrder).build();
 	}
 
@@ -69,7 +69,7 @@ public class SupermarketService {
 		List<Product> productList = new ArrayList<Product>();
 		productList = supermarketServer.getProductList();
 		return productList;
-	}*/
+	}
 
 
 }

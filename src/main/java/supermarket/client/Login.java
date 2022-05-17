@@ -34,6 +34,7 @@ public class Login implements Runnable {
 	private JTextField passwordField;
 	private JLabel message;
 	private JTextField userText;
+	private User user;
 
 	private Client client;
 	private WebTarget webTarget;
@@ -98,14 +99,15 @@ public class Login implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Login !");
 				try {
+
 					String username=userText.getText();
 					String password=String.valueOf(passwordText.getPassword());
+					user = new User();
 					message.setText("Trying to login");
 					try {
 						if (login(username, password)){
-							User user = new User();
+							user = getUser(username);
 							Home home = new Home(user);
-							frame.dispose();
 						}
 					} catch (SupermarketException ex) {
 						ex.printStackTrace();
@@ -134,22 +136,38 @@ public class Login implements Runnable {
 	}
 	
 	public boolean login(String username, String password) throws SupermarketException {
+		//connection
 		WebTarget supermarketWebTarget = webTarget.path("server/user");
 		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+
 		Boolean bool=false;
+
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
+
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new SupermarketException("Exception" + response.getStatus());
-
-
 		} else {
 			bool = response.readEntity(Boolean.class);
 
 		}
 		return bool;
+	}
+	public User getUser(String username) throws SupermarketException {
+		//connection
+		User user;
+		WebTarget supermarketWebTarget = webTarget.path("server/getUser");
+		Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(username, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new SupermarketException("Exception" + response.getStatus());
+		} else {
+			user = response.readEntity(User.class);
+		}
+		return user;
 	}
 
 	public User getUserInfo() throws SupermarketException {
@@ -171,7 +189,6 @@ public class Login implements Runnable {
 				Thread.sleep(2000);
             } catch (InterruptedException e){ 
                 Thread.currentThread().interrupt();
-                System.out.println("Thread was interrupted, Failed to complete operation");
             }
 		}
 	}

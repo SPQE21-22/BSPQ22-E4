@@ -10,11 +10,11 @@ public class Product {
     private String name;
     private String brand;
     private int stock;
-    private Date expirationDate;
+    private String expirationDate;
     private double discountPercentage;
     private double price;
 
-    public Product(String category, String name, String brand, int stock, Date expirationDate,
+    public Product(String category, String name, String brand, int stock, String expirationDate,
             double discountPercentage, double price) {
         this.category = category;
         this.name = name;
@@ -26,6 +26,14 @@ public class Product {
     }
     
     public Product() {
+        this.id="5";
+        this.category = "category";
+        this.name = "name";
+        this.brand = "brand";
+        this.stock = 10;
+        this.expirationDate = "expirationDate";
+        this.discountPercentage = 20;
+        this.price = 20;
     }
 
     public String getId() {
@@ -68,11 +76,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return this.expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 

@@ -14,8 +14,8 @@ import javax.swing.*;
 public class SupermarketServer {
     private  Db db= new Db();
 
+
     public boolean login(String username, String password) {
-        System.out.println("ENTRA LOGIN METHO DE SERVER(SQL)");
         //sql part
         List<User> users = new ArrayList<User>();
         db.connect();
@@ -23,10 +23,8 @@ public class SupermarketServer {
         //List < Producto > productos = db.getTodosProductos();
         int numeroUsuarios = users.size();
         int usuariosComprobados = 0;
-
-        System.out.println("antes del for de leer users");
+        //change for 1 user
         for (User user: users) {
-            System.out.println("Usuario de bd: " + user.toString());
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password)) {
                 return true;
@@ -37,7 +35,7 @@ public class SupermarketServer {
         }
 
         if (usuariosComprobados == numeroUsuarios) { // si se han comprobado todos ---> avisamos
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario");
+            JOptionPane.showMessageDialog(null, "User is not registered");
         }
         db.disconnect();
         return false;
@@ -47,44 +45,61 @@ public class SupermarketServer {
         db.connect();
         boolean checkRegister = db.addUser(user);
         if (checkRegister) {
+            db.disconnect();
             return true;
         }
+        db.disconnect();
         return false;
     }
 
     public List<User> getUserList() {
+        db.connect();
         List<User> userList = new ArrayList<User>();
         userList = db.getAllUsers();
         if(userList != null) {
+            db.disconnect();
             return userList;    
         }
+        db.disconnect();
         return null;
     }
 
     public User getUser(String username) {
+        db.connect();
         User user = db.getUser(username);
         if (user != null) {
+            db.disconnect();
             return user;
         }
-        System.out.println("The user is null");
+        db.disconnect();
         return null;
     }
 
     public List<Product> getProductList() {
+        db.connect();
+
         List<Product> productList = new ArrayList<>();
         productList = db.getProductList();
         if (productList != null){
+            db.disconnect();
             return productList;
         }
+        db.disconnect();
         return null;
+
     }
-    
-    public boolean addOrder(String userId, Order order) {
+
+    public boolean addOrder(User user) {
         db.connect();
-        boolean checkOrder = db.addOrder(userId, order);
+        List<Order> orderList = new ArrayList<>();
+        orderList = user.getOrderList();
+        System.out.println("EN SERVER" + user.getId() + orderList.get(orderList.size() - 1).toString());
+        boolean checkOrder = db.addOrder(user.getId(), orderList.get(orderList.size() - 1));
         if (checkOrder){
+            db.disconnect();
             return true;
         }
+        db.disconnect();
         return false;
     }
 }
