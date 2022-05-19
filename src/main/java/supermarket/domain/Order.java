@@ -57,7 +57,7 @@ public class Order {
     @Override
     public String toString() {
         return "{" +
-            " code='" + getId() + "'" +
+            " id='" + getId() + "'" +
             ", date='" + getDate() + "'" +
             ", productList='" + getProductList() + "'" +
             ", price='" + getPrice() + "'" +
