@@ -76,12 +76,14 @@ public class Home extends JFrame implements ActionListener {
         final Box choz = Box.createVerticalBox();
         con.setBackground(Color.white);
 
+        ArrayList<JLabel> labelsCart = new ArrayList<JLabel>();
 
-        l1 = new JLabel("");
+        /*l1 = new JLabel("");
         l2 = new JLabel("");
         l3 = new JLabel("");
         l4 = new JLabel("");
-        l5 = new JLabel("");
+        l5 = new JLabel("");*/
+
 
 
         first.setVisible(true);
@@ -147,8 +149,9 @@ public class Home extends JFrame implements ActionListener {
         Rb1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 {
-                    Sary[0] = Rb1.getText();
-                    l2.setText(Sary[0]);
+                   JLabel label1 = new JLabel("");
+                   Sary[0] = Rb1.getText();
+                   label1.setText(Sary[0]);
                 }
             }
         });
@@ -700,7 +703,7 @@ public class Home extends JFrame implements ActionListener {
         buy.add(l4);
         buy.add(l5);
         //remove
-        rem = new JButton(" Remove ");
+        rem = new JButton(" Clear ");
         rem.setMaximumSize(new Dimension(120, 25));
         rem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -718,7 +721,7 @@ public class Home extends JFrame implements ActionListener {
         //listener de profile
         bprofile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VentanaPerfil perfil = new VentanaPerfil(ventanaAnterior, user);
+                //VentanaPerfil perfil = new VentanaPerfil(null,user);
 
             }
         });
@@ -738,8 +741,8 @@ public class Home extends JFrame implements ActionListener {
         choz.add(bprofile);
 
         buy.add(Box.createRigidArea(new Dimension(0, 50)));
-        ImageIcon image = new ImageIcon("images\\1.jpg");
-        JLabel label1 = new JLabel("Cart ", image, JLabel.CENTER);
+
+        JLabel label1 = new JLabel("Cart ",JLabel.CENTER);
         buy.add(label1);
         buy.add(Sub);
         buy.add(rem);

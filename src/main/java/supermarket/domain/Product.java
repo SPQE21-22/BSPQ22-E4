@@ -113,4 +113,10 @@ public class Product {
             ", price='" + getPrice() + "'" +
             "}";
     }
+
+
+    public String toText() {
+        return
+                getName() + " - " + getCategory() + " - " + getPrice();
+    }
 }

@@ -107,7 +107,9 @@ public class Login implements Runnable {
 					try {
 						if (login(username, password)){
 							user = getUser(username);
-							Home home = new Home(user);
+							//Home home = new Home(user);
+							Shopping shopping = new Shopping(user);
+
 						}
 					} catch (SupermarketException ex) {
 						ex.printStackTrace();

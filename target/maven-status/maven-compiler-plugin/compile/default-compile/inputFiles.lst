@@ -1,27 +1,13 @@
-<<<<<<< HEAD
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/client/Login.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/domain/User.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/util/WindowManager.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/db/Db.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/util/SupermarketException.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/client/Home.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/domain/Order.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/server/SupermarketService.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/client/VentanaPerfil.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/client/Registration.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/domain/Product.java
-/Users/alejandraarche/IdeaProjects/BSPQ22-E4/src/main/java/supermarket/server/SupermarketServer.java
-=======
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\client\Login.java
-C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\User.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\client\VentanaPerfil.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\client\Registration.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\server\SupermarketServer.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\client\Home.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\util\SupermarketException.java
-C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\Order.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\db\Db.java
-C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\Product.java
+C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\client\Shopping.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\util\WindowManager.java
 C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\server\SupermarketService.java
->>>>>>> b63362e643a9bbbf1e6484412251ad2cc3172454
+C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\User.java
+C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\Order.java
+C:\Users\Usuario\IdeaProjects\BSPQ22-E4\src\main\java\supermarket\domain\Product.java

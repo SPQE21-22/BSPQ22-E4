@@ -13,7 +13,8 @@ public class VentanaPerfil extends JFrame {
 
 
 	private JTable jTable;
-	private String[][] tableData = {{"01", "Adam", "1986"},
+	private String[][] tableData =
+			{{"01", "Adam", "1986"},
 			{"02", "John", "1990"},
 			{"03", "Sam", "1989"},
 			{"04", "Derek", "1991"},
@@ -32,7 +33,7 @@ public class VentanaPerfil extends JFrame {
 
 
 
-		public void VenaPerfil(JFrame ventanaAnterior, User user) {
+		public void VentanaPerfil(JFrame ventanaAnterior, User user) {
 			//Characteristics of the main window
 			setTitle("Profile");
 

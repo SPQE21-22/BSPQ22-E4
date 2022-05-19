@@ -196,6 +196,35 @@ public class Db {
         return productList;
     }
 
+    public List<Product> getProductListByCategory(String categoria) {
+        List<Product> productList = new ArrayList<>();
+        String sql = "SELECT * FROM product";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs4 = stmt.executeQuery(sql);
+            while (rs4.next()) {
+                Product product = new Product();
+                product.setId(rs4.getString("product_id"));
+                product.setCategory(rs4.getString("category"));
+                product.setName(rs4.getString("name"));
+                product.setBrand(rs4.getString("brand"));
+                product.setStock(rs4.getInt("stock"));
+                //error con dates
+
+                product.setExpirationDate(rs4.getString("expirationDate"));
+                product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
+                product.setPrice(rs4.getFloat("price"));
+
+                if (product.getCategory().equals(categoria)){
+                    productList.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR get products DB" + e.toString());
+        }
+        return productList;
+    }
+
     public boolean addOrder(String userId, Order order) {
         List<Product> products = new ArrayList<>();
         products = order.getProductList();
