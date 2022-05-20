@@ -29,13 +29,19 @@ import supermarket.domain.Order;
 
 import supermarket.util.SupermarketException;
 
-public class Shopping extends JFrame {
+public class Shopping extends JFrame  {
     double precio = 0;
     Order actualOrder;
 
     private WebTarget webTarget;
     private Client client;
     JFrame thisFrame = this;
+    JButton meat;
+    JButton fruit;
+    JButton breakfast;
+    JButton dessert;
+    JButton drinks;
+    JButton profile;
 
 
     public Shopping(User user) {
@@ -141,12 +147,12 @@ public class Shopping extends JFrame {
         JPanel panelIzquierdaArriba2 = new JPanel();
         panelIzquierdaArriba2.setLayout(new GridLayout(1, 6));
 
-        JButton meat = new JButton("MEAT");
-        JButton fruit = new JButton("FRUIT");
-        JButton breakfast = new JButton("BREAKFAST");
-        JButton dessert = new JButton("DESSERT");
-        JButton drinks = new JButton("DRINKS");
-        JButton profile = new JButton("Profile");
+        meat = new JButton("MEAT");
+        fruit = new JButton("FRUIT");
+        breakfast = new JButton("BREAKFAST");
+        dessert = new JButton("DESSERT");
+        drinks = new JButton("DRINKS");
+        profile = new JButton("Profile");
 
 
         JButton buscar = new JButton();
@@ -191,7 +197,7 @@ public class Shopping extends JFrame {
             for (Product product : todosProductos) {
                 JPanel panelProducto = new JPanel();
                 panelProducto.setLayout(new BorderLayout());
-                JLabel tnombreProducto = new JLabel(product.getName());
+                JLabel tnombreProducto = new JLabel(product.getName() + " " + product.getPrice());
                 JButton banadir = new JButton("Add");
 
                 banadir.addActionListener(new ActionListener() {
@@ -213,7 +219,7 @@ public class Shopping extends JFrame {
                 tingredientes.append("PRICE:" + "\n");
 
 
-                tnombreProducto.setText(product.getName() + " "+ product.getPrice() );
+                tnombreProducto.setText(product.getName() + " " + product.getPrice());
 
                 //add to panels
                 panelProducto.add(tnombreProducto, BorderLayout.NORTH);
@@ -260,45 +266,44 @@ public class Shopping extends JFrame {
 
                     // Para cada producto se anade al panel de productos
                     for (Product producto : todosProductos) {
-                            JPanel panelProducto = new JPanel();
-                            panelProducto.setLayout(new BorderLayout());
-                            JLabel tnombreProducto = new JLabel(producto.getName());
-                            JButton banadir = new JButton("Add");
+                        JPanel panelProducto = new JPanel();
+                        panelProducto.setLayout(new BorderLayout());
+                        JLabel tnombreProducto = new JLabel(producto.getName() + " " + producto.getPrice());
+                        JButton banadir = new JButton("Add");
 
-                            banadir.addActionListener(new ActionListener() {
+                        banadir.addActionListener(new ActionListener() {
 
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
 
-                                    listaPedido.add(producto); // LISTA QUE UTILIZAREMOS PARA EL PEDIDO
-                                    precio = precio + producto.getPrice();
+                                listaPedido.add(producto); // LISTA QUE UTILIZAREMOS PARA EL PEDIDO
+                                precio = precio + producto.getPrice();
 
-                                    precioActual.setText("Precio actual:" + String.valueOf(df.format(precio)) + "�");
+                                precioActual.setText("Precio actual:" + String.valueOf(df.format(precio)) + "�");
 
-                                    modeloPedido.addElement(producto.toText());
+                                modeloPedido.addElement(producto.toText());
 
-                                }
-                            });
+                            }
+                        });
 
-                            // Los ingredientes del producto
-                            JTextArea tingredientes = new JTextArea();
-                            tingredientes.append("INGREDIENTES:" + "\n");
-                            tingredientes.setEditable(false);
+                        // Los ingredientes del producto
+                        JTextArea tingredientes = new JTextArea();
+                        tingredientes.append("INGREDIENTES:" + "\n");
+                        tingredientes.setEditable(false);
 
-                            //add image
-                            ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/drinks/" + producto.getName() + ".png");
-                            JLabel labelImg = new JLabel();
-                            labelImg.setIcon(imgThisImg);
-
+                        //add image
+                        ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/drinks/" + producto.getName() + ".png");
+                        JLabel labelImg = new JLabel();
+                        labelImg.setIcon(imgThisImg);
 
 
                         panelProducto.add(banadir, BorderLayout.SOUTH);
-                            panelProducto.add(tnombreProducto, BorderLayout.NORTH);
-                            panelProducto.add(labelImg, BorderLayout.CENTER);
+                        panelProducto.add(tnombreProducto, BorderLayout.NORTH);
+                        panelProducto.add(labelImg, BorderLayout.CENTER);
 
-                            panelProducto.setBorder(BorderFactory.createLineBorder(Color.black, 5));
-                            // Y finalmente anadimos el panel
-                            panelIzquierdaAbajo.add(panelProducto);
+                        panelProducto.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+                        // Y finalmente anadimos el panel
+                        panelIzquierdaAbajo.add(panelProducto);
 
 
                     }
@@ -336,7 +341,7 @@ public class Shopping extends JFrame {
                     for (Product producto : todosProductos) {
                         JPanel panelProducto = new JPanel();
                         panelProducto.setLayout(new BorderLayout());
-                        JLabel tnombreProducto = new JLabel(producto.getName());
+                        JLabel tnombreProducto = new JLabel(producto.getName() + " " + producto.getPrice());
                         JButton banadir = new JButton("Add");
 
                         banadir.addActionListener(new ActionListener() {
@@ -403,7 +408,7 @@ public class Shopping extends JFrame {
                     for (Product producto : todosProductos) {
                         JPanel panelProducto = new JPanel();
                         panelProducto.setLayout(new BorderLayout());
-                        JLabel tnombreProducto = new JLabel(producto.getName());
+                        JLabel tnombreProducto = new JLabel(producto.getName() + " " + producto.getPrice());
                         JButton banadir = new JButton("Add");
 
                         banadir.addActionListener(new ActionListener() {
@@ -469,7 +474,7 @@ public class Shopping extends JFrame {
                     for (Product producto : todosProductos) {
                         JPanel panelProducto = new JPanel();
                         panelProducto.setLayout(new BorderLayout());
-                        JLabel tnombreProducto = new JLabel(producto.getName());
+                        JLabel tnombreProducto = new JLabel(producto.getName() + " " + producto.getPrice());
                         JButton banadir = new JButton("Add");
 
                         banadir.addActionListener(new ActionListener() {
@@ -488,7 +493,7 @@ public class Shopping extends JFrame {
                         });
 
                         // Los ingredientes del producto
-                        System.out.println("FRUIT" + producto.getName());
+                        System.out.println("FRUIT " + producto.getName());
 
                         ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/fruit/" + producto.getName() + ".png");
                         JLabel labelImg = new JLabel();
@@ -536,7 +541,7 @@ public class Shopping extends JFrame {
                     for (Product producto : todosProductos) {
                         JPanel panelProducto = new JPanel();
                         panelProducto.setLayout(new BorderLayout());
-                        JLabel tnombreProducto = new JLabel(producto.getName());
+                        JLabel tnombreProducto = new JLabel(producto.getName() + " " + producto.getPrice());
                         JButton banadir = new JButton("Add");
 
                         banadir.addActionListener(new ActionListener() {
@@ -589,7 +594,7 @@ public class Shopping extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!modeloPedido.isEmpty()) {
-                    Order actualOrder= new Order();
+                    Order actualOrder = new Order();
                     actualOrder.setProductList(listaPedido);
 
                     //control de decimales
@@ -597,7 +602,11 @@ public class Shopping extends JFrame {
                     bdd = bdd.setScale(2, RoundingMode.HALF_UP);
                     actualOrder.setPrice((float) bdd.doubleValue());
 
-                    System.out.println("hasta aqui 2");
+                    //date del order
+                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+                    actualOrder.setDate(timeStamp);
+
+                    System.out.println("ORDER >> " + actualOrder.toString());
                     System.out.println("LANZARIA PAGO");
                     //new VentanaPago(pedido, usuario);
                     dispose();
@@ -628,7 +637,7 @@ public class Shopping extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //ventanaAnterior.setVisible(true);
-                VentanaPerfil ventanaPerfil= new VentanaPerfil();
+                VentanaPerfil ventanaPerfil = new VentanaPerfil();
                 System.out.println("ATRAS");
 
             }
@@ -648,5 +657,7 @@ public class Shopping extends JFrame {
 
 
     }
+
+
 
 }

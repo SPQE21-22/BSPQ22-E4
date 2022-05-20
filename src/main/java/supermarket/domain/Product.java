@@ -117,6 +117,6 @@ public class Product {
 
     public String toText() {
         return
-                getName() + " - " + getCategory() + " - " + getPrice();
+                getName() + " - " + getPrice() + " €";
     }
 }
