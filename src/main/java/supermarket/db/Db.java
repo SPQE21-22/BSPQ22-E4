@@ -13,6 +13,7 @@ import supermarket.domain.User;
 
 public class Db {
     Connection conn = null;
+    Statement stmtGlobal;
     private static boolean LOGGING = true;
 
     // METODO PARA CONECTAR CON LA BASE DE DATOS
@@ -20,11 +21,10 @@ public class Db {
         try {
             String url = "jdbc:sqlite:sqlite/main.db";
             conn = DriverManager.getConnection(url);
-
-            System.out.println("Connection to SQLite has been established.");
-
-
-
+            if (conn != null) {
+                stmtGlobal = conn.createStatement();
+                System.out.println("Connection to SQLite has been established.");
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 
@@ -44,8 +44,7 @@ public class Db {
         List<User> users = new ArrayList<User>();
         String sql = "SELECT * FROM USER;";
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmtGlobal.executeQuery(sql);
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getString("USER_ID"));
@@ -89,11 +88,9 @@ public class Db {
     //METHOD GETUSER
     public User getUser(String username) {
         User user = new User();
-
         String sql = "SELECT * FROM USER WHERE username = '" + username + "';";
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmtGlobal.executeQuery(sql);
             while (rs.next()) {    
                 user.setId(rs.getString("USER_ID"));
                 user.setEmail(rs.getString("EMAIL"));
@@ -109,47 +106,56 @@ public class Db {
             System.out.println("BD PARTE 1 USER -- >" + e.toString());
         }
     
+        List<Order> orderListTemp = new ArrayList<Order>();
         List<Order> orderList = new ArrayList<Order>();
         String sql2 = "SELECT * FROM cashOrder WHERE user_id = '" + user.getId() + "'";
         try {
-            Statement stmt2 = conn.createStatement();
-            ResultSet rs2 = stmt2.executeQuery(sql2);
+            Order order;
+            ResultSet rs2 = stmtGlobal.executeQuery(sql2);
             while (rs2.next()) {
-                Order order = new Order();
-                order.setId(rs2.getString("cashOrder_id"));
+                order = new Order();
+                order.setId(String.valueOf(rs2.getInt("cashOrder_id")));
                 order.setDate(rs2.getString("date"));
                 order.setPrice(rs2.getFloat("price"));
+                order.setProductList(new ArrayList<Product>());
                 System.out.println("ORDER EN DB"+ order.toString());
-                orderList.add(order);
+                orderListTemp.add(order);
             }
         } catch (Exception e) {
             System.out.println("BD PARTE 2 USER -- >" + e.toString());
         }
+        System.out.println(orderListTemp.toString());
         System.out.println("ANTES DEL FOR 127");
-        for (Order order : orderList) {
+        for (Order order : orderListTemp) {
             System.out.println("ENTRA FOR");
+            System.out.println("ORDER EN EL FOR" + order.toString());
             List<String> productIdList = new ArrayList<String>();
             List<Product> productList = new ArrayList<Product>();
             String sql3 = "SELECT * FROM relationship WHERE cashOrder_id = '" + order.getId() + "'";
-            
+
             try {
-                Statement stmt3 = conn.createStatement();
-                ResultSet rs3 = stmt3.executeQuery(sql3);
+                System.out.println("primer try");
+                ResultSet rs3 = stmtGlobal.executeQuery(sql3);
                 while (rs3.next()) {
-                    productIdList.add(rs3.getString("product_id"));
+                    productIdList.add(String.valueOf(rs3.getInt("product_id")));
+                    System.out.println("product id :" + String.valueOf(rs3.getInt("product_id")));
                 }
             } catch (Exception e) {
                 System.out.println("BD PARTE 3 USER -- >" + e.toString());
             }
-            
+
             for (String productId : productIdList) {
-                String sql4 = "SELECT * FROM product WHERE product_id = '" + String.valueOf(productId) + "'";
+                System.out.println("entra 2 For");
+                String sql4 = "SELECT * FROM product WHERE product_id = '" + productId + "'";
+                System.out.println("productId: " + productId);
                 try {
-                    Statement stmt4 = conn.createStatement();
-                    ResultSet rs4 = stmt4.executeQuery(sql4);
+                    System.out.println("segundo try");
+                    ResultSet rs4 = stmtGlobal.executeQuery(sql4);
+                    System.out.println("segundo try 2");
                     while (rs4.next()) {
+                        System.out.println("segundo try 3");
                         Product product = new Product();
-                        product.setId(rs4.getString("product_id"));
+                        product.setId(String.valueOf(rs4.getInt("product_id")));
                         product.setCategory(rs4.getString("category"));
                         product.setName(rs4.getString("name"));
                         product.setBrand(rs4.getString("brand"));
@@ -157,6 +163,7 @@ public class Db {
                         product.setExpirationDate(rs4.getString("expirationDate"));
                         product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                         product.setPrice(rs4.getFloat("price"));
+                        System.out.println("producto: " + product.toString());
                         productList.add(product);
                     }
                 } catch (Exception e) {
@@ -164,8 +171,10 @@ public class Db {
                 }
             }
             order.setProductList(productList);
+            System.out.println("order: " + order.toString());
             orderList.add(order);
         }
+        System.out.println("orderList: " + orderList.toString());
         user.setOrderList(orderList);
         return user;
     }
@@ -174,11 +183,10 @@ public class Db {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product";
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs4 = stmt.executeQuery(sql);
+            ResultSet rs4 = stmtGlobal.executeQuery(sql);
             while (rs4.next()) {
                 Product product = new Product();
-                product.setId(rs4.getString("product_id"));
+                product.setId(String.valueOf(rs4.getInt("product_id")));
                 product.setCategory(rs4.getString("category"));
                 product.setName(rs4.getString("name"));
                 product.setBrand(rs4.getString("brand"));
@@ -240,19 +248,18 @@ public class Db {
             pst.close();
 
         } catch (SQLException e) {
-            System.out.println("ERROR ADDING ORDER 1 --> " + e.toString());
+            System.out.println("ERROR ADDING ORDER 1 tryCatch: --> " + e.toString());
         }
         
         String sql2 = "SELECT cashorder_id FROM cashorder ORDER BY cashorder_id DESC LIMIT 1;";
             try {
-                Statement stmt2 = conn.createStatement();
-                ResultSet rs = stmt2.executeQuery(sql2);
+                ResultSet rs = stmtGlobal.executeQuery(sql2);
                 while (rs.next()) {
                     cashorderId = rs.getInt("cashorder_id");
 
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 3 --> " + e.toString());
+                System.out.println("ERROR ADDING ORDER 2 tryCatch: --> " + e.toString());
 
             }
 
@@ -271,22 +278,21 @@ public class Db {
                 pst3.executeUpdate();
                 pst3.close();
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 2 --> "+ e.toString());
+                System.out.println("ERROR ADDING ORDER 3 tryCatch: --> "+ e.toString());
 
             }
 
             String sql4 = "SELECT product_id FROM product WHERE name = '" + product.getName() + "'";
             try {
-                Statement stmt4 = conn.createStatement();
-                ResultSet rs = stmt4.executeQuery(sql4);
+                ResultSet rs = stmtGlobal.executeQuery(sql4);
                 while (rs.next()) {
                     productId = rs.getInt("product_id");
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 4 --> " + e.toString());
+                System.out.println("ERROR ADDING ORDER 4 tryCatch: --> " + e.toString());
 
             }
-            //CRASH AQUI
+
             try {
 
                 String sql5 = "INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)";
