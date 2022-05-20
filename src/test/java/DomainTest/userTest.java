@@ -11,12 +11,21 @@ import supermarket.domain.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class userTest {
 
     User user;
+    private static final Logger logger = LogManager.getLogger(userTest.class);
 
     @Before
     public void SetUp() {
+
+        BasicConfigurator.configure();
+
+        logger.info("Starting the Set up before Testing");
 
         Product product1 = new Product("vegetables", "tomatoes", "carefour", 100,
                 "24,07,2022", 0.05, 1.5);
@@ -33,85 +42,128 @@ public class userTest {
 
         user = new User("kostas@gmail.com","kostas", "12345","kostas", "ntanas", "smirnis",
                "1234567890","6949999999", ordersList);
+
+        logger.info("Leaving setUp");
     }
 
     @Test
     public void setIdTest() {
+        logger.info("Starting setId testing");
+
         user.setId("123");
 
         Assert.assertNotNull(user.getId());
         Assert.assertTrue(user.getId().equals("123"));
+
+        logger.info("(\"Finishing setId testing");
     }
 
 
     @Test
     public void setEmailTest() {
+        logger.info("Starting setEmail testing");
+
         user.setEmail("dinos@gmail.com");
 
         Assert.assertFalse(user.getEmail().equals("kostas@gmail.com"));
         Assert.assertTrue(user.getEmail().equals("dinos@gmail.com"));
+
+        logger.info("Finishing setEmail testing");
+
     }
 
     @Test
     public void setUsernameTest() {
+        logger.info("Starting setUsername testing");
+
         user.setUsername("dinos");
 
         Assert.assertFalse(user.getUsername().equals("kostas"));
         Assert.assertTrue(user.getUsername().equals("dinos"));
+
+        logger.info("Finishing setUsername testing");
     }
 
     @Test
     public void setPasswordTest() {
+        logger.info("Starting setPassword testing");
+
         user.setPassword("54321");
 
         Assert.assertFalse(user.getPassword().equals("12345"));
         Assert.assertTrue(user.getPassword().equals("54321"));
+
+        logger.info("Finishing setPassword testing");
     }
 
     @Test
     public void setNameTest() {
+        logger.info("Starting setPassword testing");
+
         user.setName("dinos");
 
         Assert.assertFalse(user.getName().equals("kostas"));
         Assert.assertTrue(user.getName().equals("dinos"));
+
+        logger.info("Finishing setPassword testing");
     }
 
     @Test
     public void setLastNameTest() {
+        logger.info("Starting setLastName testing");
+
         user.setLastName("ntonas");
 
         Assert.assertFalse(user.getLastName().equals("ntanas"));
         Assert.assertTrue(user.getLastName().equals("ntonas"));
+
+        logger.info("Finishing setLastName testing");
     }
 
     @Test
     public void setAddressTest() {
+        logger.info("Starting setAddress testing");
+
         user.setAddress("xrisoupol");
 
         Assert.assertFalse(user.getAddress().equals("smirnis"));
         Assert.assertTrue(user.getAddress().equals("xrisoupol"));
+
+        logger.info("Finishing setAddress testing");
     }
 
     @Test
     public void setCardNumberTest() {
+        logger.info("Starting setCardNumber testing");
+
         user.setCardNumber("6959999999");
 
         Assert.assertFalse(user.getCardNumber().equals("6949999999"));
         Assert.assertTrue(user.getCardNumber().equals("6959999999"));
+
+        logger.info("Finishing setCardNumber testing");
     }
 
     @Test
     public void setPhoneNumberTest() {
+        logger.info("Starting setPhoneNumber testing");
+
         user.setPhoneNumber("0987654321");
 
         Assert.assertFalse(user.getPhoneNumber().equals("1234567890"));
         Assert.assertTrue(user.getPhoneNumber().equals("0987654321"));
-    }
 
-    //Assert.assertEquals(1,customer1.getLoans().size());
+        logger.info("Finishing setCardNumber testing");
+    }
 
     @Test
     public void getOrderListTest() {
+
+        logger.info("Starting getOrderList testing");
+
         Assert.assertEquals(1, user.getOrderList().size());
+
+        logger.info("Finishing getOrderList testing");
     }
+
 }
