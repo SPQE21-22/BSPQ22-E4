@@ -606,6 +606,9 @@ public class Shopping extends JFrame  {
                     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
                     actualOrder.setDate(timeStamp);
 
+                    db.connect();
+                    db.addOrder(user.getId(),actualOrder);
+                    db.disconnect();
                     System.out.println("ORDER >> " + actualOrder.toString());
                     System.out.println("LANZARIA PAGO");
                     //new VentanaPago(pedido, usuario);
@@ -636,8 +639,8 @@ public class Shopping extends JFrame  {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ventanaAnterior.setVisible(true);
-                VentanaPerfil ventanaPerfil = new VentanaPerfil();
+                thisFrame.setVisible(false);
+                VentanaPerfil ventanaPerfil = new VentanaPerfil(thisFrame, user);
                 System.out.println("ATRAS");
 
             }

@@ -51,6 +51,7 @@ public class RegisterTest {
         Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
         Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
+
     }
 
 }

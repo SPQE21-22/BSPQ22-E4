@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -35,6 +39,7 @@ public class Login implements Runnable {
 	private JLabel message;
 	private JTextField userText;
 	private User user;
+	private static final Logger logger = LogManager.getLogger(Login.class);
 
 	private Client client;
 	private WebTarget webTarget;
@@ -47,7 +52,10 @@ public class Login implements Runnable {
 		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
 
 
-		//buenoooo
+		//LOGGER CONF
+		BasicConfigurator.configure();
+
+		//---------------
 		JFrame frame = new JFrame("Udeusto Login");
 		frame.setSize(400, 200);
 		frame.setResizable(false);

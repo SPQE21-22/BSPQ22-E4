@@ -721,7 +721,7 @@ public class Home extends JFrame implements ActionListener {
         //listener de profile
         bprofile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //VentanaPerfil perfil = new VentanaPerfil(null,user);
+                //VentanaPerfil perfil = new VentanaPerfil(user);
 
             }
         });

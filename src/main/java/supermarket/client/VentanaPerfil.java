@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import supermarket.db.Db;
 import supermarket.domain.User;
 
 public class VentanaPerfil extends JFrame {
@@ -33,8 +34,16 @@ public class VentanaPerfil extends JFrame {
 
 
 
-		public void VentanaPerfil(JFrame ventanaAnterior, User user) {
+
+	public VentanaPerfil(JFrame ventanaAnterior, User user) {
 			//Characteristics of the main window
+			/*Db db = new Db();
+			db.connect();
+
+			user=db.getUser(user.getUsername());
+
+			db.disconnect();*/
+
 			setTitle("Profile");
 
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,7 +144,7 @@ public class VentanaPerfil extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					dispose();
-					setVisible(false);
+					ventanaAnterior.setVisible(true);
 				}
 			});
 
