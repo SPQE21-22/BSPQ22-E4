@@ -38,7 +38,7 @@ public class RegisterTest {
         client = ClientBuilder.newClient();
         webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1", "8080"));
 
-        //helpers for user acc
+        // helpers for user acc
         Product product1 = new Product("vegetables", "tomatoes", "carefour", 100,
                 "24,07,2022", 0.05, 1.5);
         Product product2 = new Product("vegetables", "potatoes", "carefour", 100,
@@ -49,50 +49,56 @@ public class RegisterTest {
         orderList.add(product2);
         Order order1 = new Order("17,06,2022", orderList, (float) 2.7);
 
-        List <Order> ordersList = new ArrayList<Order>();
+        List<Order> ordersList = new ArrayList<Order>();
         ordersList.add(order1);
 
         logger.info("Leaving setUp");
     }
-
-    @Test
-    public void registerTest() {
-
-        logger.info("Starting register testing");
-
-        WebTarget supermarketWebTarget = webTarget.path("server/register");
-        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-        User user = new User("kostas@gmail.com","kostas", "12345","kostas", "ntanas", "smirnis",
-                "1234567890","6949999999", ordersList);
-        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-
-        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
-
-        //check if the login works with the register data
-        Assert.assertTrue(loginTest("kostas", "12345"));
-
-        logger.info("(\"Finishing register testing");
-
-    }
-
-    //helepr function for checking if the register data work on log in
-    public boolean loginTest(String username, String password) {
-
-        logger.info("Starting login check");
-
-        WebTarget supermarketWebTarget = webTarget.path("server/user");
-        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-
-        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-
-        logger.info("(\"Finishing login check");
-
-        return (response.getStatus() == Response.Status.OK.getStatusCode());
-
-    }
-
+    /*
+     * @Test
+     * public void registerTest() {
+     * 
+     * logger.info("Starting register testing");
+     * 
+     * WebTarget supermarketWebTarget = webTarget.path("server/register");
+     * Invocation.Builder invocationBuilder =
+     * supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+     * User user = new User("kostas@gmail.com","kostas", "12345","kostas", "ntanas",
+     * "smirnis",
+     * "1234567890","6949999999", ordersList);
+     * Response response = invocationBuilder.post(Entity.entity(user,
+     * MediaType.APPLICATION_JSON));
+     * 
+     * Assert.assertTrue(response.getStatus() ==
+     * Response.Status.OK.getStatusCode());
+     * 
+     * //check if the login works with the register data
+     * Assert.assertTrue(loginTest("kostas", "12345"));
+     * 
+     * logger.info("(\"Finishing register testing");
+     * 
+     * }
+     * 
+     * //helepr function for checking if the register data work on log in
+     * public boolean loginTest(String username, String password) {
+     * 
+     * logger.info("Starting login check");
+     * 
+     * WebTarget supermarketWebTarget = webTarget.path("server/user");
+     * Invocation.Builder invocationBuilder =
+     * supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+     * 
+     * User user = new User();
+     * user.setUsername(username);
+     * user.setPassword(password);
+     * 
+     * Response response = invocationBuilder.post(Entity.entity(user,
+     * MediaType.APPLICATION_JSON));
+     * 
+     * logger.info("(\"Finishing login check");
+     * 
+     * return (response.getStatus() == Response.Status.OK.getStatusCode());
+     * 
+     * }
+     */
 }

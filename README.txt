@@ -7,5 +7,4 @@ First, compile the whole code:
 Then, in three separate cmd windows, run:
 
 1. mvn jetty:run 
-2. mvn exec:java -Pmanager
-3. mvn exec:java -Pclient
+2. mvn exec:java -Pclient
