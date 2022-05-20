@@ -55,6 +55,7 @@ public class Login implements Runnable {
 		//LOGGER CONF
 		BasicConfigurator.configure();
 
+
 		//---------------
 		JFrame frame = new JFrame("Udeusto Login");
 		frame.setSize(400, 200);

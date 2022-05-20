@@ -1,4 +1,5 @@
 supermarket\client\Shopping.class
+supermarket\client\FinalVentana$1.class
 supermarket\client\Shopping$5.class
 supermarket\client\Shopping$8.class
 supermarket\client\VentanaPerfil.class
@@ -6,15 +7,20 @@ supermarket\client\Shopping$7$1.class
 supermarket\client\Shopping$5$1.class
 supermarket\client\Shopping$11.class
 supermarket\client\Shopping$7.class
+supermarket\client\FinalVentana$4.class
 supermarket\client\Shopping$1.class
 supermarket\client\Shopping$4.class
 supermarket\client\Shopping$3.class
 supermarket\client\Shopping$10.class
+supermarket\domain\Invoice.class
 supermarket\client\VentanaPerfil$1.class
 supermarket\client\Home$33.class
+supermarket\client\FinalVentana$3.class
 supermarket\client\Shopping$8$1.class
+supermarket\client\FinalVentana$2.class
 supermarket\client\Shopping$6$1.class
 supermarket\client\Shopping$6.class
 supermarket\client\Shopping$2.class
+supermarket\client\FinalVentana.class
 supermarket\client\Shopping$4$1.class
 supermarket\client\Shopping$9.class

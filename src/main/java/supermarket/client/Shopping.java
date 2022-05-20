@@ -606,9 +606,7 @@ public class Shopping extends JFrame  {
                     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
                     actualOrder.setDate(timeStamp);
 
-                    db.connect();
-                    db.addOrder(user.getId(),actualOrder);
-                    db.disconnect();
+                    FinalVentana finalVentana = new FinalVentana(actualOrder,user);
                     System.out.println("ORDER >> " + actualOrder.toString());
                     System.out.println("LANZARIA PAGO");
                     //new VentanaPago(pedido, usuario);
