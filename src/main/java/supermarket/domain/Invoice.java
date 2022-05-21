@@ -12,7 +12,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 public class Invoice {
     double total = 0.0;
@@ -44,6 +43,10 @@ public class Invoice {
             // linea4
 
             // linea2
+            contentStream.showText("ORDER NUMBER: "+ order.getId());
+            contentStream.newLineAtOffset(0, 30);
+            contentStream.showText("ORDER TOTAL PRICE: "+ order.getPrice());
+            contentStream.newLineAtOffset(0, 30);
             contentStream.showText(text2);
             contentStream.newLineAtOffset(0, 30);
             // linea1
