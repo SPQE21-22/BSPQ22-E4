@@ -120,6 +120,7 @@
 					<excludes>
 						<exclude>supermarket/client/*</exclude>
 						<exclude>supermarket/util/*</exclude>
+						<exclude>supermarket/domain/Invoice.java</exclude>
 					</excludes>
 				</configuration>
 				<executions>
