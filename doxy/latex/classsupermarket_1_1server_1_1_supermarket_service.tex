@@ -1,0 +1,193 @@
+\hypertarget{classsupermarket_1_1server_1_1_supermarket_service}{}\doxysection{supermarket.\+server.\+Supermarket\+Service Class Reference}
+\label{classsupermarket_1_1server_1_1_supermarket_service}\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+
+
+Collaboration diagram for supermarket.\+server.\+Supermarket\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classsupermarket_1_1server_1_1_supermarket_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_a7198d3bc61a15d4da572c5b840f904c2}{Supermarket\+Service}} ()
+\item 
+Response \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_aa273be917d9eeb42f0f1922e70e50222}{login}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\item 
+Response \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_aa0871466bbbb49c8a4dd5a63836297f9}{register}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\item 
+\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_ad8730a8ceb35bdda755f0f09156c422b}{get\+User}} (String username)
+\item 
+Response \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_a8c2670e411f78d059f4948a6287ab700}{add\+Order}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\item 
+Response \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_adcbad310d1981cfcc6bbcca771241fcd}{get\+Product\+List}} (Boolean bool)
+\item 
+Response \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_service_a5d04a52ef9b5a20b267f143ae0869c79}{get\+Product\+List\+By\+Category}} (String category)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It\textquotesingle{}s a JAX-\/\+RS resource class that exposes a REST API for the \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server}{Supermarket\+Server}} class 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_a7198d3bc61a15d4da572c5b840f904c2}\label{classsupermarket_1_1server_1_1_supermarket_service_a7198d3bc61a15d4da572c5b840f904c2}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!SupermarketService@{SupermarketService}}
+\index{SupermarketService@{SupermarketService}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{SupermarketService()}{SupermarketService()}}
+{\footnotesize\ttfamily supermarket.\+server.\+Supermarket\+Service.\+Supermarket\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_a8c2670e411f78d059f4948a6287ab700}\label{classsupermarket_1_1server_1_1_supermarket_service_a8c2670e411f78d059f4948a6287ab700}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!addOrder@{addOrder}}
+\index{addOrder@{addOrder}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{addOrder()}{addOrder()}}
+{\footnotesize\ttfamily Response supermarket.\+server.\+Supermarket\+Service.\+add\+Order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+The function takes a user object as a parameter and returns a boolean value
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user object that contains the order details. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_a8c2670e411f78d059f4948a6287ab700_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_adcbad310d1981cfcc6bbcca771241fcd}\label{classsupermarket_1_1server_1_1_supermarket_service_adcbad310d1981cfcc6bbcca771241fcd}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!getProductList@{getProductList}}
+\index{getProductList@{getProductList}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{getProductList()}{getProductList()}}
+{\footnotesize\ttfamily Response supermarket.\+server.\+Supermarket\+Service.\+get\+Product\+List (\begin{DoxyParamCaption}\item[{Boolean bool}]{ }\end{DoxyParamCaption})}
+
+The function is a POST request to the path \char`\"{}/product\char`\"{} and returns a list of products
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & This is a boolean value that is used to determine whether the product list should be sorted by price or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of products. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_adcbad310d1981cfcc6bbcca771241fcd_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_a5d04a52ef9b5a20b267f143ae0869c79}\label{classsupermarket_1_1server_1_1_supermarket_service_a5d04a52ef9b5a20b267f143ae0869c79}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!getProductListByCategory@{getProductListByCategory}}
+\index{getProductListByCategory@{getProductListByCategory}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{getProductListByCategory()}{getProductListByCategory()}}
+{\footnotesize\ttfamily Response supermarket.\+server.\+Supermarket\+Service.\+get\+Product\+List\+By\+Category (\begin{DoxyParamCaption}\item[{String}]{category }\end{DoxyParamCaption})}
+
+This function is used to get the list of products by category
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category of the product. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of products. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_a5d04a52ef9b5a20b267f143ae0869c79_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_ad8730a8ceb35bdda755f0f09156c422b}\label{classsupermarket_1_1server_1_1_supermarket_service_ad8730a8ceb35bdda755f0f09156c422b}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!getUser@{getUser}}
+\index{getUser@{getUser}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} supermarket.\+server.\+Supermarket\+Service.\+get\+User (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+The function takes a string as input, and returns a user object
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user you want to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A user object. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_ad8730a8ceb35bdda755f0f09156c422b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_aa273be917d9eeb42f0f1922e70e50222}\label{classsupermarket_1_1server_1_1_supermarket_service_aa273be917d9eeb42f0f1922e70e50222}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!login@{login}}
+\index{login@{login}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily Response supermarket.\+server.\+Supermarket\+Service.\+login (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+It checks if the user is registered in the supermarket server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user object that contains the username and password. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_aa273be917d9eeb42f0f1922e70e50222_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_service_aa0871466bbbb49c8a4dd5a63836297f9}\label{classsupermarket_1_1server_1_1_supermarket_service_aa0871466bbbb49c8a4dd5a63836297f9}} 
+\index{supermarket.server.SupermarketService@{supermarket.server.SupermarketService}!register@{register}}
+\index{register@{register}!supermarket.server.SupermarketService@{supermarket.server.SupermarketService}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily Response supermarket.\+server.\+Supermarket\+Service.\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+It registers a user.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & the user object that contains the user\textquotesingle{}s information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_service_aa0871466bbbb49c8a4dd5a63836297f9_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/supermarket/server/\mbox{\hyperlink{_supermarket_service_8java}{Supermarket\+Service.\+java}}\end{DoxyCompactItemize}
