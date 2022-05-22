@@ -19,10 +19,16 @@ jobs:
         with:
           distribution: "adopt-openj9"
           java-version: "17"
+      - name: Launch the server
+        run: mvn jetty:run &
+      - name: Sleep for 10 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "10s"
       - name: Run coverage
         run: mvn clean test
       - name: Upload Report
-        uses: 'actions/upload-artifact@v2'
+        uses: "actions/upload-artifact@v2"
         with:
           name: report.xml
           path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
