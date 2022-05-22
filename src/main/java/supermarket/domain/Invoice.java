@@ -1,6 +1,5 @@
 package supermarket.domain;
 
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,12 +12,21 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+/**
+ * It creates a class called Invoice.
+ */
 public class Invoice {
+    // Declaring the variables that will be used in the class.
     double total = 0.0;
     String text = "";
     List<Product> productList;
     ArrayList<String> words;
 
+    /**
+     * It creates a PDF file with the order information
+     * 
+     * @param order the order that we want to create the invoice for
+     */
     public void crearFacturaPdf(Order order) throws Exception {
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage(PDRectangle.A4);
@@ -43,15 +51,15 @@ public class Invoice {
             // linea4
 
             // linea2
-            contentStream.showText("ORDER NUMBER: "+ order.getId());
+            contentStream.showText("ORDER NUMBER: " + order.getId());
             contentStream.newLineAtOffset(0, 30);
-            contentStream.showText("ORDER TOTAL PRICE: "+ order.getPrice());
+            contentStream.showText("ORDER TOTAL PRICE: " + order.getPrice());
             contentStream.newLineAtOffset(0, 30);
             contentStream.showText(text2);
             contentStream.newLineAtOffset(0, 30);
             // linea1
 
-            for (Product product: productList) {
+            for (Product product : productList) {
                 total = +product.getPrice();
                 textTest = product.toText();
                 contentStream.showText(textTest);
@@ -68,23 +76,27 @@ public class Invoice {
             // linea1
             contentStream.showText(text2);
 
-            System.out.println("id"+order.getId());
-            String id="";
-            id=String.valueOf(order.getId());
+            System.out.println("id" + order.getId());
+            String id = "";
+            id = String.valueOf(order.getId());
             contentStream.newLineAtOffset(150, 300);
             contentStream.showText(id);
 
             contentStream.endText();
 
             // imagen textTest
-            /*PDImageXObject pdImage = PDImageXObject.createFromFile("src/imagenes/resumen.png", document);
-            contentStream.drawImage(pdImage, 20, 700);
-
-
-
-            // imagen textTest
-            PDImageXObject pdImage2 = PDImageXObject.createFromFile("src/imagenes/logo.png", document);
-            contentStream.drawImage(pdImage2, 150, 100);*/
+            /*
+             * PDImageXObject pdImage =
+             * PDImageXObject.createFromFile("src/imagenes/resumen.png", document);
+             * contentStream.drawImage(pdImage, 20, 700);
+             * 
+             * 
+             * 
+             * // imagen textTest
+             * PDImageXObject pdImage2 =
+             * PDImageXObject.createFromFile("src/imagenes/logo.png", document);
+             * contentStream.drawImage(pdImage2, 150, 100);
+             */
 
             contentStream.close();
 

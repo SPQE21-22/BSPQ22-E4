@@ -1,6 +1,5 @@
 package supermarket.db;
 
-
 import java.sql.*;
 import java.io.*;
 import java.time.format.DateTimeParseException;
@@ -16,7 +15,9 @@ public class Db {
     Statement stmtGlobal;
     private static boolean LOGGING = true;
 
-    // METODO PARA CONECTAR CON LA BASE DE DATOS
+    /**
+     * It connects to the database
+     */
     public void connect() {
         try {
             String url = "jdbc:sqlite:sqlite/main.db";
@@ -26,10 +27,12 @@ public class Db {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } 
+        }
     }
 
-    // METODO PARA DESCONECTAR CON LA BASE DE DATOS
+    /**
+     * This function closes the connection to the database
+     */
     public void disconnect() {
         try {
             conn.close();
@@ -38,7 +41,11 @@ public class Db {
         }
     }
 
-    // OBTENER TODOS LOS USUARIOS DE LA BASE DE DATOS
+    /**
+     * It gets all the users from the database and returns them as a list
+     * 
+     * @return A list of users
+     */
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         String sql = "SELECT * FROM USER;";
@@ -63,6 +70,12 @@ public class Db {
         return users;
     }
 
+    /**
+     * This function is used to add a new user to the database
+     * 
+     * @param user the user object that contains all the information about the user
+     * @return A boolean value.
+     */
     public boolean addUser(User user) {
         String sql = "INSERT INTO user (email, username, password, name, lastName, address, cardNumber, phoneNumber) VALUES (?,?,?,?,?,?,?,?);";
         try {
@@ -84,13 +97,19 @@ public class Db {
         }
         return false;
     }
-    //METHOD GETUSER
+
+    /**
+     * It gets a user from the database
+     * 
+     * @param username The username of the user you want to get.
+     * @return A User object with all the information of the user.
+     */
     public User getUser(String username) {
         User user = new User();
         String sql = "SELECT * FROM USER WHERE username = '" + username + "';";
         try {
             ResultSet rs = stmtGlobal.executeQuery(sql);
-            while (rs.next()) {    
+            while (rs.next()) {
                 user.setId(rs.getString("USER_ID"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setUsername(rs.getString("USERNAME"));
@@ -104,7 +123,7 @@ public class Db {
         } catch (SQLException | DateTimeParseException e) {
             System.out.println("BD PARTE 1 USER -- >" + e.toString());
         }
-    
+
         List<Order> orderListTemp = new ArrayList<Order>();
         List<Order> orderList = new ArrayList<Order>();
         String sql2 = "SELECT * FROM cashOrder WHERE user_id = '" + user.getId() + "'";
@@ -164,6 +183,11 @@ public class Db {
         return user;
     }
 
+    /**
+     * It gets all the products from the database and returns them in a list
+     * 
+     * @return A list of products
+     */
     public List<Product> getProductList() {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -176,7 +200,7 @@ public class Db {
                 product.setName(rs4.getString("name"));
                 product.setBrand(rs4.getString("brand"));
                 product.setStock(rs4.getInt("stock"));
-                //error con dates
+                // error con dates
 
                 product.setExpirationDate(rs4.getString("expirationDate"));
                 product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
@@ -189,6 +213,14 @@ public class Db {
         return productList;
     }
 
+    /**
+     * It gets a list of products from the database, and then filters them by
+     * category
+     * 
+     * @param categoria String
+     * @return A list of products that are in the category that is passed as a
+     *         parameter.
+     */
     public List<Product> getProductListByCategory(String categoria) {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -202,13 +234,13 @@ public class Db {
                 product.setName(rs4.getString("name"));
                 product.setBrand(rs4.getString("brand"));
                 product.setStock(rs4.getInt("stock"));
-                //error con dates
+                // error con dates
 
                 product.setExpirationDate(rs4.getString("expirationDate"));
                 product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                 product.setPrice(rs4.getFloat("price"));
 
-                if (product.getCategory().equals(categoria)){
+                if (product.getCategory().equals(categoria)) {
                     productList.add(product);
                 }
             }
@@ -218,6 +250,13 @@ public class Db {
         return productList;
     }
 
+    /**
+     * It adds an order to the database
+     * 
+     * @param userId The user's id.
+     * @param order  the order to be added
+     * @return A boolean value.
+     */
     public boolean addOrder(String userId, Order order) {
         List<Product> products = new ArrayList<>();
         products = order.getProductList();
@@ -235,20 +274,20 @@ public class Db {
         } catch (SQLException e) {
             System.out.println("ERROR ADDING ORDER 1 tryCatch: --> " + e.toString());
         }
-        
-        String sql2 = "SELECT cashorder_id FROM cashorder ORDER BY cashorder_id DESC LIMIT 1;";
-            try {
-                ResultSet rs = stmtGlobal.executeQuery(sql2);
-                while (rs.next()) {
-                    cashorderId = rs.getInt("cashorder_id");
 
-                }
-            } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 2 tryCatch: --> " + e.toString());
+        String sql2 = "SELECT cashorder_id FROM cashorder ORDER BY cashorder_id DESC LIMIT 1;";
+        try {
+            ResultSet rs = stmtGlobal.executeQuery(sql2);
+            while (rs.next()) {
+                cashorderId = rs.getInt("cashorder_id");
 
             }
+        } catch (SQLException e) {
+            System.out.println("ERROR ADDING ORDER 2 tryCatch: --> " + e.toString());
 
-        //order added
+        }
+
+        // order added
         for (Product product : products) {
             String sql3 = "INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)";
             try {
@@ -263,7 +302,7 @@ public class Db {
                 pst3.executeUpdate();
                 pst3.close();
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER 3 tryCatch: --> "+ e.toString());
+                System.out.println("ERROR ADDING ORDER 3 tryCatch: --> " + e.toString());
 
             }
 
@@ -288,8 +327,8 @@ public class Db {
                 pst5.executeUpdate();
                 pst5.close();
             } catch (SQLException e) {
-                System.out.println("ERROR ADDING ORDER  --> "+ e.toString());
-            }catch (Exception e){
+                System.out.println("ERROR ADDING ORDER  --> " + e.toString());
+            } catch (Exception e) {
                 System.out.println("EXCEPTION" + e.toString());
             }
         }

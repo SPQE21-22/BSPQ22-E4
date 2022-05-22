@@ -12,7 +12,13 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+/**
+ * It creates a database connection.
+ */
 public class DbTest {
+    // Creating a new instance of the database class and creating a list of users,
+    // products, user,
+    // userTemp2, productTemp and order.
     private Db db = new Db();
     private List<User> userList;
     private List<Product> productList;
@@ -21,23 +27,28 @@ public class DbTest {
     private Product productTemp;
     private Order order;
 
-    
+    /**
+     * This function tests the getUser function in the database class
+     */
     @Test
     public void testGetUser() {
         db.connect();
         user = new User("user1@mail.com", "juan", "pass123", "juan", "gil", "love st,123", "123456",
-        "112233", null);
+                "112233", null);
         User user2 = db.getUser(user.getUsername());
 
         assertEquals(user.getPassword(), user2.getPassword());
         db.disconnect();
     }
-    
+
+    /**
+     * It tests that the database can retrieve all users from the database
+     */
     @Test
     public void testGetAllUsers() {
         db.connect();
         user = new User("user1@mail.com", "juan", "pass123", "juan", "gil", "love st,123", "123456",
-        "112233", null);
+                "112233", null);
         System.out.println(user.toString());
         userList = new ArrayList<User>(db.getAllUsers());
 
@@ -49,7 +60,12 @@ public class DbTest {
         }
         db.disconnect();
     }
-    
+
+    /**
+     * It tests that the user added to the database is the same as the one retrieved
+     * from the database
+     */
+
     @Test
     public void testAddUser() {
         db.connect();
@@ -61,6 +77,9 @@ public class DbTest {
         db.disconnect();
     }
 
+    /**
+     * This function tests the getProductList() function in the Database class
+     */
     @Test
     public void testGetProductList() {
         db.connect();
@@ -75,6 +94,9 @@ public class DbTest {
         db.disconnect();
     }
 
+    /**
+     * It tests the addOrder function of the database class
+     */
     @Test
     public void testAddOrder() {
         db.connect();
@@ -83,7 +105,7 @@ public class DbTest {
         user = db.getUser("sergio");
         order = new Order("2020/04/10", products, 3);
         db.addOrder(user.getId(), order);
-        
+
         List<Order> orderList = new ArrayList<Order>(user.getOrderList());
 
         for (Order orderTemp2 : orderList) {
