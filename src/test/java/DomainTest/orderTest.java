@@ -14,13 +14,18 @@ import supermarket.domain.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * A class that is used to test the order class.
+ */
 public class orderTest {
 
+    // Creating a new instance of the Order class and a logger.
     Order order;
     private static final Logger logger = LogManager.getLogger(userTest.class);
 
-
+    /**
+     * This function is used to set up the environment before testing
+     */
     @Before
     public void SetUp() {
 
@@ -41,6 +46,9 @@ public class orderTest {
         logger.info("Leaving setUp");
     }
 
+    /**
+     * This function tests the setEmail function in the Order class
+     */
     @Test
     public void setEmailTest() {
 
@@ -55,6 +63,9 @@ public class orderTest {
 
     }
 
+    /**
+     * This function tests the setDate function in the Order class
+     */
     @Test
     public void setDateTest() {
 
@@ -68,6 +79,9 @@ public class orderTest {
         logger.info("Finishing setDate testing");
     }
 
+    /**
+     * This function tests the setProductList function of the Order class
+     */
     @Test
     public void setProductListTest() {
 
@@ -84,13 +98,16 @@ public class orderTest {
 
         order.setProductList(orderList);
 
-        Assert.assertEquals(2,order.getProductList().size());
+        Assert.assertEquals(2, order.getProductList().size());
         Assert.assertTrue(order.getProductList().get(0).getName().equals("cucumber"));
         Assert.assertTrue(order.getProductList().get(1).getName().equals("eggplants"));
 
         logger.info("Finishing setProductList testing");
     }
 
+    /**
+     * This function tests the setPrice function of the Order class
+     */
     @Test
     public void setPriceTest() {
 
@@ -99,7 +116,7 @@ public class orderTest {
         order.setPrice((float) 3.5);
 
         Assert.assertNotEquals((float) 2.7, order.getPrice());
-        Assert.assertTrue((float) 3.5 == order.getPrice() );
+        Assert.assertTrue((float) 3.5 == order.getPrice());
 
         logger.info("Finishing setPrice testing");
     }

@@ -10,12 +10,18 @@ import org.apache.log4j.Logger;
 
 import supermarket.domain.Product;
 
-
+/**
+ * A class that tests the product class.
+ */
 public class productTest {
 
+    // Creating a new product and a logger.
     Product product;
     private static final Logger logger = LogManager.getLogger(productTest.class);
 
+    /**
+     * The function SetUp() is used to set up the environment before testing
+     */
     @Before
     public void SetUp() {
 
@@ -23,13 +29,15 @@ public class productTest {
 
         logger.info("Starting the Set up before Testing");
 
-
         product = new Product("vegetables", "tomatoes", "carefour", 100,
                 "24,07,2022", 0.05, 1.5);
 
         logger.info("Leaving setUp");
     }
 
+    /**
+     * > This function tests the setId function of the Product class
+     */
     @Test
     public void setIdTest() {
 
@@ -43,6 +51,9 @@ public class productTest {
         logger.info("(\"Finishing setId testing");
     }
 
+    /**
+     * The function tests the setCategory function of the Product class
+     */
     @Test
     public void setCategoryTest() {
 
@@ -56,6 +67,12 @@ public class productTest {
         logger.info("Finishing setCategory testing");
     }
 
+    /**
+     * This function tests the setName function of the Product class
+     */
+    /**
+     * This function tests the setName function of the Product class
+     */
     @Test
     public void setNameTest() {
 
@@ -69,6 +86,9 @@ public class productTest {
         logger.info("Finishing setName testing");
     }
 
+    /**
+     * The function tests the setBrand method of the Product class
+     */
     @Test
     public void setBrandTest() {
 
@@ -82,6 +102,9 @@ public class productTest {
         logger.info("Finishing setBrand testing");
     }
 
+    /**
+     * This function tests the setStock function of the Product class
+     */
     @Test
     public void setStockTest() {
 
@@ -95,6 +118,9 @@ public class productTest {
         logger.info("Finishing setStock testing");
     }
 
+    /**
+     * This function tests the setExpirationDate function of the Product class
+     */
     @Test
     public void setExpirationDateTest() {
 
@@ -108,6 +134,9 @@ public class productTest {
         logger.info("Finishing setExpirationDate testing");
     }
 
+    /**
+     * This function tests the setDiscountPercentage function in the Product class
+     */
     @Test
     public void setDiscountPercentageTest() {
 
@@ -121,6 +150,9 @@ public class productTest {
         logger.info("Finishing setDiscountPercentage testing");
     }
 
+    /**
+     * The function tests the setPrice function of the Product class
+     */
     @Test
     public void setPriceTest() {
 

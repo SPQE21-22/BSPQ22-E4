@@ -15,11 +15,18 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+/**
+ * A class that is used to test the user class.
+ */
 public class userTest {
 
+    // It creates a user and a logger.
     User user;
     private static final Logger logger = LogManager.getLogger(userTest.class);
 
+    /**
+     * It creates a user with a list of orders and a list of products
+     */
     @Before
     public void SetUp() {
 
@@ -32,20 +39,23 @@ public class userTest {
         Product product2 = new Product("vegetables", "potatoes", "carefour", 100,
                 "25,07,2022", 0.08, 1.7);
 
-        List <Product> orderList = new ArrayList<Product>();
+        List<Product> orderList = new ArrayList<Product>();
         orderList.add(product1);
         orderList.add(product2);
         Order order1 = new Order("17,06,2022", orderList, (float) 2.7);
 
-        List <Order> ordersList = new ArrayList<Order>();
+        List<Order> ordersList = new ArrayList<Order>();
         ordersList.add(order1);
 
-        user = new User("kostas@gmail.com","kostas", "12345","kostas", "ntanas", "smirnis",
-               "1234567890","6949999999", ordersList);
+        user = new User("kostas@gmail.com", "kostas", "12345", "kostas", "ntanas", "smirnis",
+                "1234567890", "6949999999", ordersList);
 
         logger.info("Leaving setUp");
     }
 
+    /**
+     * > This function tests the setId function of the User class
+     */
     @Test
     public void setIdTest() {
         logger.info("Starting setId testing");
@@ -58,7 +68,9 @@ public class userTest {
         logger.info("(\"Finishing setId testing");
     }
 
-
+    /**
+     * It tests the setEmail function of the User class.
+     */
     @Test
     public void setEmailTest() {
         logger.info("Starting setEmail testing");
@@ -72,6 +84,9 @@ public class userTest {
 
     }
 
+    /**
+     * It tests the setUsername function of the User class.
+     */
     @Test
     public void setUsernameTest() {
         logger.info("Starting setUsername testing");
@@ -84,6 +99,9 @@ public class userTest {
         logger.info("Finishing setUsername testing");
     }
 
+    /**
+     * This function tests the setPassword function of the User class.
+     */
     @Test
     public void setPasswordTest() {
         logger.info("Starting setPassword testing");
@@ -96,6 +114,9 @@ public class userTest {
         logger.info("Finishing setPassword testing");
     }
 
+    /**
+     * It tests the setName function of the User class.
+     */
     @Test
     public void setNameTest() {
         logger.info("Starting setPassword testing");
@@ -108,6 +129,9 @@ public class userTest {
         logger.info("Finishing setPassword testing");
     }
 
+    /**
+     * > This function tests the setLastName function of the User class
+     */
     @Test
     public void setLastNameTest() {
         logger.info("Starting setLastName testing");
@@ -120,6 +144,9 @@ public class userTest {
         logger.info("Finishing setLastName testing");
     }
 
+    /**
+     * It tests the setAddress function of the User class
+     */
     @Test
     public void setAddressTest() {
         logger.info("Starting setAddress testing");
@@ -132,6 +159,9 @@ public class userTest {
         logger.info("Finishing setAddress testing");
     }
 
+    /**
+     * This function tests the setCardNumber function in the User class
+     */
     @Test
     public void setCardNumberTest() {
         logger.info("Starting setCardNumber testing");
@@ -144,6 +174,9 @@ public class userTest {
         logger.info("Finishing setCardNumber testing");
     }
 
+    /**
+     * This function tests the setPhoneNumber function in the User class
+     */
     @Test
     public void setPhoneNumberTest() {
         logger.info("Starting setPhoneNumber testing");
@@ -156,6 +189,9 @@ public class userTest {
         logger.info("Finishing setCardNumber testing");
     }
 
+    /**
+     * This function tests the getOrderList() function in the User class
+     */
     @Test
     public void getOrderListTest() {
 
