@@ -63,12 +63,20 @@ public class SupermarketService {
 		return Response.ok(checkOrder).build();
 	}
 
-	@GET
+	@POST
 	@Path("/product")
-	public List<Product> getProductList() {
+	public Response getProductList(Boolean bool) {
 		List<Product> productList = new ArrayList<Product>();
 		productList = supermarketServer.getProductList();
-		return productList;
+		return Response.ok(productList).build();
+	}
+
+	@POST
+	@Path("/productByCategory")
+	public Response getProductListByCategory(String category) {
+		List<Product> productList = new ArrayList<Product>();
+		productList = supermarketServer.getProductListByCategory(category);
+		return Response.ok(productList).build();
 	}
 
 

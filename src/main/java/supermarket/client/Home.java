@@ -684,9 +684,9 @@ public class Home extends JFrame implements ActionListener {
                     List<Order> orders = new ArrayList<Order>(user.getOrderList());
                     orders.add(actualOrder);
                     user.setOrderList(orders);
-                    System.out.println("ENTRA ADDORDER HOME");
+
                     System.out.println("BOOLEANO --> " + addOrder(user));
-                    System.out.println("SALE ADDORDER HOME");
+
 
                 } catch (SupermarketException ex) {
                     ex.printStackTrace();

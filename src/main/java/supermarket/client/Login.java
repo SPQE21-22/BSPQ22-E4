@@ -39,7 +39,6 @@ public class Login implements Runnable {
 	private JLabel message;
 	private JTextField userText;
 	private User user;
-	private static final Logger logger = LogManager.getLogger(Login.class);
 
 	private Client client;
 	private WebTarget webTarget;

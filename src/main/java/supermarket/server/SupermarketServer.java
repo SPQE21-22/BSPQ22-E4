@@ -89,11 +89,24 @@ public class SupermarketServer {
 
     }
 
+    public List<Product> getProductListByCategory(String category) {
+        db.connect();
+
+        List<Product> productList = new ArrayList<>();
+        productList = db.getProductListByCategory(category);
+        if (productList != null){
+            db.disconnect();
+            return productList;
+        }
+        db.disconnect();
+        return null;
+
+    }
+
     public boolean addOrder(User user) {
         db.connect();
         List<Order> orderList = new ArrayList<>();
         orderList = user.getOrderList();
-        System.out.println("EN SERVER" + user.getId() + orderList.get(orderList.size() - 1).toString());
         boolean checkOrder = db.addOrder(user.getId(), orderList.get(orderList.size() - 1));
         if (checkOrder){
             db.disconnect();

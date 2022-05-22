@@ -1,6 +1,6 @@
 package supermarket.client;
 
-import supermarket.db.Db;
+
 import supermarket.domain.User;
 
 import java.awt.*;
@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.StringTokenizer;
 import javax.ws.rs.client.*;
 
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -42,6 +42,7 @@ public class Shopping extends JFrame  {
     JButton dessert;
     JButton drinks;
     JButton profile;
+    List<Product> todosProductos;
 
 
     public Shopping(User user) {
@@ -77,7 +78,6 @@ public class Shopping extends JFrame  {
 
         jlistaProductos.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                System.out.println("Select");
                 JList list = (JList) evt.getSource();
                 if (evt.getClickCount() == 2) {
                     Object producto = (Object) jlistaProductos.getSelectedValue();
@@ -183,13 +183,12 @@ public class Shopping extends JFrame  {
         panelIzquierdaAbajo.setLayout(new GridLayout(2, 4, 30, 30)); // meter separacion
 
         // PRODUCTOS DEL  EN PanelIzquierdaAbajo
-        Db db = new Db();
-        List<Product> todosProductos = null;
-        try {
 
-            db.connect();
-            todosProductos = db.getProductList();
-            db.disconnect();
+
+        try {
+            todosProductos =new ArrayList<Product>();
+
+            todosProductos= getProductList();
 
             int numeroProductos = todosProductos.size(); // para el layout
 
@@ -254,14 +253,11 @@ public class Shopping extends JFrame  {
                 panelIzquierdaAbajo.repaint();
                 // -----------------------------------------------
 
-                Db db = new Db();
+
                 List<Product> todosProductos = null;
                 try {
 
-                    db.connect();
-                    todosProductos = db.getProductListByCategory("drinks");
-                    db.disconnect();
-
+                    todosProductos = getProductListByCategory("drinks");
                     int numeroProductos = todosProductos.size(); // para el layout
 
                     // Para cada producto se anade al panel de productos
@@ -285,11 +281,6 @@ public class Shopping extends JFrame  {
 
                             }
                         });
-
-                        // Los ingredientes del producto
-                        JTextArea tingredientes = new JTextArea();
-                        tingredientes.append("INGREDIENTES:" + "\n");
-                        tingredientes.setEditable(false);
 
                         //add image
                         ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/drinks/" + producto.getName() + ".png");
@@ -327,13 +318,12 @@ public class Shopping extends JFrame  {
                 panelIzquierdaAbajo.revalidate();
                 panelIzquierdaAbajo.repaint();
                 // -----------------------------------------------
-                Db db = new Db();
                 List<Product> todosProductos = null;
                 try {
 
-                    db.connect();
-                    todosProductos = db.getProductListByCategory("breakfast");
-                    db.disconnect();
+
+                    todosProductos = getProductListByCategory("breakfast");
+
 
                     int numeroProductos = todosProductos.size(); // para el layout
 
@@ -394,14 +384,9 @@ public class Shopping extends JFrame  {
                 panelIzquierdaAbajo.revalidate();
                 panelIzquierdaAbajo.repaint();
                 // -----------------------------------------------
-                Db db = new Db();
                 List<Product> todosProductos = null;
                 try {
-
-                    db.connect();
-                    todosProductos = db.getProductListByCategory("dessert");
-                    db.disconnect();
-
+                    todosProductos = getProductListByCategory("dessert");
                     int numeroProductos = todosProductos.size(); // para el layout
 
                     // Para cada producto se anade al panel de productos
@@ -428,7 +413,6 @@ public class Shopping extends JFrame  {
 
                         // Los ingredientes del producto
                         ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/dessert/" + producto.getName() + ".png");
-                        System.out.println("DESSERT" + producto.getName());
 
                         JLabel labelImg = new JLabel();
                         labelImg.setIcon(imgThisImg);
@@ -460,13 +444,10 @@ public class Shopping extends JFrame  {
                 panelIzquierdaAbajo.revalidate();
                 panelIzquierdaAbajo.repaint();
                 // -----------------------------------------------
-                Db db = new Db();
+
                 List<Product> todosProductos = null;
                 try {
-
-                    db.connect();
-                    todosProductos = db.getProductListByCategory("fruit");
-                    db.disconnect();
+                    todosProductos = getProductListByCategory("fruit");
 
                     int numeroProductos = todosProductos.size(); // para el layout
 
@@ -493,7 +474,6 @@ public class Shopping extends JFrame  {
                         });
 
                         // Los ingredientes del producto
-                        System.out.println("FRUIT " + producto.getName());
 
                         ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/fruit/" + producto.getName() + ".png");
                         JLabel labelImg = new JLabel();
@@ -527,13 +507,11 @@ public class Shopping extends JFrame  {
                 panelIzquierdaAbajo.revalidate();
                 panelIzquierdaAbajo.repaint();
                 // -----------------------------------------------
-                Db db = new Db();
+
                 List<Product> todosProductos = null;
                 try {
+                    todosProductos = getProductListByCategory("meat");
 
-                    db.connect();
-                    todosProductos = db.getProductListByCategory("meat");
-                    db.disconnect();
 
                     int numeroProductos = todosProductos.size(); // para el layout
 
@@ -559,9 +537,7 @@ public class Shopping extends JFrame  {
                             }
                         });
 
-                        // Los ingredientes del producto
                         ImageIcon imgThisImg = new ImageIcon("src/main/java/supermarket/client/images/meat/" + producto.getName() + ".png");
-                        System.out.println("MEAT" + producto.getName());
                         JLabel labelImg = new JLabel();
                         labelImg.setIcon(imgThisImg);
 
@@ -608,7 +584,7 @@ public class Shopping extends JFrame  {
 
                     FinalVentana finalVentana = new FinalVentana(actualOrder,user);
                     System.out.println("ORDER >> " + actualOrder.toString());
-                    System.out.println("LANZARIA PAGO");
+
                     //new VentanaPago(pedido, usuario);
                     dispose();
 
@@ -657,6 +633,48 @@ public class Shopping extends JFrame  {
         add(panelGeneral);
 
 
+    }
+
+    public List<Product> getProductListByCategory(String category) throws SupermarketException {
+        WebTarget supermarketWebTarget = webTarget.path("server/productByCategory");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(category, MediaType.APPLICATION_JSON));
+        List<Product> productList2 = new ArrayList<Product>();
+
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new SupermarketException("Exception" + response.getStatus());
+
+        } else {
+            try {
+                productList2=response.readEntity( new GenericType<List<Product>>() {});
+
+            } catch (Exception e) {
+                System.out.println("EXCEPTION" + e.toString());
+
+            }
+        }
+        return productList2;
+    }
+
+    public List<Product> getProductList() throws SupermarketException {
+        Boolean bool=true;
+        WebTarget supermarketWebTarget = webTarget.path("server/product");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(bool,MediaType.APPLICATION_JSON));
+
+        List<Product> productList = new ArrayList<Product>();
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new SupermarketException("Exception" + response.getStatus());
+
+        } else {
+            try {
+                productList=response.readEntity( new GenericType<List<Product>>() {});
+            } catch (Exception e) {
+                System.out.println("EXCEPTION" + e.toString());
+
+            }
+        }
+        return productList;
     }
 
 

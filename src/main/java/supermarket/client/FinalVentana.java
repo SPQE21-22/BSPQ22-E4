@@ -14,9 +14,13 @@ import java.io.File;
 
 //problemas imports con libs externas
 import javax.swing.*;
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import supermarket.domain.*;
 import supermarket.db.Db;
+import supermarket.util.SupermarketException;
 
 
 public class FinalVentana extends JFrame {
@@ -33,6 +37,9 @@ public class FinalVentana extends JFrame {
     Image image2;
     Image newImg2;
 
+    private WebTarget webTarget;
+    private Client client;
+
     ImageIcon imagenTarjeta;
     Image image3;
     Image newImg3;
@@ -44,6 +51,8 @@ public class FinalVentana extends JFrame {
     File file = new File(ruta);
 
     public FinalVentana(Order order, User user) {
+        client = ClientBuilder.newClient();
+        webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1", "8080"));
         // para test de ventana
         List<Product> productList = new ArrayList<Product>();
 
@@ -91,7 +100,7 @@ public class FinalVentana extends JFrame {
         cash.setText("CASH \n");
         cash.setFont(new Font("Arial", Font.BOLD, 15));
         //FIX ROUTE IMAGE
-        ImageIcon imagenEfectivo = new ImageIcon("src/imagenes/cash.png");
+        ImageIcon imagenEfectivo = new ImageIcon("src/main/java/supermarket/client/images/cash.png");
         Image image2 = imagenEfectivo.getImage();
         Image newImg2 = image2.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
         imagenEfectivo = new ImageIcon(newImg2);
@@ -102,7 +111,7 @@ public class FinalVentana extends JFrame {
         card.setFont(new Font("Arial", Font.BOLD, 15));
 
         //FIX ROUTE IMAGE
-        ImageIcon imagenTarjeta = new ImageIcon("src/imagenes/cc.png");
+        ImageIcon imagenTarjeta = new ImageIcon("src/main/java/supermarket/client/images/cc.png");
         Image image3 = imagenTarjeta.getImage();
         Image newImg3 = image3.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
         imagenTarjeta = new ImageIcon(newImg3);
@@ -113,7 +122,7 @@ public class FinalVentana extends JFrame {
 
 
         //FIX ROUTE IMAGE
-        ImageIcon imagenFactura = new ImageIcon("src/imagenes/factura.png");
+        ImageIcon imagenFactura = new ImageIcon("src/main/java/supermarket/client/images/factura.png");
         Image image4 = imagenFactura.getImage();
         Image newImg4 = image4.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
         imagenFactura = new ImageIcon(newImg4);
@@ -191,6 +200,23 @@ public class FinalVentana extends JFrame {
             }
         });
 
+    }
+
+
+    public boolean addOrder(String userId,Order order) throws SupermarketException {
+        //connection
+        Boolean bool=false;
+        WebTarget supermarketWebTarget = webTarget.path("server/order");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(userId, MediaType.APPLICATION_JSON));
+
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new SupermarketException("Exception" + response.getStatus());
+        } else {
+            bool = response.readEntity(Boolean.class);
+
+        }
+        return bool;
     }
 }
 

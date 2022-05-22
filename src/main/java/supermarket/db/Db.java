@@ -23,7 +23,6 @@ public class Db {
             conn = DriverManager.getConnection(url);
             if (conn != null) {
                 stmtGlobal = conn.createStatement();
-                System.out.println("Connection to SQLite has been established.");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -118,42 +117,31 @@ public class Db {
                 order.setDate(rs2.getString("date"));
                 order.setPrice(rs2.getFloat("price"));
                 order.setProductList(new ArrayList<Product>());
-                System.out.println("ORDER EN DB"+ order.toString());
                 orderListTemp.add(order);
             }
         } catch (Exception e) {
             System.out.println("BD PARTE 2 USER -- >" + e.toString());
         }
         System.out.println(orderListTemp.toString());
-        System.out.println("ANTES DEL FOR 127");
         for (Order order : orderListTemp) {
-            System.out.println("ENTRA FOR");
-            System.out.println("ORDER EN EL FOR" + order.toString());
             List<String> productIdList = new ArrayList<String>();
             List<Product> productList = new ArrayList<Product>();
             String sql3 = "SELECT * FROM relationship WHERE cashOrder_id = '" + order.getId() + "'";
 
             try {
-                System.out.println("primer try");
                 ResultSet rs3 = stmtGlobal.executeQuery(sql3);
                 while (rs3.next()) {
                     productIdList.add(String.valueOf(rs3.getInt("product_id")));
-                    System.out.println("product id :" + String.valueOf(rs3.getInt("product_id")));
                 }
             } catch (Exception e) {
                 System.out.println("BD PARTE 3 USER -- >" + e.toString());
             }
 
             for (String productId : productIdList) {
-                System.out.println("entra 2 For");
                 String sql4 = "SELECT * FROM product WHERE product_id = '" + productId + "'";
-                System.out.println("productId: " + productId);
                 try {
-                    System.out.println("segundo try");
                     ResultSet rs4 = stmtGlobal.executeQuery(sql4);
-                    System.out.println("segundo try 2");
                     while (rs4.next()) {
-                        System.out.println("segundo try 3");
                         Product product = new Product();
                         product.setId(String.valueOf(rs4.getInt("product_id")));
                         product.setCategory(rs4.getString("category"));
@@ -163,7 +151,6 @@ public class Db {
                         product.setExpirationDate(rs4.getString("expirationDate"));
                         product.setDiscountPercentage(rs4.getFloat("discountPercentage"));
                         product.setPrice(rs4.getFloat("price"));
-                        System.out.println("producto: " + product.toString());
                         productList.add(product);
                     }
                 } catch (Exception e) {
@@ -171,10 +158,8 @@ public class Db {
                 }
             }
             order.setProductList(productList);
-            System.out.println("order: " + order.toString());
             orderList.add(order);
         }
-        System.out.println("orderList: " + orderList.toString());
         user.setOrderList(orderList);
         return user;
     }
