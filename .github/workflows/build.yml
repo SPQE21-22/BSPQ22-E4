@@ -33,10 +33,10 @@ jobs:
           java-version: "17"
       - name: Launch the server
         run: mvn jetty:run &
-      - name: Sleep for 15 seconds
+      - name: Sleep for 25 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: "15s"
+          time: "25s"
       - name: Run coverage
         run: mvn clean test
       - name: Upload Report XML
