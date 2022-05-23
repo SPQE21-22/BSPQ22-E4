@@ -11,6 +11,27 @@ jobs:
           java-version: "17"
       - run: mvn compile
 
+ GithubPages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "adopt-openj9"
+          java-version: "17"
+      - name: Install doxygen
+        run: sudo apt-get install -y doxygen
+      - name: Install graphviz
+        run: sudo apt-get install -y graphviz
+      - name: Generate documentation
+        run: mvn doxygen:report
+      - name: Publish on Github Pages
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: target/doxygen/html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   report:
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +48,11 @@ jobs:
           time: "15s"
       - name: Run coverage
         run: mvn clean test
+      - name: Upload Report
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: report.xml
+          path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
       - name: JaCoCo Code Coverage Report
         id: jacoco_reporter
         uses: PavanMudigonda/jacoco-reporter@v4.4
@@ -49,15 +75,4 @@ jobs:
         run: |
           echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
           echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
-      - name: Install doxygen
-        run: sudo apt-get install -y doxygen
-      - name: Install graphviz
-        run: sudo apt-get install -y graphviz
-      - name: Generate documentation
-        run: mvn doxygen:report
-      - name: Publish on Github Pages
-        uses: crazy-max/ghaction-github-pages@v2.3.0
-        with:
-          build_dir: target/doxygen/html
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
