@@ -33,7 +33,7 @@ jobs:
           java-version: "17"
       - name: Launch the server
         run: mvn jetty:run &
-      - name: Sleep for 25 seconds
+      - name: Sleep for 20 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: "25s"
@@ -48,7 +48,7 @@ jobs:
         uses: "actions/upload-artifact@v2"
         with:
           name: report.html
-          path: ${{ github.workspace }}/target/site/jacoco/jacoco.html
+          path: ${{ github.workspace }}/target/site/jacoco/index.html
       - name: JaCoCo Code Coverage Report
         id: jacoco_reporter
         uses: PavanMudigonda/jacoco-reporter@v4.4
