@@ -20,8 +20,15 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A test class for the Service class.
+ */
 public class ServiceTest {
 
+    // Creating a new instance of the SupermarketService class, and it is creating a
+    // new user object
+    // with the username and password, and then calls the login service with the
+    // user object.
     SupermarketService service;
     String username = "sergio";
     String password = "root";
@@ -32,7 +39,11 @@ public class ServiceTest {
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
 
-
+    /**
+     * > This function sets up the test environment by creating a new instance of
+     * the
+     * SupermarketService class
+     */
     @Before
     public void setUp() throws Exception {
         BasicConfigurator.configure();
@@ -40,6 +51,11 @@ public class ServiceTest {
 
     }
 
+    /**
+     * The function creates a new user object with the username and password, and
+     * then calls the login
+     * service with the user object
+     */
     @Test
     public void userTest() {
 
@@ -48,35 +64,41 @@ public class ServiceTest {
         User user = new User(username, password);
         Response response = service.login(user);
 
-        Assert.assertTrue(response.getStatus() ==
-                Response.Status.OK.getStatusCode());
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
 
         logger.info("Finishing user login testing");
 
     }
 
+    /**
+     * It creates a new user, calls the register method of the service and checks if
+     * the response
+     * status is OK
+     */
     @Test
     public void registerTest() {
 
         logger.info("Starting user register testing");
 
-        User user = new User("kostas@gmail.com","kostas", "12345","kostas", "ntanas",
+        User user = new User("kostas@gmail.com", "kostas", "12345", "kostas", "ntanas",
                 "smirnis",
-                "1234567890","6949999999", null);
+                "1234567890", "6949999999", null);
         Response response = service.register(user);
 
-        Assert.assertTrue(response.getStatus() ==
-                Response.Status.OK.getStatusCode());
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
 
         logger.info("Finishing user register testing");
 
     }
 
+    /**
+     * It tests that the user is not null, and that the username and password are
+     * correct
+     */
     @Test
     public void getUserTest() {
 
         logger.info("Starting user getter testing");
-
 
         User user = service.getUser("sergio");
 
@@ -88,37 +110,36 @@ public class ServiceTest {
 
     }
 
+    /**
+     * This function tests the addOrder function in the service class
+     */
     @Test
     public void addOrderTest() {
 
         logger.info("Starting add order testing");
 
-
         User user = service.getUser("sergio");
         Response response = service.addOrder(user);
 
-        Assert.assertTrue(response.getStatus() ==
-                Response.Status.OK.getStatusCode());
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
 
         logger.info("Finishing user getter testing");
 
     }
 
+    /**
+     * It tests the getProductList function in the ProductService class.
+     */
     @Test
     public void getProductListTest() {
 
         logger.info("Starting product list getter testing");
 
-
         Response response = service.getProductList(true);
 
-        Assert.assertTrue(response.getStatus() ==
-                Response.Status.OK.getStatusCode());
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
 
         logger.info("Finishing user getter testing");
 
     }
-
-    //List<Product> productList = new ArrayList<Product>();
-    //productList = response.readEntity( new GenericType<List<Product>>() {});
 }
