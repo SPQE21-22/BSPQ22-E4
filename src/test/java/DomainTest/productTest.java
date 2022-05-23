@@ -165,4 +165,12 @@ public class productTest {
 
         logger.info("Finishing setPrice testing");
     }
+
+    @Test
+    public void toTextTest() {
+        logger.info("Starting toText testing");
+        String result = product.toText();
+
+        Assert.assertTrue(result.equals("tomatoes - 1.5 EUR"));
+    }
 }

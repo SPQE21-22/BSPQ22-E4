@@ -54,7 +54,6 @@ public class SupermarketService {
 	 * @param user the user object that contains the user's information.
 	 * @return A boolean value.
 	 */
-
 	@POST
 	@Path("/register")
 	public Response register(User user) {

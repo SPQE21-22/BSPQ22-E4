@@ -1,0 +1,268 @@
+\hypertarget{classsupermarket_1_1server_1_1_supermarket_server}{}\doxysection{supermarket.\+server.\+Supermarket\+Server Class Reference}
+\label{classsupermarket_1_1server_1_1_supermarket_server}\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+
+
+Collaboration diagram for supermarket.\+server.\+Supermarket\+Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classsupermarket_1_1server_1_1_supermarket_server__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_affbeb3a07ab2bd157096c3f3d2747e62}{login}} (String username, String password)
+\item 
+boolean \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_a852da9942d0c6cb4b140cc8e57717884}{register}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} $>$ \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_a2a4261537b15440b264c932c3284d017}{get\+User\+List}} ()
+\item 
+\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_a25ad3ee8eca01de4b0013967a721fa8d}{get\+User}} (String username)
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_ab29763f49861be8b8ed6c933b28af53c}{get\+Product\+List}} ()
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_a0a3df8b8ddf73cbcc5e199d376c17b98}{get\+Product\+List\+By\+Category}} (String category)
+\item 
+boolean \mbox{\hyperlink{classsupermarket_1_1server_1_1_supermarket_server_a60f3ca5ed45c68faec41befb740d36ce}{add\+Order}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It\textquotesingle{}s a server that listens for incoming connections on a given port, and when a connection is made, it creates a new thread to handle the connection 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_a60f3ca5ed45c68faec41befb740d36ce}\label{classsupermarket_1_1server_1_1_supermarket_server_a60f3ca5ed45c68faec41befb740d36ce}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!addOrder@{addOrder}}
+\index{addOrder@{addOrder}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{addOrder()}{addOrder()}}
+{\footnotesize\ttfamily boolean supermarket.\+server.\+Supermarket\+Server.\+add\+Order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+This function adds an order to the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user who is making the order. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a60f3ca5ed45c68faec41befb740d36ce_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a60f3ca5ed45c68faec41befb740d36ce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_ab29763f49861be8b8ed6c933b28af53c}\label{classsupermarket_1_1server_1_1_supermarket_server_ab29763f49861be8b8ed6c933b28af53c}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!getProductList@{getProductList}}
+\index{getProductList@{getProductList}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{getProductList()}{getProductList()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ supermarket.\+server.\+Supermarket\+Server.\+get\+Product\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\char`\"{}\+Connect to the database, get the product list, disconnect from the database, and return the product list.\char`\"{}
+
+The problem with this function is that it\textquotesingle{}s not very readable. It\textquotesingle{}s hard to tell what\textquotesingle{}s going on. It\textquotesingle{}s also not very maintainable. If you wanted to add a new step to the function, you\textquotesingle{}d have to add it to the middle of the function
+
+\begin{DoxyReturn}{Returns}
+A list of products 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_ab29763f49861be8b8ed6c933b28af53c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_ab29763f49861be8b8ed6c933b28af53c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_a0a3df8b8ddf73cbcc5e199d376c17b98}\label{classsupermarket_1_1server_1_1_supermarket_server_a0a3df8b8ddf73cbcc5e199d376c17b98}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!getProductListByCategory@{getProductListByCategory}}
+\index{getProductListByCategory@{getProductListByCategory}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{getProductListByCategory()}{getProductListByCategory()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ supermarket.\+server.\+Supermarket\+Server.\+get\+Product\+List\+By\+Category (\begin{DoxyParamCaption}\item[{String}]{category }\end{DoxyParamCaption})}
+
+\char`\"{}\+This function connects to the database, gets a list of products from the database, disconnects from the database, and returns the list of products.\char`\"{}
+
+The problem with this function is that it\textquotesingle{}s doing too much. It\textquotesingle{}s doing the following\+:
+
+
+\begin{DoxyItemize}
+\item Connecting to the database
+\item Getting a list of products from the database
+\item Disconnecting from the database
+\item Returning the list of products
+\end{DoxyItemize}
+
+The function should only be doing one thing, which is getting a list of products from the database. The other three things should be done by other functions
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category of the product you want to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of products that are in the category that is passed in. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a0a3df8b8ddf73cbcc5e199d376c17b98_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a0a3df8b8ddf73cbcc5e199d376c17b98_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_a25ad3ee8eca01de4b0013967a721fa8d}\label{classsupermarket_1_1server_1_1_supermarket_server_a25ad3ee8eca01de4b0013967a721fa8d}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!getUser@{getUser}}
+\index{getUser@{getUser}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} supermarket.\+server.\+Supermarket\+Server.\+get\+User (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+\char`\"{}\+Get a user from the database, if the user exists, return it, otherwise return null.\char`\"{}
+
+The problem with this function is that it\textquotesingle{}s hard to read. It\textquotesingle{}s hard to read because it\textquotesingle{}s hard to follow the flow of the function. The flow of the function is not linear. It\textquotesingle{}s not linear because the function has multiple return statements
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user you want to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A user object 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classsupermarket_1_1server_1_1_supermarket_server_a25ad3ee8eca01de4b0013967a721fa8d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a25ad3ee8eca01de4b0013967a721fa8d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_a2a4261537b15440b264c932c3284d017}\label{classsupermarket_1_1server_1_1_supermarket_server_a2a4261537b15440b264c932c3284d017}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!getUserList@{getUserList}}
+\index{getUserList@{getUserList}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{getUserList()}{getUserList()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} $>$ supermarket.\+server.\+Supermarket\+Server.\+get\+User\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\char`\"{}\+Connect to the database, get a list of users, disconnect from the database, and return the list of users.\char`\"{}
+
+The problem with this function is that it\textquotesingle{}s not very readable. It\textquotesingle{}s hard to tell what\textquotesingle{}s going on. It\textquotesingle{}s also not very maintainable. If you wanted to add a new step to the function, you\textquotesingle{}d have to add it in the middle of the function
+
+\begin{DoxyReturn}{Returns}
+A list of users 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a2a4261537b15440b264c932c3284d017_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_affbeb3a07ab2bd157096c3f3d2747e62}\label{classsupermarket_1_1server_1_1_supermarket_server_affbeb3a07ab2bd157096c3f3d2747e62}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!login@{login}}
+\index{login@{login}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily boolean supermarket.\+server.\+Supermarket\+Server.\+login (\begin{DoxyParamCaption}\item[{String}]{username,  }\item[{String}]{password }\end{DoxyParamCaption})}
+
+It connects to the database, gets all the users, checks if the username and password match any of the users, and returns true if they do
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user. \\
+\hline
+{\em password} & The password to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_affbeb3a07ab2bd157096c3f3d2747e62_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_affbeb3a07ab2bd157096c3f3d2747e62_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1server_1_1_supermarket_server_a852da9942d0c6cb4b140cc8e57717884}\label{classsupermarket_1_1server_1_1_supermarket_server_a852da9942d0c6cb4b140cc8e57717884}} 
+\index{supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}!register@{register}}
+\index{register@{register}!supermarket.server.SupermarketServer@{supermarket.server.SupermarketServer}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily boolean supermarket.\+server.\+Supermarket\+Server.\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+\begin{quote}
+The function {\ttfamily register} connects to the database, adds a user, and then \end{quote}
+disconnects from the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user object that contains the user\textquotesingle{}s information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a852da9942d0c6cb4b140cc8e57717884_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1server_1_1_supermarket_server_a852da9942d0c6cb4b140cc8e57717884_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/supermarket/server/\mbox{\hyperlink{_supermarket_server_8java}{Supermarket\+Server.\+java}}\end{DoxyCompactItemize}

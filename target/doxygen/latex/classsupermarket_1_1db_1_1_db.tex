@@ -1,0 +1,251 @@
+\hypertarget{classsupermarket_1_1db_1_1_db}{}\doxysection{supermarket.\+db.\+Db Class Reference}
+\label{classsupermarket_1_1db_1_1_db}\index{supermarket.db.Db@{supermarket.db.Db}}
+
+
+Collaboration diagram for supermarket.\+db.\+Db\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classsupermarket_1_1db_1_1_db__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a581eb0cedbcb252c6af3f088f8405eb0}{connect}} ()
+\item 
+void \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a5ebe712e548371d6684ceecaecb7ba21}{disconnect}} ()
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} $>$ \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a533169972ddd13553b82a9f37d813c81}{get\+All\+Users}} ()
+\item 
+boolean \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a81cada50cfd42ae1b7745461d115f5b8}{add\+User}} (\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} user)
+\item 
+\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a7116a18797ec59a443cff01eaae98d31}{get\+User}} (String username)
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_ad545a959b011bd057a3514c1d16e9334}{get\+Product\+List}} ()
+\item 
+List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a01d507b8f43020d26847fe306000008a}{get\+Product\+List\+By\+Category}} (String categoria)
+\item 
+boolean \mbox{\hyperlink{classsupermarket_1_1db_1_1_db_a738ef91526f3ed4570f475569fcdcd67}{add\+Order}} (String user\+Id, \mbox{\hyperlink{classsupermarket_1_1domain_1_1_order}{Order}} order)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a738ef91526f3ed4570f475569fcdcd67}\label{classsupermarket_1_1db_1_1_db_a738ef91526f3ed4570f475569fcdcd67}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!addOrder@{addOrder}}
+\index{addOrder@{addOrder}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{addOrder()}{addOrder()}}
+{\footnotesize\ttfamily boolean supermarket.\+db.\+Db.\+add\+Order (\begin{DoxyParamCaption}\item[{String}]{user\+Id,  }\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_order}{Order}}}]{order }\end{DoxyParamCaption})}
+
+It adds an order to the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & The user\textquotesingle{}s id. \\
+\hline
+{\em order} & the order to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a738ef91526f3ed4570f475569fcdcd67_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a738ef91526f3ed4570f475569fcdcd67_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a81cada50cfd42ae1b7745461d115f5b8}\label{classsupermarket_1_1db_1_1_db_a81cada50cfd42ae1b7745461d115f5b8}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!addUser@{addUser}}
+\index{addUser@{addUser}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{addUser()}{addUser()}}
+{\footnotesize\ttfamily boolean supermarket.\+db.\+Db.\+add\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+This function is used to add a new user to the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & the user object that contains all the information about the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a81cada50cfd42ae1b7745461d115f5b8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a81cada50cfd42ae1b7745461d115f5b8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a581eb0cedbcb252c6af3f088f8405eb0}\label{classsupermarket_1_1db_1_1_db_a581eb0cedbcb252c6af3f088f8405eb0}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!connect@{connect}}
+\index{connect@{connect}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily void supermarket.\+db.\+Db.\+connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+It connects to the database Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a581eb0cedbcb252c6af3f088f8405eb0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a5ebe712e548371d6684ceecaecb7ba21}\label{classsupermarket_1_1db_1_1_db_a5ebe712e548371d6684ceecaecb7ba21}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily void supermarket.\+db.\+Db.\+disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function closes the connection to the database Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a5ebe712e548371d6684ceecaecb7ba21_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a533169972ddd13553b82a9f37d813c81}\label{classsupermarket_1_1db_1_1_db_a533169972ddd13553b82a9f37d813c81}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!getAllUsers@{getAllUsers}}
+\index{getAllUsers@{getAllUsers}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{getAllUsers()}{getAllUsers()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} $>$ supermarket.\+db.\+Db.\+get\+All\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+It gets all the users from the database and returns them as a list
+
+\begin{DoxyReturn}{Returns}
+A list of users 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a533169972ddd13553b82a9f37d813c81_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a533169972ddd13553b82a9f37d813c81_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_ad545a959b011bd057a3514c1d16e9334}\label{classsupermarket_1_1db_1_1_db_ad545a959b011bd057a3514c1d16e9334}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!getProductList@{getProductList}}
+\index{getProductList@{getProductList}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{getProductList()}{getProductList()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ supermarket.\+db.\+Db.\+get\+Product\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+It gets all the products from the database and returns them in a list
+
+\begin{DoxyReturn}{Returns}
+A list of products 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_ad545a959b011bd057a3514c1d16e9334_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_ad545a959b011bd057a3514c1d16e9334_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a01d507b8f43020d26847fe306000008a}\label{classsupermarket_1_1db_1_1_db_a01d507b8f43020d26847fe306000008a}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!getProductListByCategory@{getProductListByCategory}}
+\index{getProductListByCategory@{getProductListByCategory}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{getProductListByCategory()}{getProductListByCategory()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classsupermarket_1_1domain_1_1_product}{Product}} $>$ supermarket.\+db.\+Db.\+get\+Product\+List\+By\+Category (\begin{DoxyParamCaption}\item[{String}]{categoria }\end{DoxyParamCaption})}
+
+It gets a list of products from the database, and then filters them by category
+
+
+\begin{DoxyParams}{Parameters}
+{\em categoria} & String \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of products that are in the category that is passed as a parameter. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a01d507b8f43020d26847fe306000008a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a01d507b8f43020d26847fe306000008a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsupermarket_1_1db_1_1_db_a7116a18797ec59a443cff01eaae98d31}\label{classsupermarket_1_1db_1_1_db_a7116a18797ec59a443cff01eaae98d31}} 
+\index{supermarket.db.Db@{supermarket.db.Db}!getUser@{getUser}}
+\index{getUser@{getUser}!supermarket.db.Db@{supermarket.db.Db}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsupermarket_1_1domain_1_1_user}{User}} supermarket.\+db.\+Db.\+get\+User (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+It gets a user from the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user you want to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A User object with all the information of the user. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classsupermarket_1_1db_1_1_db_a7116a18797ec59a443cff01eaae98d31_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsupermarket_1_1db_1_1_db_a7116a18797ec59a443cff01eaae98d31_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/supermarket/db/\mbox{\hyperlink{_db_8java}{Db.\+java}}\end{DoxyCompactItemize}
