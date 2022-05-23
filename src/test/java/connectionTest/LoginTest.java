@@ -14,8 +14,12 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * > This class tests the login functionality of the application
+ */
 public class LoginTest {
 
+    // Setting up the variables that are used to make the REST calls in the test
     private Client client;
     private WebTarget webTarget;
     private Thread thread;
@@ -24,6 +28,11 @@ public class LoginTest {
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
 
+    /**
+     * This function is called before each test case is run. It sets up the client
+     * and webTarget
+     * variables that are used to make the REST calls
+     */
     @Before
     public void setUp() throws Exception {
 
@@ -39,52 +48,56 @@ public class LoginTest {
         logger.info("Leaving setUp");
 
     }
-    /*
-     * @Test
-     * public void loginTest() {
-     * 
-     * logger.info("Starting login testing");
-     * 
-     * WebTarget supermarketWebTarget = webTarget.path("server/user");
-     * Invocation.Builder invocationBuilder =
-     * supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-     * 
-     * User user = new User();
-     * user.setUsername(username);
-     * user.setPassword(password);
-     * 
-     * Response response = invocationBuilder.post(Entity.entity(user,
-     * MediaType.APPLICATION_JSON));
-     * 
-     * Assert.assertTrue(response.getStatus() ==
-     * Response.Status.OK.getStatusCode());
-     * 
-     * logger.info("(\"Finishing login testing");
-     * 
-     * }
-     * 
-     * @Test
-     * public void getUserTest() {
-     * 
-     * logger.info("Starting getUser testing");
-     * 
-     * WebTarget supermarketWebTarget = webTarget.path("server/getUser");
-     * Invocation.Builder invocationBuilder =
-     * supermarketWebTarget.request(MediaType.APPLICATION_JSON);
-     * 
-     * User user = new User();
-     * user.setUsername(username);
-     * 
-     * Response response = invocationBuilder.post(Entity.entity(username,
-     * MediaType.APPLICATION_JSON));
-     * User u = response.readEntity(User.class);
-     * 
-     * Assert.assertTrue(response.getStatus() ==
-     * Response.Status.OK.getStatusCode());
-     * Assert.assertTrue(u.getPassword().equals(password));
-     * 
-     * logger.info("(\"Finishing getUser testing");
-     * 
-     * }
+
+    /**
+     * It creates a new user, and then tries to login with the same user
      */
+    @Test
+    public void loginTest() {
+
+        logger.info("Starting login testing");
+
+        WebTarget supermarketWebTarget = webTarget.path("server/user");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        Response response = invocationBuilder.post(Entity.entity(user,
+                MediaType.APPLICATION_JSON));
+
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
+
+        logger.info("(\"Finishing login testing");
+
+    }
+
+    /**
+     * It tests the getUser function by sending a username to the server, and then
+     * checking if the
+     * server returns the correct password for that username
+     */
+    @Test
+    public void getUserTest() {
+
+        logger.info("Starting getUser testing");
+
+        WebTarget supermarketWebTarget = webTarget.path("server/getUser");
+        Invocation.Builder invocationBuilder = supermarketWebTarget.request(MediaType.APPLICATION_JSON);
+
+        User user = new User();
+        user.setUsername(username);
+
+        Response response = invocationBuilder.post(Entity.entity(username,
+                MediaType.APPLICATION_JSON));
+        User u = response.readEntity(User.class);
+
+        Assert.assertTrue(response.getStatus() == Response.Status.OK.getStatusCode());
+        Assert.assertTrue(u.getPassword().equals(password));
+
+        logger.info("(\"Finishing getUser testing");
+
+    }
+
 }
