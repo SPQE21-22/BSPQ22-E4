@@ -39,16 +39,11 @@ jobs:
           time: "25s"
       - name: Run coverage
         run: mvn clean test
-      - name: Upload Report XML
-        uses: "actions/upload-artifact@v2"
-        with:
-          name: report.xml
-          path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
-      - name: Upload Report HTML
+      - name: Upload Report
         uses: "actions/upload-artifact@v2"
         with:
           name: report.html
-          path: ${{ github.workspace }}/target/site/jacoco/index.html
+          path: ${{ github.workspace }}/target/site/jacoco/
       - name: JaCoCo Code Coverage Report
         id: jacoco_reporter
         uses: PavanMudigonda/jacoco-reporter@v4.4
