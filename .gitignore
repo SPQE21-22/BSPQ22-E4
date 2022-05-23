@@ -5,7 +5,7 @@
 /target/generated-sources/
 /target/generated-test-sources/
 /target/maven-status/
-/target/site/
+/target/
 /target/surefire-reports/
 /target/test-classes/
 /target/jacoco 2.exec
