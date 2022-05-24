@@ -130,7 +130,7 @@ public class Registration extends JFrame {
 
                     register(user);
                 } catch (Exception ex) {
-                    System.out.println("exception-->" + ex);
+                    ex.toString();
                 }
 
             }

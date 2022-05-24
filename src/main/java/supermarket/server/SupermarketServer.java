@@ -26,7 +26,7 @@ public class SupermarketServer {
      * of the users, and returns true if they do
      * 
      * @param username The username of the user.
-     * @param password The password to be checked.
+     * @param password The password to be checked and encrypted.
      * @return A boolean value.
      */
     public boolean login(String username, String password) {
