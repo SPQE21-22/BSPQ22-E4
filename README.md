@@ -104,10 +104,10 @@ This section includes languages, frameworks and libraries used in this project.
 * [Java](https://nextjs.org/)
 * [Maven](https://maven.apache.org/)
 * [GitHub Actions](https://docs.github.com/es/actions)
-* [Log4j](https://vuejs.org/)
+* [Log4j](https://logging.apache.org/log4j/2.x/)
 * [Jacoco](https://www.jacoco.org/jacoco/trunk/doc/)
-* [Doxygen](https://laravel.com)
-* [Graphviz](https://getbootstrap.com)
+* [Doxygen](https://www.doxygen.nl/)
+* [Graphviz](https://graphviz.org/)
 * [VisualVM](https://visualvm.github.io/)
 
 
