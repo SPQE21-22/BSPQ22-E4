@@ -530,7 +530,7 @@ public class Shopping extends JFrame  {
                                 listaPedido.add(producto); // LISTA QUE UTILIZAREMOS PARA EL PEDIDO
                                 precio = precio + producto.getPrice();
 
-                                precioActual.setText("Precio actual:" + String.valueOf(df.format(precio)) + "�");
+                                precioActual.setText("Precio actual:" + String.valueOf(df.format(precio)) + "$");
 
                                 modeloPedido.addElement(producto.toText());
 

@@ -24,25 +24,14 @@ import supermarket.util.SupermarketException;
 
 
 public class FinalVentana extends JFrame {
-    JPanel pnlCentral;
-    JPanel pnlCentralIzq;
-    JPanel pnlCentralDer;
-    JPanel pnlCentralCent;
-    JLabel p;
-    JLabel p1;
-    JButton cash;
-    JButton card;
-    JButton invoice;
-    ImageIcon imagenEfectivo;
-    Image image2;
-    Image newImg2;
-
+    private JPanel pnlCentral, pnlCentralIzq, pnlCentralDer, pnlCentralCent;
+    private JLabel p, p1;
+    private JButton cash, card, invoice;
+    private ImageIcon imagenEfectivo, imagenTarjeta;
+    private Image image2, newImg2, image3, newImg3;
     private WebTarget webTarget;
     private Client client;
-
-    ImageIcon imagenTarjeta;
-    Image image3;
-    Image newImg3;
+    private boolean pay = false;
 
     Product Pizza1;
 
@@ -149,7 +138,8 @@ public class FinalVentana extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "PAYMENT BY CASH");
+                JOptionPane.showMessageDialog(null, "Payment by cash");
+                pay = true;
             }
         });
 
@@ -157,26 +147,32 @@ public class FinalVentana extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "PAYMENT BY CARD");
+                JOptionPane.showMessageDialog(null, "Payment by card");
+                pay = true;
             }
+
         });
 
         finalizar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Db db = new Db();
-                try {
-                    db.connect();
-                    db.addOrder(user.getId(), order);
-                    db.disconnect();
-                } catch (Exception e2) {
-                    // TODO: handle exception
+                if(pay){
+                    Db db = new Db();
+                    try {
+                        db.connect();
+                        db.addOrder(user.getId(), order);
+                        db.disconnect();
+                        JOptionPane.showMessageDialog(null, "Successful payment!", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        Shopping sp = new Shopping(user);
+                        sp.setVisible(true);
+                    } catch (Exception e2) {
+                        // TODO: handle exception
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Select a payment method!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }
-
-                dispose();
-
             }
         });
 
