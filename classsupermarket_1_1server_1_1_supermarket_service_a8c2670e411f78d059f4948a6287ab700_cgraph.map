@@ -1,0 +1,12 @@
+<map id="supermarket.server.SupermarketService.addOrder" name="supermarket.server.SupermarketService.addOrder">
+<area shape="rect" id="node1" title=" " alt="" coords="5,158,240,199"/>
+<area shape="rect" id="node2" href="$classsupermarket_1_1server_1_1_supermarket_server.html#a60f3ca5ed45c68faec41befb740d36ce" title=" " alt="" coords="288,158,523,199"/>
+<area shape="rect" id="node3" href="$classsupermarket_1_1db_1_1_db.html#a738ef91526f3ed4570f475569fcdcd67" title=" " alt="" coords="579,64,789,91"/>
+<area shape="rect" id="node7" href="$classsupermarket_1_1db_1_1_db.html#a581eb0cedbcb252c6af3f088f8405eb0" title=" " alt="" coords="583,115,785,141"/>
+<area shape="rect" id="node8" href="$classsupermarket_1_1db_1_1_db.html#a5ebe712e548371d6684ceecaecb7ba21" title=" " alt="" coords="574,165,794,192"/>
+<area shape="rect" id="node9" href="$classsupermarket_1_1domain_1_1_user.html#a3ca7fa9ce9c8915e71aaa58cd3dff545" title=" " alt="" coords="571,216,797,243"/>
+<area shape="rect" id="node10" href="$classsupermarket_1_1domain_1_1_user.html#af3e9decdf48b43686f5712d3e2d380fb" title=" " alt="" coords="577,267,791,309"/>
+<area shape="rect" id="node4" href="$classsupermarket_1_1domain_1_1_order.html#a6fa590cca6347ef88c4e82726bf1acd4" title=" " alt="" coords="845,5,1097,32"/>
+<area shape="rect" id="node5" href="$classsupermarket_1_1domain_1_1_order.html#a20dea247c51c16d34adf653355ffa08e" title=" " alt="" coords="861,57,1082,98"/>
+<area shape="rect" id="node6" href="$classsupermarket_1_1domain_1_1_order.html#ac236ba76d6d814405bd4e84bdb3a2460" title=" " alt="" coords="861,122,1082,163"/>
+</map>

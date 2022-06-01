@@ -1,0 +1,27 @@
+var classsupermarket_1_1domain_1_1_user =
+[
+    [ "User", "classsupermarket_1_1domain_1_1_user.html#ab929b12b2194a7b0777c06761b80c4cb", null ],
+    [ "User", "classsupermarket_1_1domain_1_1_user.html#a0a7136004ccaaa414d2d784668cc3cc3", null ],
+    [ "User", "classsupermarket_1_1domain_1_1_user.html#a09f0f6da2feb6de2a905f5059bb2c718", null ],
+    [ "getAddress", "classsupermarket_1_1domain_1_1_user.html#af009c32b8a5b373117b51dbcff36bc5b", null ],
+    [ "getCardNumber", "classsupermarket_1_1domain_1_1_user.html#aae9ab2071da0022bc50afcefb7ecc20d", null ],
+    [ "getEmail", "classsupermarket_1_1domain_1_1_user.html#ad1a1147d6ce8b621e5f07f240dd18d10", null ],
+    [ "getId", "classsupermarket_1_1domain_1_1_user.html#a3ca7fa9ce9c8915e71aaa58cd3dff545", null ],
+    [ "getLastName", "classsupermarket_1_1domain_1_1_user.html#aae15e593ffac31580af9a1f50be7316c", null ],
+    [ "getName", "classsupermarket_1_1domain_1_1_user.html#af52a0a1f34a726a824a4186a8833395c", null ],
+    [ "getOrderList", "classsupermarket_1_1domain_1_1_user.html#af3e9decdf48b43686f5712d3e2d380fb", null ],
+    [ "getPassword", "classsupermarket_1_1domain_1_1_user.html#a11ae527d9eab970b85a2690762ca181c", null ],
+    [ "getPhoneNumber", "classsupermarket_1_1domain_1_1_user.html#a5583a1293d28f0313a26b0306534da96", null ],
+    [ "getUsername", "classsupermarket_1_1domain_1_1_user.html#a89295cde974c67927c4e157acc2121f0", null ],
+    [ "setAddress", "classsupermarket_1_1domain_1_1_user.html#a8225170b5f3c8f3f8cf6ad0c4e5d16f8", null ],
+    [ "setCardNumber", "classsupermarket_1_1domain_1_1_user.html#aec2d05fdcb584149a34a7bfd7db49bf6", null ],
+    [ "setEmail", "classsupermarket_1_1domain_1_1_user.html#ae69f9da52169e5e330e0e36e098209ec", null ],
+    [ "setId", "classsupermarket_1_1domain_1_1_user.html#a44967e61a20208c897b7293f7c76eca4", null ],
+    [ "setLastName", "classsupermarket_1_1domain_1_1_user.html#a023c211546feeb888c36229081cb4d92", null ],
+    [ "setName", "classsupermarket_1_1domain_1_1_user.html#a02a1b2677d618019ec87d775f237a771", null ],
+    [ "setOrderList", "classsupermarket_1_1domain_1_1_user.html#ae5ce5981fe3af11b01276b49716d665c", null ],
+    [ "setPassword", "classsupermarket_1_1domain_1_1_user.html#a45cb5bb40b40d8f749d0208068fb29df", null ],
+    [ "setPhoneNumber", "classsupermarket_1_1domain_1_1_user.html#a43b699d514ad7bc835bbdffda0e89c15", null ],
+    [ "setUsername", "classsupermarket_1_1domain_1_1_user.html#aebd31d6f6244fdc788418b1cae4b72f8", null ],
+    [ "toString", "classsupermarket_1_1domain_1_1_user.html#ac903833e6f1e28b5d84d73629f09d967", null ]
+];

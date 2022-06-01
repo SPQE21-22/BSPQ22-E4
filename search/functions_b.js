@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['setaddress_171',['setAddress',['../classsupermarket_1_1domain_1_1_user.html#a8225170b5f3c8f3f8cf6ad0c4e5d16f8',1,'supermarket::domain::User']]],
+  ['setbrand_172',['setBrand',['../classsupermarket_1_1domain_1_1_product.html#acd428b6fbb374b84332fc8ccdc56e997',1,'supermarket::domain::Product']]],
+  ['setcardnumber_173',['setCardNumber',['../classsupermarket_1_1domain_1_1_user.html#aec2d05fdcb584149a34a7bfd7db49bf6',1,'supermarket::domain::User']]],
+  ['setcategory_174',['setCategory',['../classsupermarket_1_1domain_1_1_product.html#a95f71ed7bbd5390bcb321c1cc425588f',1,'supermarket::domain::Product']]],
+  ['setdate_175',['setDate',['../classsupermarket_1_1domain_1_1_order.html#ae57bc34b1477818dcf7bf14561562d1b',1,'supermarket::domain::Order']]],
+  ['setdiscountpercentage_176',['setDiscountPercentage',['../classsupermarket_1_1domain_1_1_product.html#a5730ee498dbe84b949bb082dcbaaa80f',1,'supermarket::domain::Product']]],
+  ['setemail_177',['setEmail',['../classsupermarket_1_1domain_1_1_user.html#ae69f9da52169e5e330e0e36e098209ec',1,'supermarket::domain::User']]],
+  ['setexpirationdate_178',['setExpirationDate',['../classsupermarket_1_1domain_1_1_product.html#aac854a5a7252e4c1e89920275d997bc3',1,'supermarket::domain::Product']]],
+  ['setid_179',['setId',['../classsupermarket_1_1domain_1_1_order.html#ae37247cdb81be74bbc918f332413066c',1,'supermarket.domain.Order.setId()'],['../classsupermarket_1_1domain_1_1_product.html#a801614836ca48c17ef28f72f0fbe3bb3',1,'supermarket.domain.Product.setId()'],['../classsupermarket_1_1domain_1_1_user.html#a44967e61a20208c897b7293f7c76eca4',1,'supermarket.domain.User.setId()']]],
+  ['setlastname_180',['setLastName',['../classsupermarket_1_1domain_1_1_user.html#a023c211546feeb888c36229081cb4d92',1,'supermarket::domain::User']]],
+  ['setname_181',['setName',['../classsupermarket_1_1domain_1_1_product.html#a6d9c0a24fe51de2ecde7696a941fc1bf',1,'supermarket.domain.Product.setName()'],['../classsupermarket_1_1domain_1_1_user.html#a02a1b2677d618019ec87d775f237a771',1,'supermarket.domain.User.setName()']]],
+  ['setorderlist_182',['setOrderList',['../classsupermarket_1_1domain_1_1_user.html#ae5ce5981fe3af11b01276b49716d665c',1,'supermarket::domain::User']]],
+  ['setpassword_183',['setPassword',['../classsupermarket_1_1domain_1_1_user.html#a45cb5bb40b40d8f749d0208068fb29df',1,'supermarket::domain::User']]],
+  ['setphonenumber_184',['setPhoneNumber',['../classsupermarket_1_1domain_1_1_user.html#a43b699d514ad7bc835bbdffda0e89c15',1,'supermarket::domain::User']]],
+  ['setprice_185',['setPrice',['../classsupermarket_1_1domain_1_1_order.html#aca24a9f3e0e9f5f677dd5478767688f2',1,'supermarket.domain.Order.setPrice()'],['../classsupermarket_1_1domain_1_1_product.html#ab29808364214601faf64702347586f19',1,'supermarket.domain.Product.setPrice()']]],
+  ['setproductlist_186',['setProductList',['../classsupermarket_1_1domain_1_1_order.html#ab9f6b9f0f6fb39ca51cb2f65c455d7f1',1,'supermarket::domain::Order']]],
+  ['setstock_187',['setStock',['../classsupermarket_1_1domain_1_1_product.html#a525ce6a55b32d4752de2dc3234931796',1,'supermarket::domain::Product']]],
+  ['setusername_188',['setUsername',['../classsupermarket_1_1domain_1_1_user.html#aebd31d6f6244fdc788418b1cae4b72f8',1,'supermarket::domain::User']]],
+  ['shopping_189',['Shopping',['../classsupermarket_1_1client_1_1_shopping.html#aa2f0a404f97f2b04368c65ac0eb0caa1',1,'supermarket::client::Shopping']]],
+  ['stop_190',['stop',['../classsupermarket_1_1client_1_1_login.html#a58265ec8bac92a67fbda23cc0de827a2',1,'supermarket::client::Login']]],
+  ['supermarketexception_191',['SupermarketException',['../classsupermarket_1_1util_1_1_supermarket_exception.html#a8475fa766b1e28131a2ec2bd928493ce',1,'supermarket::util::SupermarketException']]],
+  ['supermarketservice_192',['SupermarketService',['../classsupermarket_1_1server_1_1_supermarket_service.html#a7198d3bc61a15d4da572c5b840f904c2',1,'supermarket::server::SupermarketService']]]
+];
