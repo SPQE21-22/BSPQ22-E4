@@ -22,14 +22,14 @@ import org.databene.contiperf.report.EmptyReportModule;
 /**
  * A class that is used to test the order class.
  */
-//@PerfTest(invocations = 5)
-//@Required(max = 1200, average = 250)
+@PerfTest(invocations = 4)
+@Required(max = 1200, average = 250)
 public class orderTest {
 
     // Creating a new instance of the Order class and a logger.
     Order order;
     private static final Logger logger = LogManager.getLogger(userTest.class);
-    //@Rule public ContiPerfRule rule = new ContiPerfRule();
+    @Rule public ContiPerfRule rule = new ContiPerfRule();
 
     /**
      * This function is used to set up the environment before testing
@@ -58,8 +58,8 @@ public class orderTest {
      * This function tests the setEmail function in the Order class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setEmailTest() {
 
         logger.info("Starting setEmail testing");
@@ -77,8 +77,8 @@ public class orderTest {
      * This function tests the setDate function in the Order class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setDateTest() {
 
         logger.info("Starting setDate testing");
@@ -95,8 +95,8 @@ public class orderTest {
      * This function tests the setProductList function of the Order class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setProductListTest() {
 
         logger.info("Starting setProductList testing");
@@ -123,8 +123,8 @@ public class orderTest {
      * This function tests the setPrice function of the Order class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setPriceTest() {
 
         logger.info("Starting setPrice testing");
