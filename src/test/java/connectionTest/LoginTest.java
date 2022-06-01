@@ -10,6 +10,12 @@ import org.junit.Test;
 
 import supermarket.domain.User;
 
+import org.junit.Rule;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.databene.contiperf.report.EmptyReportModule;
+
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +23,8 @@ import javax.ws.rs.core.Response;
 /**
  * > This class tests the login functionality of the application
  */
+@PerfTest(invocations = 5)
+@Required(max = 1200, average = 250)
 public class LoginTest {
 
     // Setting up the variables that are used to make the REST calls in the test
@@ -27,6 +35,8 @@ public class LoginTest {
     String password = "root";
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
+
+    @Rule public ContiPerfRule rule = new ContiPerfRule();
 
     /**
      * This function is called before each test case is run. It sets up the client
@@ -53,6 +63,8 @@ public class LoginTest {
      * It creates a new user, and then tries to login with the same user
      */
     @Test
+    @PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 120000, average = 2000)
     public void loginTest() {
 
         logger.info("Starting login testing");
@@ -79,6 +91,8 @@ public class LoginTest {
      * server returns the correct password for that username
      */
     @Test
+    @PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 120000, average = 2000)
     public void getUserTest() {
 
         logger.info("Starting getUser testing");

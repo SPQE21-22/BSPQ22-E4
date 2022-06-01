@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Order.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BSPQ22-E4</a> &gt; <a href="index.source.html" class="el_package">supermarket.domain</a> &gt; <span class="el_source">Order.java</span></div><h1>Order.java</h1><pre class="source lang-java linenums">package supermarket.domain;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * A class that represents an order.
+ */
+public class Order {
+
+    // Declaring the variables that will be used in the class.
+    private String id;
+    private String date;
+    private List&lt;Product&gt; productList;
+    private float price;
+
+    // This is a constructor. It is a special method that is called when an object
+    // is created.
+<span class="fc" id="L19">    public Order() {</span>
+<span class="fc" id="L20">        this.id = &quot;22&quot;;</span>
+<span class="fc" id="L21">        this.date = &quot;&quot;;</span>
+<span class="fc" id="L22">        this.price = 0;</span>
+<span class="fc" id="L23">    }</span>
+
+    // This is a constructor. It is a special method that is called when an object
+    // is created.
+<span class="fc" id="L27">    public Order(String date, List&lt;Product&gt; productList, float price) {</span>
+<span class="fc" id="L28">        this.date = date;</span>
+<span class="fc" id="L29">        this.productList = productList;</span>
+<span class="fc" id="L30">        this.price = price;</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * &gt; This function returns the id of the current object
+     * 
+     * @return The id of the object.
+     */
+    public String getId() {
+<span class="fc" id="L39">        return this.id;</span>
+    }
+
+    /**
+     * This function sets the id of the object to the id passed in as a parameter
+     * 
+     * @param id The id of the user.
+     */
+    public void setId(String id) {
+<span class="fc" id="L48">        this.id = id;</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * This function returns the date of the event
+     * 
+     * @return The date of the event.
+     */
+    public String getDate() {
+<span class="fc" id="L57">        return this.date;</span>
+    }
+
+    /**
+     * This function sets the date of the object.
+     * 
+     * @param date The date of the event.
+     */
+    public void setDate(String date) {
+<span class="fc" id="L66">        this.date = date;</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * This function returns a list of products.
+     * 
+     * @return A list of products.
+     */
+    public List&lt;Product&gt; getProductList() {
+<span class="fc" id="L75">        return this.productList;</span>
+    }
+
+    /**
+     * The function takes a list of products and sets the productList variable to
+     * that list
+     * 
+     * @param productList This is the list of products that will be displayed in the
+     *                    table.
+     */
+    public void setProductList(List&lt;Product&gt; productList) {
+<span class="fc" id="L86">        this.productList = productList;</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * This function returns the price of the item.
+     * 
+     * @return The price of the item.
+     */
+    public float getPrice() {
+<span class="fc" id="L95">        return this.price;</span>
+    }
+
+    /**
+     * This function sets the price of the item.
+     * 
+     * @param price The price of the item.
+     */
+    public void setPrice(float price) {
+<span class="fc" id="L104">        this.price = price;</span>
+<span class="fc" id="L105">    }</span>
+
+    /**
+     * The toString() method returns a string representation of the object
+     * 
+     * @return The toString() method is being returned.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L114">        return &quot;{&quot; +</span>
+<span class="fc" id="L115">                &quot; id='&quot; + getId() + &quot;'&quot; +</span>
+<span class="fc" id="L116">                &quot;, date='&quot; + getDate() + &quot;'&quot; +</span>
+<span class="fc" id="L117">                &quot;, productList='&quot; + getProductList() + &quot;'&quot; +</span>
+<span class="fc" id="L118">                &quot;, price='&quot; + getPrice() + &quot;'&quot; +</span>
+                &quot;}&quot;;
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

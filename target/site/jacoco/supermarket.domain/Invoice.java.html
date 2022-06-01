@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Invoice.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BSPQ22-E4</a> &gt; <a href="index.source.html" class="el_package">supermarket.domain</a> &gt; <span class="el_source">Invoice.java</span></div><h1>Invoice.java</h1><pre class="source lang-java linenums">package supermarket.domain;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+/**
+ * It creates a class called Invoice.
+ */
+<span class="nc" id="L18">public class Invoice {</span>
+    // Declaring the variables that will be used in the class.
+<span class="nc" id="L20">    double total = 0.0;</span>
+<span class="nc" id="L21">    String text = &quot;&quot;;</span>
+    List&lt;Product&gt; productList;
+    ArrayList&lt;String&gt; words;
+
+    /**
+     * It creates a PDF file with the order information
+     * 
+     * @param order the order that we want to create the invoice for
+     */
+    public void crearFacturaPdf(Order order) throws Exception {
+<span class="nc" id="L31">        try (PDDocument document = new PDDocument()) {</span>
+<span class="nc" id="L32">            PDPage page = new PDPage(PDRectangle.A4);</span>
+<span class="nc" id="L33">            document.addPage(page);</span>
+
+<span class="nc" id="L35">            PDPageContentStream contentStream = new PDPageContentStream(document, page);</span>
+
+            // Text
+<span class="nc" id="L38">            String text2 = &quot;-----------------&quot;;</span>
+<span class="nc" id="L39">            String textTest = &quot;&quot;;</span>
+<span class="nc" id="L40">            String text4 = &quot;&quot;;</span>
+
+<span class="nc" id="L42">            ArrayList&lt;String&gt; words = new ArrayList&lt;String&gt;();</span>
+            List&lt;Product&gt; productos;
+<span class="nc" id="L44">            productList = order.getProductList();</span>
+<span class="nc" id="L45">            double total = 0.0;</span>
+<span class="nc" id="L46">            int i = 50;</span>
+
+<span class="nc" id="L48">            contentStream.beginText();</span>
+<span class="nc" id="L49">            contentStream.setFont(PDType1Font.COURIER_BOLD, 22);</span>
+<span class="nc" id="L50">            contentStream.newLineAtOffset(200, 500);</span>
+            // linea4
+
+            // linea2
+<span class="nc" id="L54">            contentStream.showText(&quot;ORDER NUMBER: &quot; + order.getId());</span>
+<span class="nc" id="L55">            contentStream.newLineAtOffset(0, 30);</span>
+<span class="nc" id="L56">            contentStream.showText(&quot;ORDER TOTAL PRICE: &quot; + order.getPrice());</span>
+<span class="nc" id="L57">            contentStream.newLineAtOffset(0, 30);</span>
+<span class="nc" id="L58">            contentStream.showText(text2);</span>
+<span class="nc" id="L59">            contentStream.newLineAtOffset(0, 30);</span>
+            // linea1
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            for (Product product : productList) {</span>
+<span class="nc" id="L63">                total = +product.getPrice();</span>
+<span class="nc" id="L64">                textTest = product.toText();</span>
+<span class="nc" id="L65">                contentStream.showText(textTest);</span>
+<span class="nc" id="L66">                contentStream.newLineAtOffset(0, i);</span>
+<span class="nc" id="L67">                i = +30;</span>
+
+<span class="nc" id="L69">                words.add(textTest);</span>
+<span class="nc" id="L70">            }</span>
+
+<span class="nc" id="L72">            text4 = String.valueOf(total);</span>
+
+<span class="nc" id="L74">            contentStream.showText(text);</span>
+<span class="nc" id="L75">            contentStream.newLineAtOffset(0, 30);</span>
+            // linea1
+<span class="nc" id="L77">            contentStream.showText(text2);</span>
+
+<span class="nc" id="L79">            System.out.println(&quot;id&quot; + order.getId());</span>
+<span class="nc" id="L80">            String id = &quot;&quot;;</span>
+<span class="nc" id="L81">            id = String.valueOf(order.getId());</span>
+<span class="nc" id="L82">            contentStream.newLineAtOffset(150, 300);</span>
+<span class="nc" id="L83">            contentStream.showText(id);</span>
+
+<span class="nc" id="L85">            contentStream.endText();</span>
+
+            // imagen textTest
+            /*
+             * PDImageXObject pdImage =
+             * PDImageXObject.createFromFile(&quot;src/imagenes/resumen.png&quot;, document);
+             * contentStream.drawImage(pdImage, 20, 700);
+             * 
+             * 
+             * 
+             * // imagen textTest
+             * PDImageXObject pdImage2 =
+             * PDImageXObject.createFromFile(&quot;src/imagenes/logo.png&quot;, document);
+             * contentStream.drawImage(pdImage2, 150, 100);
+             */
+
+<span class="nc" id="L101">            contentStream.close();</span>
+
+<span class="nc" id="L103">            document.save(&quot;invoice_udeusto.pdf&quot;);</span>
+
+<span class="nc" id="L105">            System.out.println(&quot;PDF CREATED&quot;);</span>
+        }
+<span class="nc" id="L107">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

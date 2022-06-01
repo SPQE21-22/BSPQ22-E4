@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Db.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BSPQ22-E4</a> &gt; <a href="index.source.html" class="el_package">supermarket.db</a> &gt; <span class="el_source">Db.java</span></div><h1>Db.java</h1><pre class="source lang-java linenums">package supermarket.db;
+
+import java.sql.*;
+import java.io.*;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import supermarket.domain.Order;
+import supermarket.domain.Product;
+import supermarket.domain.User;
+
+<span class="fc" id="L13">public class Db {</span>
+<span class="fc" id="L14">    Connection conn = null;</span>
+    Statement stmtGlobal;
+<span class="fc" id="L16">    private static boolean LOGGING = true;</span>
+
+    /**
+     * It connects to the database
+     */
+    public void connect() {
+        try {
+<span class="fc" id="L23">            String url = &quot;jdbc:sqlite:sqlite/main.db&quot;;</span>
+<span class="fc" id="L24">            conn = DriverManager.getConnection(url);</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">            if (conn != null) {</span>
+<span class="fc" id="L26">                stmtGlobal = conn.createStatement();</span>
+            }
+<span class="nc" id="L28">        } catch (SQLException e) {</span>
+<span class="nc" id="L29">            System.out.println(e.getMessage());</span>
+<span class="fc" id="L30">        }</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * This function closes the connection to the database
+     */
+    public void disconnect() {
+        try {
+<span class="fc" id="L38">            conn.close();</span>
+<span class="nc" id="L39">        } catch (SQLException e) {</span>
+<span class="nc" id="L40">            System.out.println(&quot;Error al desconectar sql base&quot;);</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * It gets all the users from the database and returns them as a list
+     * 
+     * @return A list of users
+     */
+    public List&lt;User&gt; getAllUsers() {
+<span class="fc" id="L50">        List&lt;User&gt; users = new ArrayList&lt;User&gt;();</span>
+<span class="fc" id="L51">        String sql = &quot;SELECT * FROM USER;&quot;;</span>
+        try {
+<span class="fc" id="L53">            ResultSet rs = stmtGlobal.executeQuery(sql);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L55">                User user = new User();</span>
+<span class="fc" id="L56">                user.setId(rs.getString(&quot;USER_ID&quot;));</span>
+<span class="fc" id="L57">                user.setEmail(rs.getString(&quot;EMAIL&quot;));</span>
+<span class="fc" id="L58">                user.setUsername(rs.getString(&quot;USERNAME&quot;));</span>
+<span class="fc" id="L59">                user.setPassword(rs.getString(&quot;PASSWORD&quot;));</span>
+<span class="fc" id="L60">                user.setName(rs.getString(&quot;NAME&quot;));</span>
+<span class="fc" id="L61">                user.setLastName(rs.getString(&quot;LASTNAME&quot;));</span>
+<span class="fc" id="L62">                user.setAddress(rs.getString(&quot;ADDRESS&quot;));</span>
+<span class="fc" id="L63">                user.setCardNumber(rs.getString(&quot;CARDNUMBER&quot;));</span>
+<span class="fc" id="L64">                user.setPhoneNumber(rs.getString(&quot;PHONENUMBER&quot;));</span>
+<span class="fc" id="L65">                users.add(user);</span>
+<span class="fc" id="L66">            }</span>
+<span class="nc" id="L67">        } catch (SQLException | DateTimeParseException e) {</span>
+<span class="nc" id="L68">            System.out.println(&quot;ERROR Obteniendo los users en DB&quot; + e.toString());</span>
+<span class="fc" id="L69">        }</span>
+<span class="fc" id="L70">        return users;</span>
+    }
+
+    /**
+     * This function is used to add a new user to the database
+     * 
+     * @param user the user object that contains all the information about the user
+     * @return A boolean value.
+     */
+    public boolean addUser(User user) {
+<span class="fc" id="L80">        String sql = &quot;INSERT INTO user (email, username, password, name, lastName, address, cardNumber, phoneNumber) VALUES (?,?,?,?,?,?,?,?);&quot;;</span>
+        try {
+<span class="fc" id="L82">            PreparedStatement pst = conn.prepareStatement(sql);</span>
+<span class="fc" id="L83">            pst.setString(1, user.getEmail());</span>
+<span class="fc" id="L84">            pst.setString(2, user.getUsername());</span>
+<span class="fc" id="L85">            pst.setString(3, user.getPassword());</span>
+<span class="fc" id="L86">            pst.setString(4, user.getName());</span>
+<span class="fc" id="L87">            pst.setString(5, user.getLastName());</span>
+<span class="fc" id="L88">            pst.setString(6, user.getAddress());</span>
+<span class="fc" id="L89">            pst.setString(7, user.getCardNumber());</span>
+<span class="fc" id="L90">            pst.setString(8, user.getPhoneNumber());</span>
+<span class="fc" id="L91">            pst.executeUpdate();</span>
+<span class="fc" id="L92">            pst.close();</span>
+
+<span class="fc" id="L94">            return true;</span>
+<span class="nc" id="L95">        } catch (SQLException | DateTimeParseException e) {</span>
+<span class="nc" id="L96">            System.out.println(&quot;ERROR register DB&quot; + e.toString());</span>
+        }
+<span class="nc" id="L98">        return false;</span>
+    }
+
+    /**
+     * It gets a user from the database
+     * 
+     * @param username The username of the user you want to get.
+     * @return A User object with all the information of the user.
+     */
+    public User getUser(String username) {
+<span class="fc" id="L108">        User user = new User();</span>
+<span class="fc" id="L109">        String sql = &quot;SELECT * FROM USER WHERE username = '&quot; + username + &quot;';&quot;;</span>
+        try {
+<span class="fc" id="L111">            ResultSet rs = stmtGlobal.executeQuery(sql);</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L113">                user.setId(rs.getString(&quot;USER_ID&quot;));</span>
+<span class="fc" id="L114">                user.setEmail(rs.getString(&quot;EMAIL&quot;));</span>
+<span class="fc" id="L115">                user.setUsername(rs.getString(&quot;USERNAME&quot;));</span>
+<span class="fc" id="L116">                user.setPassword(rs.getString(&quot;PASSWORD&quot;));</span>
+<span class="fc" id="L117">                user.setName(rs.getString(&quot;NAME&quot;));</span>
+<span class="fc" id="L118">                user.setLastName(rs.getString(&quot;LASTNAME&quot;));</span>
+<span class="fc" id="L119">                user.setAddress(rs.getString(&quot;ADDRESS&quot;));</span>
+<span class="fc" id="L120">                user.setCardNumber(rs.getString(&quot;CARDNUMBER&quot;));</span>
+<span class="fc" id="L121">                user.setPhoneNumber(rs.getString(&quot;PHONENUMBER&quot;));</span>
+            }
+<span class="nc" id="L123">        } catch (SQLException | DateTimeParseException e) {</span>
+<span class="nc" id="L124">            System.out.println(&quot;BD PARTE 1 USER -- &gt;&quot; + e.toString());</span>
+<span class="fc" id="L125">        }</span>
+
+<span class="fc" id="L127">        List&lt;Order&gt; orderListTemp = new ArrayList&lt;Order&gt;();</span>
+<span class="fc" id="L128">        List&lt;Order&gt; orderList = new ArrayList&lt;Order&gt;();</span>
+<span class="fc" id="L129">        String sql2 = &quot;SELECT * FROM cashOrder WHERE user_id = '&quot; + user.getId() + &quot;'&quot;;</span>
+        try {
+            Order order;
+<span class="fc" id="L132">            ResultSet rs2 = stmtGlobal.executeQuery(sql2);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            while (rs2.next()) {</span>
+<span class="fc" id="L134">                order = new Order();</span>
+<span class="fc" id="L135">                order.setId(String.valueOf(rs2.getInt(&quot;cashOrder_id&quot;)));</span>
+<span class="fc" id="L136">                order.setDate(rs2.getString(&quot;date&quot;));</span>
+<span class="fc" id="L137">                order.setPrice(rs2.getFloat(&quot;price&quot;));</span>
+<span class="fc" id="L138">                order.setProductList(new ArrayList&lt;Product&gt;());</span>
+<span class="fc" id="L139">                orderListTemp.add(order);</span>
+            }
+<span class="nc" id="L141">        } catch (Exception e) {</span>
+<span class="nc" id="L142">            System.out.println(&quot;BD PARTE 2 USER -- &gt;&quot; + e.toString());</span>
+<span class="fc" id="L143">        }</span>
+<span class="fc" id="L144">        System.out.println(orderListTemp.toString());</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        for (Order order : orderListTemp) {</span>
+<span class="fc" id="L146">            List&lt;String&gt; productIdList = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L147">            List&lt;Product&gt; productList = new ArrayList&lt;Product&gt;();</span>
+<span class="fc" id="L148">            String sql3 = &quot;SELECT * FROM relationship WHERE cashOrder_id = '&quot; + order.getId() + &quot;'&quot;;</span>
+
+            try {
+<span class="fc" id="L151">                ResultSet rs3 = stmtGlobal.executeQuery(sql3);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">                while (rs3.next()) {</span>
+<span class="fc" id="L153">                    productIdList.add(String.valueOf(rs3.getInt(&quot;product_id&quot;)));</span>
+                }
+<span class="nc" id="L155">            } catch (Exception e) {</span>
+<span class="nc" id="L156">                System.out.println(&quot;BD PARTE 3 USER -- &gt;&quot; + e.toString());</span>
+<span class="fc" id="L157">            }</span>
+
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            for (String productId : productIdList) {</span>
+<span class="fc" id="L160">                String sql4 = &quot;SELECT * FROM product WHERE product_id = '&quot; + productId + &quot;'&quot;;</span>
+                try {
+<span class="fc" id="L162">                    ResultSet rs4 = stmtGlobal.executeQuery(sql4);</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">                    while (rs4.next()) {</span>
+<span class="fc" id="L164">                        Product product = new Product();</span>
+<span class="fc" id="L165">                        product.setId(String.valueOf(rs4.getInt(&quot;product_id&quot;)));</span>
+<span class="fc" id="L166">                        product.setCategory(rs4.getString(&quot;category&quot;));</span>
+<span class="fc" id="L167">                        product.setName(rs4.getString(&quot;name&quot;));</span>
+<span class="fc" id="L168">                        product.setBrand(rs4.getString(&quot;brand&quot;));</span>
+<span class="fc" id="L169">                        product.setStock(rs4.getInt(&quot;stock&quot;));</span>
+<span class="fc" id="L170">                        product.setExpirationDate(rs4.getString(&quot;expirationDate&quot;));</span>
+<span class="fc" id="L171">                        product.setDiscountPercentage(rs4.getFloat(&quot;discountPercentage&quot;));</span>
+<span class="fc" id="L172">                        product.setPrice(rs4.getFloat(&quot;price&quot;));</span>
+<span class="fc" id="L173">                        productList.add(product);</span>
+<span class="fc" id="L174">                    }</span>
+<span class="nc" id="L175">                } catch (Exception e) {</span>
+<span class="nc" id="L176">                    System.out.println(&quot;BD PARTE 4 USER -- &gt;&quot; + e.toString());</span>
+<span class="fc" id="L177">                }</span>
+<span class="fc" id="L178">            }</span>
+<span class="fc" id="L179">            order.setProductList(productList);</span>
+<span class="fc" id="L180">            orderList.add(order);</span>
+<span class="fc" id="L181">        }</span>
+<span class="fc" id="L182">        user.setOrderList(orderList);</span>
+<span class="fc" id="L183">        return user;</span>
+    }
+
+    /**
+     * It gets all the products from the database and returns them in a list
+     * 
+     * @return A list of products
+     */
+    public List&lt;Product&gt; getProductList() {
+<span class="fc" id="L192">        List&lt;Product&gt; productList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L193">        String sql = &quot;SELECT * FROM product&quot;;</span>
+        try {
+<span class="fc" id="L195">            ResultSet rs4 = stmtGlobal.executeQuery(sql);</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">            while (rs4.next()) {</span>
+<span class="fc" id="L197">                Product product = new Product();</span>
+<span class="fc" id="L198">                product.setId(String.valueOf(rs4.getInt(&quot;product_id&quot;)));</span>
+<span class="fc" id="L199">                product.setCategory(rs4.getString(&quot;category&quot;));</span>
+<span class="fc" id="L200">                product.setName(rs4.getString(&quot;name&quot;));</span>
+<span class="fc" id="L201">                product.setBrand(rs4.getString(&quot;brand&quot;));</span>
+<span class="fc" id="L202">                product.setStock(rs4.getInt(&quot;stock&quot;));</span>
+                // error con dates
+
+<span class="fc" id="L205">                product.setExpirationDate(rs4.getString(&quot;expirationDate&quot;));</span>
+<span class="fc" id="L206">                product.setDiscountPercentage(rs4.getFloat(&quot;discountPercentage&quot;));</span>
+<span class="fc" id="L207">                product.setPrice(rs4.getFloat(&quot;price&quot;));</span>
+<span class="fc" id="L208">                productList.add(product);</span>
+<span class="fc" id="L209">            }</span>
+<span class="nc" id="L210">        } catch (SQLException e) {</span>
+<span class="nc" id="L211">            System.out.println(&quot;ERROR get products DB&quot; + e.toString());</span>
+<span class="fc" id="L212">        }</span>
+<span class="fc" id="L213">        return productList;</span>
+    }
+
+    /**
+     * It gets a list of products from the database, and then filters them by
+     * category
+     * 
+     * @param categoria String
+     * @return A list of products that are in the category that is passed as a
+     *         parameter.
+     */
+    public List&lt;Product&gt; getProductListByCategory(String categoria) {
+<span class="nc" id="L225">        List&lt;Product&gt; productList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L226">        String sql = &quot;SELECT * FROM product&quot;;</span>
+        try {
+<span class="nc" id="L228">            Statement stmt = conn.createStatement();</span>
+<span class="nc" id="L229">            ResultSet rs4 = stmt.executeQuery(sql);</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            while (rs4.next()) {</span>
+<span class="nc" id="L231">                Product product = new Product();</span>
+<span class="nc" id="L232">                product.setId(rs4.getString(&quot;product_id&quot;));</span>
+<span class="nc" id="L233">                product.setCategory(rs4.getString(&quot;category&quot;));</span>
+<span class="nc" id="L234">                product.setName(rs4.getString(&quot;name&quot;));</span>
+<span class="nc" id="L235">                product.setBrand(rs4.getString(&quot;brand&quot;));</span>
+<span class="nc" id="L236">                product.setStock(rs4.getInt(&quot;stock&quot;));</span>
+                // error con dates
+
+<span class="nc" id="L239">                product.setExpirationDate(rs4.getString(&quot;expirationDate&quot;));</span>
+<span class="nc" id="L240">                product.setDiscountPercentage(rs4.getFloat(&quot;discountPercentage&quot;));</span>
+<span class="nc" id="L241">                product.setPrice(rs4.getFloat(&quot;price&quot;));</span>
+
+<span class="nc bnc" id="L243" title="All 2 branches missed.">                if (product.getCategory().equals(categoria)) {</span>
+<span class="nc" id="L244">                    productList.add(product);</span>
+                }
+<span class="nc" id="L246">            }</span>
+<span class="nc" id="L247">        } catch (SQLException e) {</span>
+<span class="nc" id="L248">            System.out.println(&quot;ERROR get products DB&quot; + e.toString());</span>
+<span class="nc" id="L249">        }</span>
+<span class="nc" id="L250">        return productList;</span>
+    }
+
+    /**
+     * It adds an order to the database
+     * 
+     * @param userId The user's id.
+     * @param order  the order to be added
+     * @return A boolean value.
+     */
+    public boolean addOrder(String userId, Order order) {
+<span class="fc" id="L261">        List&lt;Product&gt; products = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L262">        products = order.getProductList();</span>
+<span class="fc" id="L263">        int productId = 0;</span>
+<span class="fc" id="L264">        int cashorderId = 0;</span>
+<span class="fc" id="L265">        String sql = &quot;INSERT INTO cashorder (user_id, date, price) VALUES (?,?,?);&quot;;</span>
+        try {
+<span class="fc" id="L267">            PreparedStatement pst = conn.prepareStatement(sql);</span>
+<span class="fc" id="L268">            pst.setInt(1, Integer.parseInt(userId));</span>
+<span class="fc" id="L269">            pst.setString(2, order.getDate());</span>
+<span class="fc" id="L270">            pst.setFloat(3, order.getPrice());</span>
+<span class="fc" id="L271">            pst.executeUpdate();</span>
+<span class="fc" id="L272">            pst.close();</span>
+
+<span class="nc" id="L274">        } catch (SQLException e) {</span>
+<span class="nc" id="L275">            System.out.println(&quot;ERROR ADDING ORDER 1 tryCatch: --&gt; &quot; + e.toString());</span>
+<span class="fc" id="L276">        }</span>
+
+<span class="fc" id="L278">        String sql2 = &quot;SELECT cashorder_id FROM cashorder ORDER BY cashorder_id DESC LIMIT 1;&quot;;</span>
+        try {
+<span class="fc" id="L280">            ResultSet rs = stmtGlobal.executeQuery(sql2);</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L282">                cashorderId = rs.getInt(&quot;cashorder_id&quot;);</span>
+
+            }
+<span class="nc" id="L285">        } catch (SQLException e) {</span>
+<span class="nc" id="L286">            System.out.println(&quot;ERROR ADDING ORDER 2 tryCatch: --&gt; &quot; + e.toString());</span>
+
+<span class="fc" id="L288">        }</span>
+
+        // order added
+<span class="fc bfc" id="L291" title="All 2 branches covered.">        for (Product product : products) {</span>
+<span class="fc" id="L292">            String sql3 = &quot;INSERT OR IGNORE INTO product (category, name, brand, stock, expirationDate, discountPercentage, price) VALUES (?,?,?,?,?,?,?)&quot;;</span>
+            try {
+<span class="fc" id="L294">                PreparedStatement pst3 = conn.prepareStatement(sql3);</span>
+<span class="fc" id="L295">                pst3.setString(1, product.getCategory());</span>
+<span class="fc" id="L296">                pst3.setString(3, product.getName());</span>
+<span class="fc" id="L297">                pst3.setString(3, product.getBrand());</span>
+<span class="fc" id="L298">                pst3.setInt(4, product.getStock());</span>
+<span class="fc" id="L299">                pst3.setString(5, product.getExpirationDate());</span>
+<span class="fc" id="L300">                pst3.setFloat(6, (float) product.getDiscountPercentage());</span>
+<span class="fc" id="L301">                pst3.setFloat(7, (float) product.getPrice());</span>
+<span class="fc" id="L302">                pst3.executeUpdate();</span>
+<span class="fc" id="L303">                pst3.close();</span>
+<span class="nc" id="L304">            } catch (SQLException e) {</span>
+<span class="nc" id="L305">                System.out.println(&quot;ERROR ADDING ORDER 3 tryCatch: --&gt; &quot; + e.toString());</span>
+
+<span class="fc" id="L307">            }</span>
+
+<span class="fc" id="L309">            String sql4 = &quot;SELECT product_id FROM product WHERE name = '&quot; + product.getName() + &quot;'&quot;;</span>
+            try {
+<span class="fc" id="L311">                ResultSet rs = stmtGlobal.executeQuery(sql4);</span>
+<span class="fc bfc" id="L312" title="All 2 branches covered.">                while (rs.next()) {</span>
+<span class="fc" id="L313">                    productId = rs.getInt(&quot;product_id&quot;);</span>
+                }
+<span class="nc" id="L315">            } catch (SQLException e) {</span>
+<span class="nc" id="L316">                System.out.println(&quot;ERROR ADDING ORDER 4 tryCatch: --&gt; &quot; + e.toString());</span>
+
+<span class="fc" id="L318">            }</span>
+
+            try {
+
+<span class="fc" id="L322">                String sql5 = &quot;INSERT INTO relationship (cashOrder_id, product_id) VALUES (?,?)&quot;;</span>
+<span class="fc" id="L323">                PreparedStatement pst5 = conn.prepareStatement(sql5);</span>
+
+<span class="fc" id="L325">                pst5.setInt(1, cashorderId);</span>
+<span class="fc" id="L326">                pst5.setInt(2, productId);</span>
+<span class="fc" id="L327">                pst5.executeUpdate();</span>
+<span class="fc" id="L328">                pst5.close();</span>
+<span class="nc" id="L329">            } catch (SQLException e) {</span>
+<span class="nc" id="L330">                System.out.println(&quot;ERROR ADDING ORDER  --&gt; &quot; + e.toString());</span>
+<span class="nc" id="L331">            } catch (Exception e) {</span>
+<span class="nc" id="L332">                System.out.println(&quot;EXCEPTION&quot; + e.toString());</span>
+<span class="pc" id="L333">            }</span>
+<span class="fc" id="L334">        }</span>
+<span class="fc" id="L335">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

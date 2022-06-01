@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Product.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BSPQ22-E4</a> &gt; <a href="index.source.html" class="el_package">supermarket.domain</a> &gt; <span class="el_source">Product.java</span></div><h1>Product.java</h1><pre class="source lang-java linenums">package supermarket.domain;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+/**
+ * It's a class that represents a product
+ */
+public class Product {
+
+    // It's a class that represents a product
+    private String id;
+    private String category;
+    private String name;
+    private String brand;
+    private int stock;
+    private String expirationDate;
+    private double discountPercentage;
+    private double price;
+
+    // It's a constructor.
+    public Product(String category, String name, String brand, int stock, String expirationDate,
+<span class="fc" id="L23">            double discountPercentage, double price) {</span>
+<span class="fc" id="L24">        this.category = category;</span>
+<span class="fc" id="L25">        this.name = name;</span>
+<span class="fc" id="L26">        this.brand = brand;</span>
+<span class="fc" id="L27">        this.stock = stock;</span>
+<span class="fc" id="L28">        this.expirationDate = expirationDate;</span>
+<span class="fc" id="L29">        this.discountPercentage = discountPercentage;</span>
+<span class="fc" id="L30">        this.price = price;</span>
+<span class="fc" id="L31">    }</span>
+
+    // It's a constructor.
+<span class="fc" id="L34">    public Product() {</span>
+<span class="fc" id="L35">        this.id = &quot;5&quot;;</span>
+<span class="fc" id="L36">        this.category = &quot;category&quot;;</span>
+<span class="fc" id="L37">        this.name = &quot;name&quot;;</span>
+<span class="fc" id="L38">        this.brand = &quot;brand&quot;;</span>
+<span class="fc" id="L39">        this.stock = 10;</span>
+<span class="fc" id="L40">        this.expirationDate = &quot;expirationDate&quot;;</span>
+<span class="fc" id="L41">        this.discountPercentage = 20;</span>
+<span class="fc" id="L42">        this.price = 20;</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * &gt; This function returns the id of the current object
+     * 
+     * @return The id of the object.
+     */
+    public String getId() {
+<span class="fc" id="L51">        return this.id;</span>
+    }
+
+    /**
+     * This function sets the id of the object to the id passed in as a parameter
+     * 
+     * @param id The id of the user.
+     */
+    public void setId(String id) {
+<span class="fc" id="L60">        this.id = id;</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * This function returns the category of the product
+     * 
+     * @return The category of the book.
+     */
+    public String getCategory() {
+<span class="fc" id="L69">        return this.category;</span>
+    }
+
+    /**
+     * This function sets the category of the book
+     * 
+     * @param category The category of the product.
+     */
+    public void setCategory(String category) {
+<span class="fc" id="L78">        this.category = category;</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * This function returns the name of the person.
+     * 
+     * @return The name of the person.
+     */
+    public String getName() {
+<span class="fc" id="L87">        return this.name;</span>
+    }
+
+    /**
+     * This function sets the name of the object to the value of the parameter.
+     * 
+     * @param name The name of the parameter.
+     */
+    public void setName(String name) {
+<span class="fc" id="L96">        this.name = name;</span>
+<span class="fc" id="L97">    }</span>
+
+    /**
+     * This function returns the brand of the car
+     * 
+     * @return The brand of the car.
+     */
+    public String getBrand() {
+<span class="fc" id="L105">        return this.brand;</span>
+    }
+
+    /**
+     * This function sets the brand of the car.
+     * 
+     * @param brand The brand of the car.
+     */
+    public void setBrand(String brand) {
+<span class="fc" id="L114">        this.brand = brand;</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * This function returns the value of the stock variable.
+     * 
+     * @return The stock of the item.
+     */
+    public int getStock() {
+<span class="fc" id="L123">        return this.stock;</span>
+    }
+
+    /**
+     * This function sets the stock of the product to the value of the parameter.
+     * 
+     * @param stock The number of items in stock.
+     */
+    public void setStock(int stock) {
+<span class="fc" id="L132">        this.stock = stock;</span>
+<span class="fc" id="L133">    }</span>
+
+    /**
+     * This function returns the expiration date of the credit card
+     * 
+     * @return The expiration date of the credit card.
+     */
+    public String getExpirationDate() {
+<span class="fc" id="L141">        return this.expirationDate;</span>
+    }
+
+    /**
+     * This function sets the expiration date of the credit card
+     * 
+     * @param expirationDate The date the card expires.
+     */
+    public void setExpirationDate(String expirationDate) {
+<span class="fc" id="L150">        this.expirationDate = expirationDate;</span>
+<span class="fc" id="L151">    }</span>
+
+    /**
+     * This function returns the discount percentage of the current object.
+     * 
+     * @return The discount percentage.
+     */
+    public double getDiscountPercentage() {
+<span class="fc" id="L159">        return this.discountPercentage;</span>
+    }
+
+    /**
+     * This function sets the discount percentage of the product.
+     * 
+     * @param discountPercentage The percentage of the discount.
+     */
+    public void setDiscountPercentage(double discountPercentage) {
+<span class="fc" id="L168">        this.discountPercentage = discountPercentage;</span>
+<span class="fc" id="L169">    }</span>
+
+    /**
+     * This function returns the price of the item.
+     * 
+     * @return The price of the item.
+     */
+    public double getPrice() {
+<span class="fc" id="L177">        return this.price;</span>
+    }
+
+    /**
+     * This function sets the price of the item.
+     * 
+     * @param price The price of the item.
+     */
+    public void setPrice(double price) {
+<span class="fc" id="L186">        this.price = price;</span>
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * The toString() method returns a string representation of the object
+     * 
+     * @return The toString() method is being returned.
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L196">        return &quot;{&quot; +</span>
+<span class="nc" id="L197">                &quot; id='&quot; + getId() + &quot;'&quot; +</span>
+<span class="nc" id="L198">                &quot;, category='&quot; + getCategory() + &quot;'&quot; +</span>
+<span class="nc" id="L199">                &quot;, name='&quot; + getName() + &quot;'&quot; +</span>
+<span class="nc" id="L200">                &quot;, brand='&quot; + getBrand() + &quot;'&quot; +</span>
+<span class="nc" id="L201">                &quot;, stock='&quot; + getStock() + &quot;'&quot; +</span>
+<span class="nc" id="L202">                &quot;, expirationDate='&quot; + getExpirationDate() + &quot;'&quot; +</span>
+<span class="nc" id="L203">                &quot;, discountPercentage='&quot; + getDiscountPercentage() + &quot;'&quot; +</span>
+<span class="nc" id="L204">                &quot;, price='&quot; + getPrice() + &quot;'&quot; +</span>
+                &quot;}&quot;;
+    }
+
+    /**
+     * It returns a string that contains the name of the product, a dash, the price
+     * of the product, and
+     * the word &quot;EUR&quot;
+     * 
+     * @return The name of the product and the price.
+     */
+    public String toText() {
+<span class="fc" id="L216">        return getName() + &quot; - &quot; + getPrice() + &quot; EUR&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

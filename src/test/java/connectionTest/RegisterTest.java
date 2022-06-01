@@ -18,9 +18,17 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import org.junit.Rule;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.databene.contiperf.report.EmptyReportModule;
+
 /**
  * A test class for the Register class.
  */
+//@PerfTest(invocations = 5)
+//@Required(max = 1200, average = 250)
 public class RegisterTest {
 
         // Creating a client, a webTarget and a list of orders.
@@ -29,6 +37,8 @@ public class RegisterTest {
         List<Order> ordersList;
 
         private static final Logger logger = LogManager.getLogger(RegisterTest.class);
+
+        @Rule public ContiPerfRule rule = new ContiPerfRule();
 
         /**
          * This function is used to set up the environment before testing
@@ -67,7 +77,9 @@ public class RegisterTest {
          * responds with a 200 OK
          * status code
          */
-        @Test
+        //@Test
+        //@PerfTest(invocations = 1000, threads = 20)
+        //@Required(max = 1200000, average = 10000)
         public void registerTest() {
 
                 logger.info("Starting register testing");
@@ -97,6 +109,9 @@ public class RegisterTest {
          * @param password The password of the user
          * @return A boolean value.
          */
+        //@Test
+        //@PerfTest(invocations = 1000, threads = 20)
+        //@Required(max = 120000, average = 1000)
         public boolean loginTest(String username, String password) {
 
                 logger.info("Starting login check");

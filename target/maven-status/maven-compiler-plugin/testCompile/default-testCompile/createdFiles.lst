@@ -1,0 +1,7 @@
+connectionTest\RegisterTest.class
+connectionTest\LoginTest.class
+DomainTest\userTest.class
+DomainTest\productTest.class
+DbTest.class
+DomainTest\orderTest.class
+serverTest\ServiceTest.class

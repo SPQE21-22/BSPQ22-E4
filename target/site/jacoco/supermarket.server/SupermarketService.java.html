@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupermarketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BSPQ22-E4</a> &gt; <a href="index.source.html" class="el_package">supermarket.server</a> &gt; <span class="el_source">SupermarketService.java</span></div><h1>SupermarketService.java</h1><pre class="source lang-java linenums">package supermarket.server;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import supermarket.domain.Product;
+import supermarket.domain.User;
+
+/**
+ * It's a JAX-RS resource class that exposes a REST API for the
+ * SupermarketServer class
+ */
+@Path(&quot;/server&quot;)
+@Produces(MediaType.APPLICATION_JSON)
+public class SupermarketService {
+
+	// It's a private variable that will be used to store the instance of the
+	// SupermarketServer class.
+	private SupermarketServer supermarketServer;
+
+	// It's a constructor that creates a new instance of the SupermarketServer
+	// class.
+<span class="fc" id="L30">	public SupermarketService() {</span>
+
+<span class="fc" id="L32">		supermarketServer = new SupermarketServer();</span>
+<span class="fc" id="L33">	}</span>
+
+	/**
+	 * It checks if the user is registered in the supermarket server.
+	 * 
+	 * @param user The user object that contains the username and password.
+	 * @return A boolean value.
+	 */
+	@POST
+	@Path(&quot;/user&quot;)
+	public Response login(User user) {
+<span class="fc" id="L44">		boolean checkLogin = false;</span>
+		// se lanza login en Server
+<span class="fc" id="L46">		checkLogin = supermarketServer.login(user.getUsername(), user.getPassword());</span>
+<span class="fc" id="L47">		return Response.ok(checkLogin).build();</span>
+
+	}
+
+	/**
+	 * It registers a user.
+	 * 
+	 * @param user the user object that contains the user's information.
+	 * @return A boolean value.
+	 */
+	@POST
+	@Path(&quot;/register&quot;)
+	public Response register(User user) {
+<span class="fc" id="L60">		boolean checkRegister = false;</span>
+<span class="fc" id="L61">		checkRegister = supermarketServer.register(user);</span>
+<span class="fc" id="L62">		return Response.ok(checkRegister).build();</span>
+	}
+
+	/**
+	 * The function takes a string as input, and returns a user object
+	 * 
+	 * @param username The username of the user you want to get.
+	 * @return A user object.
+	 */
+	@POST
+	@Path(&quot;/getUser&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUser(String username) {
+<span class="fc" id="L75">		User user = new User();</span>
+<span class="fc" id="L76">		user = supermarketServer.getUser(username);</span>
+<span class="fc" id="L77">		return user;</span>
+	}
+
+	/**
+	 * The function takes a user object as a parameter and returns a boolean value
+	 * 
+	 * @param user The user object that contains the order details.
+	 * @return A boolean value.
+	 */
+	@POST
+	@Path(&quot;/order&quot;)
+	public Response addOrder(User user) {
+<span class="fc" id="L89">		boolean checkOrder = false;</span>
+<span class="fc" id="L90">		checkOrder = supermarketServer.addOrder(user);</span>
+<span class="fc" id="L91">		return Response.ok(checkOrder).build();</span>
+	}
+
+	/**
+	 * The function is a POST request to the path &quot;/product&quot; and returns a list of
+	 * products
+	 * 
+	 * @param bool This is a boolean value that is used to determine whether the
+	 *             product list should be
+	 *             sorted by price or not.
+	 * @return A list of products.
+	 */
+	@POST
+	@Path(&quot;/product&quot;)
+	public Response getProductList(Boolean bool) {
+<span class="fc" id="L106">		List&lt;Product&gt; productList = new ArrayList&lt;Product&gt;();</span>
+<span class="fc" id="L107">		productList = supermarketServer.getProductList();</span>
+<span class="fc" id="L108">		return Response.ok(productList).build();</span>
+	}
+
+	/**
+	 * This function is used to get the list of products by category
+	 * 
+	 * @param category The category of the product.
+	 * @return A list of products.
+	 */
+	@POST
+	@Path(&quot;/productByCategory&quot;)
+	public Response getProductListByCategory(String category) {
+<span class="nc" id="L120">		List&lt;Product&gt; productList = new ArrayList&lt;Product&gt;();</span>
+<span class="nc" id="L121">		productList = supermarketServer.getProductListByCategory(category);</span>
+<span class="nc" id="L122">		return Response.ok(productList).build();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

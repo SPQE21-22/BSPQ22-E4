@@ -12,7 +12,10 @@ import org.junit.Test;
 import supermarket.domain.Product;
 import supermarket.domain.User;
 import supermarket.server.SupermarketService;
-
+import org.junit.Rule;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.junit.ContiPerfRule;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -23,6 +26,8 @@ import java.util.List;
 /**
  * A test class for the Service class.
  */
+//@PerfTest(invocations = 5)
+//@Required(max = 1200, average = 250)
 public class ServiceTest {
 
     // Creating a new instance of the SupermarketService class, and it is creating a
@@ -36,7 +41,7 @@ public class ServiceTest {
     private Client client;
     private WebTarget webTarget;
     private Thread thread;
-
+    //@Rule public ContiPerfRule rule = new ContiPerfRule();
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
 
     /**
@@ -57,6 +62,8 @@ public class ServiceTest {
      * service with the user object
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //Required(max = 120000, average = 1000)
     public void userTest() {
 
         logger.info("Starting user login testing");
@@ -76,6 +83,8 @@ public class ServiceTest {
      * status is OK
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void registerTest() {
 
         logger.info("Starting user register testing");
@@ -96,6 +105,8 @@ public class ServiceTest {
      * correct
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void getUserTest() {
 
         logger.info("Starting user getter testing");
@@ -114,6 +125,8 @@ public class ServiceTest {
      * This function tests the addOrder function in the service class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void addOrderTest() {
 
         logger.info("Starting add order testing");
@@ -131,6 +144,8 @@ public class ServiceTest {
      * It tests the getProductList function in the ProductService class.
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void getProductListTest() {
 
         logger.info("Starting product list getter testing");

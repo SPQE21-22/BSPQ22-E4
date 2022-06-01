@@ -1,5 +1,7 @@
 package DomainTest;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +16,23 @@ import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.junit.Rule;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.databene.contiperf.report.EmptyReportModule;
 
 /**
  * A class that is used to test the user class.
  */
+//@PerfTest(invocations = 5)
+//@Required(max = 1200, average = 250)
 public class userTest {
 
     // It creates a user and a logger.
     User user;
     private static final Logger logger = LogManager.getLogger(userTest.class);
+    //@Rule public ContiPerfRule rule = new ContiPerfRule();
 
     /**
      * It creates a user with a list of orders and a list of products
@@ -57,6 +67,8 @@ public class userTest {
      * > This function tests the setId function of the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setIdTest() {
         logger.info("Starting setId testing");
 
@@ -72,6 +84,8 @@ public class userTest {
      * It tests the setEmail function of the User class.
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void setEmailTest() {
         logger.info("Starting setEmail testing");
 
@@ -88,6 +102,8 @@ public class userTest {
      * It tests the setUsername function of the User class.
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setUsernameTest() {
         logger.info("Starting setUsername testing");
 
@@ -103,6 +119,8 @@ public class userTest {
      * This function tests the setPassword function of the User class.
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 20)
+    //@Required(max = 120000, average = 1000)
     public void setPasswordTest() {
         logger.info("Starting setPassword testing");
 
@@ -118,6 +136,8 @@ public class userTest {
      * It tests the setName function of the User class.
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setNameTest() {
         logger.info("Starting setPassword testing");
 
@@ -133,6 +153,8 @@ public class userTest {
      * > This function tests the setLastName function of the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setLastNameTest() {
         logger.info("Starting setLastName testing");
 
@@ -148,6 +170,8 @@ public class userTest {
      * It tests the setAddress function of the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setAddressTest() {
         logger.info("Starting setAddress testing");
 
@@ -163,6 +187,8 @@ public class userTest {
      * This function tests the setCardNumber function in the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setCardNumberTest() {
         logger.info("Starting setCardNumber testing");
 
@@ -178,6 +204,8 @@ public class userTest {
      * This function tests the setPhoneNumber function in the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void setPhoneNumberTest() {
         logger.info("Starting setPhoneNumber testing");
 
@@ -193,6 +221,8 @@ public class userTest {
      * This function tests the getOrderList() function in the User class
      */
     @Test
+    //@PerfTest(invocations = 1000, threads = 5)
+    //@Required(max = 120000, average = 1000)
     public void getOrderListTest() {
 
         logger.info("Starting getOrderList testing");
