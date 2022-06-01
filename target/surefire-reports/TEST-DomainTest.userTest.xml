@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="DomainTest.userTest" time="0.184" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="DomainTest.userTest" time="0.112" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="18+36-2087"/>
@@ -64,13 +64,13 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="DomainTest.userTest" name="setLastNameTest" time="0.013"/>
-  <testcase classname="DomainTest.userTest" name="setPasswordTest" time="0.01"/>
-  <testcase classname="DomainTest.userTest" name="setUsernameTest" time="0.017"/>
-  <testcase classname="DomainTest.userTest" name="setEmailTest" time="0.024"/>
-  <testcase classname="DomainTest.userTest" name="setNameTest" time="0.021"/>
-  <testcase classname="DomainTest.userTest" name="setPhoneNumberTest" time="0.008"/>
-  <testcase classname="DomainTest.userTest" name="setIdTest" time="0.011"/>
-  <testcase classname="DomainTest.userTest" name="setAddressTest" time="0.043"/>
-  <testcase classname="DomainTest.userTest" name="setCardNumberTest" time="0.017"/>
-  <testcase classname="DomainTest.userTest" name="getOrderListTest" time="0.02"/>
+  <testcase classname="DomainTest.userTest" name="setPasswordTest" time="0.009"/>
+  <testcase classname="DomainTest.userTest" name="setUsernameTest" time="0.011"/>
+  <testcase classname="DomainTest.userTest" name="setEmailTest" time="0.01"/>
+  <testcase classname="DomainTest.userTest" name="setNameTest" time="0.011"/>
+  <testcase classname="DomainTest.userTest" name="setPhoneNumberTest" time="0.013"/>
+  <testcase classname="DomainTest.userTest" name="setIdTest" time="0.01"/>
+  <testcase classname="DomainTest.userTest" name="setAddressTest" time="0.011"/>
+  <testcase classname="DomainTest.userTest" name="setCardNumberTest" time="0.012"/>
+  <testcase classname="DomainTest.userTest" name="getOrderListTest" time="0.012"/>
 </testsuite>

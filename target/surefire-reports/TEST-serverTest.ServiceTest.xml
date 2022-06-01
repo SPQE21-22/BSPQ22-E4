@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="serverTest.ServiceTest" time="0.054" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="serverTest.ServiceTest" time="0.038" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="18+36-2087"/>
@@ -63,9 +63,9 @@
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="serverTest.ServiceTest" name="registerTest" time="0.006"/>
-  <testcase classname="serverTest.ServiceTest" name="addOrderTest" time="0.017"/>
-  <testcase classname="serverTest.ServiceTest" name="userTest" time="0.007"/>
-  <testcase classname="serverTest.ServiceTest" name="getProductListTest" time="0.008"/>
-  <testcase classname="serverTest.ServiceTest" name="getUserTest" time="0.016"/>
+  <testcase classname="serverTest.ServiceTest" name="registerTest" time="0.009"/>
+  <testcase classname="serverTest.ServiceTest" name="addOrderTest" time="0.008"/>
+  <testcase classname="serverTest.ServiceTest" name="userTest" time="0.006"/>
+  <testcase classname="serverTest.ServiceTest" name="getProductListTest" time="0.007"/>
+  <testcase classname="serverTest.ServiceTest" name="getUserTest" time="0.008"/>
 </testsuite>

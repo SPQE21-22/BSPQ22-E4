@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="connectionTest.LoginTest" time="58.339" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="connectionTest.LoginTest" time="50.486" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="18+36-2087"/>
@@ -63,6 +63,6 @@
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="connectionTest.LoginTest" name="loginTest" time="43.586"/>
-  <testcase classname="connectionTest.LoginTest" name="getUserTest" time="14.753"/>
+  <testcase classname="connectionTest.LoginTest" name="loginTest" time="33.178"/>
+  <testcase classname="connectionTest.LoginTest" name="getUserTest" time="17.308"/>
 </testsuite>

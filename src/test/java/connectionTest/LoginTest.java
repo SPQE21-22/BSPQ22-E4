@@ -63,7 +63,7 @@ public class LoginTest {
      * It creates a new user, and then tries to login with the same user
      */
     @Test
-    @PerfTest(invocations = 1000, threads = 20)
+    @PerfTest(invocations = 1000, threads = 10)
     @Required(max = 120000, average = 2000)
     public void loginTest() {
 
@@ -91,7 +91,7 @@ public class LoginTest {
      * server returns the correct password for that username
      */
     @Test
-    @PerfTest(invocations = 1000, threads = 20)
+    @PerfTest(invocations = 1000, threads = 10)
     @Required(max = 120000, average = 2000)
     public void getUserTest() {
 

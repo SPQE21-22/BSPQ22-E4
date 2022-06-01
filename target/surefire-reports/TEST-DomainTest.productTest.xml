@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="DomainTest.productTest" time="0.073" errors="0" skipped="0">
+<testsuite tests="9" failures="0" name="DomainTest.productTest" time="35.926" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="18+36-2087"/>
@@ -63,13 +63,13 @@
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="DomainTest.productTest" name="setStockTest" time="0.003"/>
-  <testcase classname="DomainTest.productTest" name="setCategoryTest" time="0.004"/>
-  <testcase classname="DomainTest.productTest" name="toTextTest" time="0.004"/>
-  <testcase classname="DomainTest.productTest" name="setPriceTest" time="0.011"/>
-  <testcase classname="DomainTest.productTest" name="setNameTest" time="0.008"/>
-  <testcase classname="DomainTest.productTest" name="setIdTest" time="0.007"/>
-  <testcase classname="DomainTest.productTest" name="setExpirationDateTest" time="0.009"/>
-  <testcase classname="DomainTest.productTest" name="setBrandTest" time="0.016"/>
-  <testcase classname="DomainTest.productTest" name="setDiscountPercentageTest" time="0.011"/>
+  <testcase classname="DomainTest.productTest" name="setStockTest" time="2.523"/>
+  <testcase classname="DomainTest.productTest" name="setCategoryTest" time="3.119"/>
+  <testcase classname="DomainTest.productTest" name="toTextTest" time="1.721"/>
+  <testcase classname="DomainTest.productTest" name="setPriceTest" time="3.575"/>
+  <testcase classname="DomainTest.productTest" name="setNameTest" time="3.546"/>
+  <testcase classname="DomainTest.productTest" name="setIdTest" time="4.064"/>
+  <testcase classname="DomainTest.productTest" name="setExpirationDateTest" time="5.406"/>
+  <testcase classname="DomainTest.productTest" name="setBrandTest" time="4.887"/>
+  <testcase classname="DomainTest.productTest" name="setDiscountPercentageTest" time="7.085"/>
 </testsuite>

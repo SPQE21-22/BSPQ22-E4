@@ -17,8 +17,8 @@ import supermarket.domain.Product;
 /**
  * A class that tests the product class.
  */
-//@PerfTest(invocations = 5)
-//@Required(max = 1200, average = 250)
+@PerfTest(invocations = 9)
+@Required(max = 1200, average = 250)
 public class productTest {
 
     // Creating a new product and a logger.
@@ -45,8 +45,8 @@ public class productTest {
      * > This function tests the setId function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setIdTest() {
 
         logger.info("Starting setId testing");
@@ -63,8 +63,8 @@ public class productTest {
      * The function tests the setCategory function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setCategoryTest() {
 
         logger.info("Starting setCategory testing");
@@ -84,8 +84,8 @@ public class productTest {
      * This function tests the setName function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setNameTest() {
 
         logger.info("Starting setName testing");
@@ -102,8 +102,8 @@ public class productTest {
      * The function tests the setBrand method of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setBrandTest() {
 
         logger.info("Starting setBrand testing");
@@ -120,8 +120,8 @@ public class productTest {
      * This function tests the setStock function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setStockTest() {
 
         logger.info("Starting setStock testing");
@@ -138,8 +138,8 @@ public class productTest {
      * This function tests the setExpirationDate function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setExpirationDateTest() {
 
         logger.info("Starting setExpirationDate testing");
@@ -156,8 +156,8 @@ public class productTest {
      * This function tests the setDiscountPercentage function in the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setDiscountPercentageTest() {
 
         logger.info("Starting setDiscountPercentage testing");
@@ -174,8 +174,8 @@ public class productTest {
      * The function tests the setPrice function of the Product class
      */
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void setPriceTest() {
 
         logger.info("Starting setPrice testing");
@@ -189,8 +189,8 @@ public class productTest {
     }
 
     @Test
-    //@PerfTest(invocations = 1000, threads = 20)
-    //@Required(max = 120000, average = 1000)
+    @PerfTest(invocations = 1000, threads = 10)
+    @Required(max = 120000, average = 1000)
     public void toTextTest() {
         logger.info("Starting toText testing");
         String result = product.toText();
